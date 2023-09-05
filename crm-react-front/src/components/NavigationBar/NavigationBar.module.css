@@ -1,0 +1,18 @@
+.navigation-bar {
+  display: flex;
+  justify-content: space-between;
+  background-color: #007bff;
+  padding: 10px 20px;
+}
+
+.navigation-button {
+  background-color: transparent;
+  border: none;
+  color: #fff;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.navigation-button:hover {
+  text-decoration: underline;
+}
