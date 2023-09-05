@@ -10,6 +10,7 @@ const path = require('path');
 const usersRouter = require('./src/routes/user.router');
 
 const FileStore = require('session-file-store')(session);
+const apiRouter = require('./src/routes/api.router');
 
 const sessionConfig = {
   name: 'CRM',
@@ -31,8 +32,9 @@ app.use(cors({ credentials: true, origin: ['http://localhost:5173'] }));
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(morgan('dev'));
-app.use(express.static(path.join(process.cwd(), 'public')));
+app.use(express.static(path.join(process.cwd(), 'public'))); // ! зачем нам мидлварка на public?
 
+app.use('/api', apiRouter);
 app.use('/user', usersRouter);
 
 app.get('/*', (req, res) => {

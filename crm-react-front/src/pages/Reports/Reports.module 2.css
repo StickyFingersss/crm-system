@@ -1,0 +1,12 @@
+.reportButton {
+  background-color: #007bff;
+  color: #fff;
+  padding: 10px 20px;
+  border: none;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.reportButton:hover {
+  background-color: #0056b3;
+}
