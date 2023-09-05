@@ -26,6 +26,8 @@ import {
 import StatusBtn from '../../components/StatusBtn/StatusBtn';
 
 export default function ToDo({ todo }: TodoItemProps): JSX.Element {
+  console.log('TODO', todo);
+  
   return (
     <>
       <Card
