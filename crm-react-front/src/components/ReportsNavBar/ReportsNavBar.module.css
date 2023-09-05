@@ -1,0 +1,27 @@
+/* NavBar.module.css */
+
+.navbar {
+  background-color: #333;
+  color: #fff;
+  display: flex;
+  align-items: center; /* Центрирование по вертикали */
+  padding: 10px 20px;
+}
+
+.navbar-button {
+  background-color: transparent;
+  border: none;
+  color: #fff;
+  font-size: 16px;
+  cursor: pointer;
+  margin-right: 20px; /* Отступ между кнопками */
+}
+
+.period-select {
+  background-color: transparent;
+  color: #fff;
+  border: none;
+  font-size: 16px;
+  cursor: pointer;
+  position: relative; /* Положение для выпадающего списка */
+}
