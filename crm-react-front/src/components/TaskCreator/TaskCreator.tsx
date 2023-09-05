@@ -6,7 +6,7 @@ type TaskState = {
   body: string;
 };
 
-function TaskCreator() {
+function TaskCreator({ setOpenModal }) {
   const [task, setTask] = useState<TaskState>({ title: '', body: '' });
 
   const handleTitleChange = (event: ChangeEvent<HTMLInputElement>) => {
@@ -19,6 +19,7 @@ function TaskCreator() {
 
   const createTask = () => {
     setTask({ title: '', body: '' });
+    setOpenModal(false);
   };
 
   return (

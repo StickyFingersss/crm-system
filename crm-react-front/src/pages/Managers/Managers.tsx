@@ -11,7 +11,7 @@ export const Managers = () => {
       <h1>Wolfs Team</h1>
       <NavigationBar />
       {managersFromDb.map((el, i) => {
-        return <Manager name={el.name} calls={el.calls} />;
+        return <Manager key={i} name={el.name} calls={el.calls} />;
       })}
     </>
   );
