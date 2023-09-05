@@ -1,0 +1,51 @@
+.oneClientList{
+    background-color: rgba(245, 222, 179, 0);
+    color: black;
+    display: flex;
+    align-items: center;
+    font-size: 25px;
+    padding: 2px;
+    margin: 2px;
+    margin-bottom: 5px;    
+}
+.oneClientList h3{
+    font-size: 25px;
+    margin: 0;
+    margin-left: 10px;
+    margin-right: 10px;
+    min-width: 132px;
+}
+.oneClientListBtn{
+    margin-left: 5px;
+    margin-right: 5px;
+    background-color: rgba(240, 248, 255, 0);
+    color: black;
+    padding: 2px;
+}
+.oneClientListBtn:hover{
+    border: 1px solid rgb(0, 0, 0);
+    outline: none;
+    transition: none;
+}
+.oneClientListBtn:focus, .oneClientListBtn:focus-visible{
+    border: none;
+    outline: none;
+    transition: none;
+}
+.oneClientList{
+    background-color: white;
+    border-radius: 15px;
+}
+.statusInput{
+    background-color: rgba(0, 255, 255, 0);
+    margin-left: 15px;
+    margin-right: 15px;
+    border: 2px solid black;
+    border-radius: 5px;
+    height: 25px;
+    color: black;
+    padding-left: 10px;
+    font-size: 15px;
+    max-width: 90px;
+    font-weight: bold;
+}
