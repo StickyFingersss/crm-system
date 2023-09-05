@@ -1,31 +1,19 @@
-
-
 import { Box, Checkbox, Text } from '@chakra-ui/react';
 
-import './MiniToDos.css'
-
+import './MiniToDos.css';
 
 export default function MiniToDos() {
-  
-
   return (
-    <div className='miniToDos'>
+    <div className="miniToDos">
       <Box
         p="10px"
-        borderWidth='1px'
-        borderRadius='10px'
-        borderColor='black.10'
+        borderWidth="1px"
+        borderRadius="10px"
+        borderColor="black.10"
         width="300px"
         height="240px"
-        bgColor="white"
-      >
-        <Text 
-          fontWeight="bold" 
-          mb="2"
-          borderWidth='1px'
-          borderRadius='10px'
-          fontSize="4xl"
-        >
+        bgColor="white">
+        <Text fontWeight="bold" mb="2" borderWidth="1px" borderRadius="10px" fontSize="4xl">
           Tasks
         </Text>
         <ul>
@@ -46,6 +34,6 @@ export default function MiniToDos() {
           </li>
         </ul>
       </Box>
-  </div>
-  )
+    </div>
+  );
 }
