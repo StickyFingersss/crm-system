@@ -1,0 +1,21 @@
+ul li:not(:last-child) {
+  border-bottom: 2px solid
+}
+
+li {
+  list-style-type: none;
+  display: flex;
+  justify-content: space-around;
+  padding: 15px;
+}
+
+.miniToDos {
+  width: 100%;
+  display: flex;
+}
+
+.btnGrp {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+}
