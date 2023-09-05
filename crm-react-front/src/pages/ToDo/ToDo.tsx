@@ -2,6 +2,8 @@ import React from 'react';
 import './Todo.css';
 import type { TodoItemProps } from '../../types';
 
+import { useParams } from 'react-router-dom';
+
 import {
   // BsThreeDotsVertical,
   EditIcon,
@@ -26,16 +28,15 @@ import {
 import StatusBtn from '../../components/StatusBtn/StatusBtn';
 
 export default function ToDo({ todo }: TodoItemProps): JSX.Element {
-  console.log('TODO', todo);
-  
+  let { id } = useParams();
+
   return (
     <>
       <Card
         direction={{ base: 'column', sm: 'row' }}
         overflow="hidden"
         variant="outline"
-        className="taskCard"
-      >
+        className="taskCard">
         <Stack className="stack">
           <CardBody className="cardBody">
             <Heading className="headerText" size="sm">
@@ -56,8 +57,7 @@ export default function ToDo({ todo }: TodoItemProps): JSX.Element {
               '& > button': {
                 minW: '136px',
               },
-            }}
-          >
+            }}>
             <StatusBtn todo={todo} />
             <Button flex="1" variant="ghost" leftIcon={<EditIcon />}>
               Edit
