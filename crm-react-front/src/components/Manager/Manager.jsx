@@ -12,8 +12,9 @@ export function Manager(props) {
 
   const [openModal, setOpenModal] = React.useState(false);
 
-  const deleteManager = async () => {
-    await axios.delete(`http://localhost:3000/api/managers/${id}`);
+  const removeManagerFromTeam = async () => {
+    console.log(id);
+    await axios.put(`http://localhost:3000/api/managers/${id}`);
     dispatch(removeManager(id));
   };
 
@@ -27,7 +28,7 @@ export function Manager(props) {
         <button onClick={() => setOpenModal(!openModal)}>Добавить таску</button>
       )}
 
-      <button onClick={deleteManager}>X</button>
+      <button onClick={removeManagerFromTeam}>X</button>
     </div>
   );
 }

@@ -2,19 +2,23 @@ import { configureStore } from '@reduxjs/toolkit';
 import type { ConfigureStoreOptions } from '@reduxjs/toolkit';
 
 import todoSlice from './todoSlice';
-import counterReducer from './slices/counterSlice';
+import callsSlice from './callsSlice';
+
 import managers from './slices/managersSlice';
 import type { SliceStateType } from '../types';
 
+import { IManager } from '../types';
+
 type PreloadState = {
   todoSlice: SliceStateType;
-  counter: number;
+  callsSlice: SliceStateType;
+  managers: IManager;
 };
 
 const storeOptions: ConfigureStoreOptions<PreloadState> = {
   reducer: {
     todoSlice,
-    counter: counterReducer,
+    callsSlice,
     managers,
   },
 };

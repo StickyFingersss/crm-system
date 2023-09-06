@@ -4,7 +4,6 @@ import { Managers } from './pages/Managers/Managers';
 import { Reports } from './pages/Reports/Reports';
 import { TeamLead } from './pages/TeamLead/TeamLead';
 import { Customer } from './pages/Customer/Customer';
-import { TestComponent } from './components/TestComponent/TestComponent';
 
 import { Routes, Route } from 'react-router-dom';
 import ToDo from './pages/ToDo/ToDo';
@@ -21,7 +20,6 @@ function App(): JSX.Element {
         <Route path="/reports" element={<Reports />}></Route>
         <Route path="/customer" element={<Customer />}></Route>
       </Route>
-      <Route path="/test" element={<TestComponent />}></Route>
     </Routes>
   );
 }

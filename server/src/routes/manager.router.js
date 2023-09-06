@@ -14,13 +14,14 @@ managerRouter.get('/', async (req, res) => {
   }
 });
 
-managerRouter.delete('/:id', async (req, res) => {
+managerRouter.put('/:id', async (req, res) => {
   try {
     const { id } = req.params;
-    console.log(id);
-
-    // Используйте метод destroy с объектом условия
-    await User.destroy({ where: { id } });
+    const team_id = null;
+    const user = await User.findByPk(id);
+    const editUser = user.update({ team_id });
+    console.log(editUser);
+    console.log(user);
 
     res.sendStatus(204); // Отправить статус "No Content" в ответе
   } catch (error) {

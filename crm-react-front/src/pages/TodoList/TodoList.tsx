@@ -8,6 +8,7 @@ import { fetchTodos } from '../../redux/thunkActions';
 
 export default function TodoList(): JSX.Element {
   const todos = useMySelector((store) => store.todoSlice.todos);
+  console.log("🚀 ~ file: TodoList.tsx:11 ~ TodoList ~ todos:", todos);
 
   const dispatch = useMyDispatch();
 

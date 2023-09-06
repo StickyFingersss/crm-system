@@ -1,16 +1,7 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
 
-interface IManager {
-  id: number;
-  name: string;
-  login: string;
-  password: string;
-  isAdmin: boolean;
-  team_id: number;
-  createdAt: object | null;
-  updatedAt: object | null;
-}
+import type { IManager } from '../../types';
 
 export const fetchManagers = createAsyncThunk('managers/fetchManagers', async (thunkAPI) => {
   try {

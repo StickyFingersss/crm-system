@@ -8,7 +8,7 @@ module.exports = {
         name: 'John Doe',
         login: 'johndoe',
         password: 'password123',
-        isAdmin: true,
+        isAdmin: false,
         team_id: 1, // Замените на нужное значение
         createdAt: new Date(),
         updatedAt: new Date(),
@@ -73,6 +73,15 @@ module.exports = {
         password: 'password456',
         isAdmin: false,
         team_id: 2, // Замените на нужное значение
+        createdAt: new Date(),
+        updatedAt: new Date(),
+      },
+      {
+        name: 'John Smith',
+        login: 'johnsmith',
+        password: 'password135',
+        isAdmin: false,
+        team_id: 1, // Замените на нужное значение
         createdAt: new Date(),
         updatedAt: new Date(),
       },
