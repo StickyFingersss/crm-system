@@ -15,7 +15,7 @@ usersRouter.post('/register', async (req, res) => {
         login,
         password: hash,
         isAdmin: true,
-        team_id: 1,
+        team_id: 2,
       });
       req.session.userId = newUser.id;
       req.session.name = newUser.name;

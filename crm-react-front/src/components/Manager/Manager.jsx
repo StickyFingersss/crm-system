@@ -1,22 +1,33 @@
 import React from 'react';
 import styles from './Manager.module.css'; // Импорт классов стилей из файла
 import TaskCreator from '../TaskCreator/TaskCreator';
+import axios from 'axios';
+import { useDispatch } from 'react-redux';
+
+import { removeManager } from '../../redux/slices/managersSlice';
 
 export function Manager(props) {
-  const { name, calls } = props;
+  const dispatch = useDispatch();
+  const { name, id } = props;
+
   const [openModal, setOpenModal] = React.useState(false);
+
+  const deleteManager = async () => {
+    await axios.delete(`http://localhost:3000/api/managers/${id}`);
+    dispatch(removeManager(id));
+  };
 
   return (
     <div className={styles.manager}>
       <h3>{name}</h3>
-
-      <p>Call Count: {calls}</p>
 
       {openModal ? (
         <TaskCreator setOpenModal={setOpenModal} />
       ) : (
         <button onClick={() => setOpenModal(!openModal)}>Добавить таску</button>
       )}
+
+      <button onClick={deleteManager}>X</button>
     </div>
   );
 }

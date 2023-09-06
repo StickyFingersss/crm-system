@@ -1,36 +1,31 @@
 const managerRouter = require('express').Router();
-const { where } = require('sequelize');
+
 const { User, Call } = require('../../db/models');
 
 managerRouter.get('/', async (req, res) => {
   try {
-    const { user } = req.sessions;
-    const users = await User.findAll({ where: { team_id: user.team_id, isAdmin: false } });
-    const calls = await Call.findAll();
+    const { team_id } = req.session;
 
-    const userCallCount = {};
+    const users = await User.findAll({ where: { team_id, isAdmin: false } });
 
-    calls.forEach((call) => {
-      const { user_id } = call;
-      if (userCallCount[user_id]) {
-        userCallCount[user_id]++;
-      } else {
-        userCallCount[user_id] = 1;
-      }
-    });
-
-    const userArr = [];
-
-    users.forEach((user) => {
-      const { id } = user;
-    });
-
-    const objKeys = Object.keys(userCallCount);
-
-    console.log(calls);
-    res.json(calls);
+    res.json(users);
   } catch (error) {
     console.log(error);
+  }
+});
+
+managerRouter.delete('/:id', async (req, res) => {
+  try {
+    const { id } = req.params;
+    console.log(id);
+
+    // Используйте метод destroy с объектом условия
+    await User.destroy({ where: { id } });
+
+    res.sendStatus(204); // Отправить статус "No Content" в ответе
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({ error: 'Внутренняя ошибка сервера' });
   }
 });
 

@@ -17,6 +17,60 @@ module.exports = {
         name: 'Jane Smith',
         login: 'janesmith',
         password: 'password456',
+        isAdmin: true,
+        team_id: 2, // Замените на нужное значение
+        createdAt: new Date(),
+        updatedAt: new Date(),
+      },
+      {
+        name: 'Jane Smith',
+        login: 'janesmith',
+        password: 'password456',
+        isAdmin: false,
+        team_id: 2, // Замените на нужное значение
+        createdAt: new Date(),
+        updatedAt: new Date(),
+      },
+      {
+        name: 'Jane Smith',
+        login: 'janesmith',
+        password: 'password456',
+        isAdmin: false,
+        team_id: 2, // Замените на нужное значение
+        createdAt: new Date(),
+        updatedAt: new Date(),
+      },
+      {
+        name: 'Jane Smith',
+        login: 'janesmith',
+        password: 'password456',
+        isAdmin: false,
+        team_id: 2, // Замените на нужное значение
+        createdAt: new Date(),
+        updatedAt: new Date(),
+      },
+      {
+        name: 'Jane Smith',
+        login: 'janesmith',
+        password: 'password456',
+        isAdmin: false,
+        team_id: 2, // Замените на нужное значение
+        createdAt: new Date(),
+        updatedAt: new Date(),
+      },
+      {
+        name: 'Jane Smith',
+        login: 'janesmith',
+        password: 'password456',
+        isAdmin: false,
+        team_id: 2, // Замените на нужное значение
+        createdAt: new Date(),
+        updatedAt: new Date(),
+      },
+      {
+        name: 'Jane Smith',
+        login: 'janesmith',
+        password: 'password456',
         isAdmin: false,
         team_id: 2, // Замените на нужное значение
         createdAt: new Date(),
