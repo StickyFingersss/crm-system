@@ -1,8 +1,10 @@
 const apiRouter = require('express').Router();
-const managerRouter = require('./manager.router');
 const todosRouter = require('./todos.router');
+const userRouter = require('./user.router');
+const callsRouter = require('./calls.router');
 
 apiRouter.use('/todos', todosRouter);
-apiRouter.use('/managers', managerRouter);
+apiRouter.use('/user', userRouter);
+apiRouter.use('/calls', callsRouter);
 
 module.exports = apiRouter;

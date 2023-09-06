@@ -44,7 +44,7 @@ export const Register = () => {
       e.preventDefault();
       try {
 
-        const response = await axios.post('http://localhost:3000/user/register', dataReg);
+        const response = await axios.post('http://localhost:3000/api/user/register', dataReg);
         if (response.status === 200) {
           setShowSuccessMessage(true);
           setShowErrorMessage(false);

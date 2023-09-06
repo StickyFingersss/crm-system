@@ -16,5 +16,13 @@ export type TodoItemProps = {
 };
 
 export type SliceStateType = {
-  todos: TodosType;
+  todos?: TodosType;
+  calls?: CallsType;
 };
+
+export type CallsType = Array<CallType>;
+
+export type CallType = {
+  name: string;
+  count: number;
+}

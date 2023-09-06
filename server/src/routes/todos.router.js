@@ -1,9 +1,9 @@
 const todosRouter = require('express').Router();
-const { Todo } = require('../../db/models');
+const { Task } = require('../../db/models');
 
 todosRouter.get('/', async (req, res) => {
   try {
-    const todos = await Todo.findAll();
+    const todos = await Task.findAll();
     res.json(todos);
   } catch (error) {
     console.log(error);
