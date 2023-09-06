@@ -38,7 +38,7 @@ export const Login = () => {
   const submitHandler = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     try {
-      const response = await axios.post('http://localhost:3000/user/login', dataLog);
+      const response = await axios.post('http://localhost:3000/api/user/login', dataLog);
       if (response.status === 200) {
         console.log('123');
         setShowSuccessMessage(true);
