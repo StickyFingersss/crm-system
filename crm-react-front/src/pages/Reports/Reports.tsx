@@ -17,21 +17,6 @@ export const Reports = () => {
     void dispatch(fetchCalls());
   }, [dispatch]);
 
-  // логика прокидывания кнопок
-
-  const [status, setStatus] = useState('');
-  const testFunc = (str) => {
-    setStatus(str);
-  };
-  const buttons = [
-    { name: 'Manager', callback: () => testFunc('Manager') }, // прокидывать можно любую функцию
-    { name: 'Calls', callback: () => testFunc('Calls') },
-    { name: 'Deals', callback: () => testFunc('Deals') },
-  ];
-  const select = ['Day', 'Week', 'Month'];
-
-  // логика прокидывания кнопок
-
   return (
     <>
       <div>Reports</div>

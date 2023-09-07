@@ -10,32 +10,52 @@ import {
   ModalFooter,
   Link as ChakraLink,
 } from '@chakra-ui/react';
-import { ChangeEvent, useState } from 'react';
+import { ChangeEvent, useEffect, useState } from 'react';
 
 
-import { useMyDispatch } from '../../redux/hooks';
+import { useMyDispatch, useMySelector } from '../../redux/hooks';
 import { fetchAddOneManager } from '../../redux/thunkActions';
 
 import { Link as ReactRouterLink } from 'react-router-dom';
-import { InputManagerType } from '../../types';
+import { InputManagerType, InputStatusType } from '../../types';
+import { fetchAllStatuses, fetchAddStatus, fetchDelStatus } from '../../redux/thunkActions/statusesActions';
+import Status from '../Status/Status';
 
 export default function ModalButtonLead() {
   const [isManagerModalOpen, setManagerModalOpen] = useState(false);
   const [isStatusModalOpen, setStatusModalOpen] = useState(false);
   const [isCreateStatus, setCreateStatus] = useState(false);
   const [inputs, setInputs] = useState<InputManagerType>({ name: '', login: '', password: '' });
+  const [inputStatus, setInputStatus] = useState<InputStatusType>({ name: '' })
+
+  const statuses = useMySelector((store) => store.statusSlice.statuses);
 
   const changeHandler = (e: ChangeEvent<HTMLInputElement>): void => {
     setInputs((prev) => ({ ...prev, [e.target.name]: e.target.value }));
   };
+  const changeStatusHandler = (e: ChangeEvent<HTMLInputElement>): void => {
+    setInputStatus((prev) => ({ ...prev, [e.target.name]: e.target.value }));
+  };
 
   const dispatch = useMyDispatch();
+
+  useEffect(() => {
+    void dispatch(fetchAllStatuses());
+  }, [dispatch]);
 
   const addManagerHandler = async (): Promise<void> => {
     if (inputs.name && inputs.login && inputs.password) {
       void dispatch(fetchAddOneManager(inputs));
       setInputs({ name: '', login: '', password: '' });
     }
+  };
+
+  const addStatusHandler = async (): Promise<void> => {
+    if (inputStatus.name) {
+      void dispatch(fetchAddStatus(inputStatus));
+      setInputStatus({ name: '' });
+      setCreateStatus(false);
+    } 
   };
 
   const openManagerModal = () => {
@@ -56,10 +76,6 @@ export default function ModalButtonLead() {
 
   const openCreateStatus = () => {
     setCreateStatus(true);
-  };
-
-  const closeCreateStatus = () => {
-    setCreateStatus(false);
   };
 
   return (
@@ -95,15 +111,19 @@ export default function ModalButtonLead() {
         <Modal isOpen={isStatusModalOpen} onClose={closeStatusModal}>
           <ModalOverlay />
           <ModalContent>
-            <ModalHeader>Добавить новый статус</ModalHeader>
+            {isCreateStatus ? (
+              <>
+                <Input name='name' value={inputStatus.name} onChange={changeStatusHandler} placeholder="Введите статус" mb="4" />
+                <Button colorScheme="blue" mr={3} onClick={addStatusHandler}>
+                  Сохранить
+                </Button>
+              </>
+            ) : (
+              <ModalHeader>Добавить новый статус</ModalHeader>
+            )}
             <ModalCloseButton />
             <ModalBody>
-              {/* {statuses.map((status, index) => (
-              <div key={index} style={{ display: 'flex', alignItems: 'center', marginBottom: '8px' }}>
-                <p style={{ marginRight: '8px' }}>{status}</p>
-                <Button size="sm" colorScheme="red" onClick={() => deleteStatus(index)}>Удалить</Button>
-              </div>
-            ))} */}
+              {statuses?.length && statuses.map((status) => <Status key={status.id} status={status}/>)}
             </ModalBody>
             <ModalFooter>
               <Button colorScheme="blue" mr={3} onClick={openCreateStatus}>
