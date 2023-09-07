@@ -45,6 +45,9 @@ export const Register = () => {
       try {
 
         const response = await axios.post('http://localhost:3000/api/user/register', dataReg);
+        console.log("🚀 ~ file: Register.tsx:48 ~ submitHandler ~ response:", response);
+        console.log("🚀 ~ file: Register.tsx:48 ~ submitHandler ~ dataReg:", dataReg);
+        
         if (response.status === 200) {
           setShowSuccessMessage(true);
           setShowErrorMessage(false);
