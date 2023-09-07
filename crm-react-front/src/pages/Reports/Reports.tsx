@@ -17,6 +17,12 @@ export const Reports = () => {
     void dispatch(fetchCalls());
   }, [dispatch]);
 
+  const buttons = [
+    { name: 'name', callback: () => console.log('name') },
+    { name: 'calls', callback: () => console.log('calls') },
+  ];
+  const select = ['Day', 'Week', 'Month'];
+
   return (
     <>
       <div>Reports</div>
