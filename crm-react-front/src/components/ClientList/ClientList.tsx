@@ -1,13 +1,23 @@
 import styles from './ClientList.module.css';
 
 import { Client } from './Client';
-import { CustomerInfo } from '../Customer/CustomerInfo';
-import { Comments } from '../Comments/Comments';
 
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+import { useMyDispatch, useMySelector } from '../../redux/hooks';
+import { fetchAllCustomers } from '../../redux/thunkActions';
 
 export const ClientList = (): JSX.Element => {
+
+  const dispatch = useMyDispatch();
+
   const [inputModal, setInputModal] = useState(false);
+
+  const customers = useMySelector((store) => store.customerSlice.customers);
+
+    useEffect(() => {
+    void dispatch(fetchAllCustomers());
+  }, [dispatch]);
+
   return (
     <div className={styles.mainClientList}>
       {/* модалка поиска по "навигации" */}
@@ -92,12 +102,7 @@ export const ClientList = (): JSX.Element => {
 
       {/* карточки клиентов */}
       <div className={styles.containerClients}>
-        <Client />
-        <Client />
-        <Client />
-        <Client />
-        <Client />
-        <Client />
+        {customers?.map((customer) => <Client id={customer.id} name={customer.name} balance={customer.balance} phone={customer.phone} email={customer.email} status={customer.status} manager_id={customer.manager_id}/>)}
       </div>
     </div>
   );

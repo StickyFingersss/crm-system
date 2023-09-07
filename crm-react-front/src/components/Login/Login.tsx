@@ -1,5 +1,4 @@
 import React, { ChangeEvent, useState } from "react";
-import { useNavigate } from "react-router-dom";
 
 import {
   Box,
@@ -14,6 +13,7 @@ import {
   Text,
 } from "@chakra-ui/react";
 import axios from "axios";
+axios.defaults.withCredentials = true;
 
 interface IReg {
   name: string;
@@ -38,9 +38,8 @@ export const Login = () => {
   const submitHandler = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     try {
-      const response = await axios.post('http://localhost:3000/user/login', dataLog);
+      const response = await axios.post('http://localhost:3000/api/user/login', dataLog);
       if (response.status === 200) {
-        console.log('123');
         setShowSuccessMessage(true);
         setShowErrorMessage(false);
       } else {

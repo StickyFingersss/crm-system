@@ -7,8 +7,6 @@ const morgan = require('morgan');
 const cors = require('cors');
 const path = require('path');
 
-const usersRouter = require('./src/routes/user.router');
-
 const FileStore = require('session-file-store')(session);
 const apiRouter = require('./src/routes/api.router');
 
@@ -35,7 +33,6 @@ app.use(morgan('dev'));
 app.use(express.static(path.join(process.cwd(), 'public'))); // ! зачем нам мидлварка на public?
 
 app.use('/api', apiRouter);
-app.use('/user', usersRouter);
 
 app.get('/*', (req, res) => {
   res.send('404 Page not found');

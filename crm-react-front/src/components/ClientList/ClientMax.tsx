@@ -1,6 +1,6 @@
 import styles from './Client.module.css';
 
-export const Client = ({ id, name, balance, phone, email, status, manager_id}): JSX.Element => {
+export const ClientMax = ({ id, name, balance, phone, email, status, manager_id}): JSX.Element => {
   return (
     <div className={styles.oneClientList}>
       <button type='button'>{name}</button>
