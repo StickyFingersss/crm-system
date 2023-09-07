@@ -23,8 +23,13 @@ module.exports = {
         type: Sequelize.STRING,
         allowNull: false,
       },
-      status: {
-        type: Sequelize.STRING,
+      status_id: {
+        type: Sequelize.INTEGER,
+        allowNull: false,
+        references: {
+          model: 'Statuses',
+          key: 'id',
+        },
       },
       manager_id: {
         type: Sequelize.INTEGER,
