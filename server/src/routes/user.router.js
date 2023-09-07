@@ -60,4 +60,9 @@ usersRouter.get('/logout', (req, res) => {
   res.send(200);
 });
 
+// usersRouter.get('/userData', (req, res) => {
+//   const { userId } = req.session;
+//   res.json({ userId });
+// });
+
 module.exports = usersRouter;
