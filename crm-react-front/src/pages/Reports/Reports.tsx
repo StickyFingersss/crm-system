@@ -15,7 +15,6 @@ export const Reports = () => {
   useEffect(() => {
     void dispatch(fetchCalls());
   }, [dispatch]);
-  console.log("calls", calls);
   
   return (
     <>
