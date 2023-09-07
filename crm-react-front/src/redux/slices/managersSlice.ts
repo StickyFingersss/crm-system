@@ -2,6 +2,7 @@ import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
 
 import type { IManager } from '../../types';
+import { fetchAddOneManager } from '../thunkActions';
 
 export const fetchManagers = createAsyncThunk('managers/fetchManagers', async (thunkAPI) => {
   try {
@@ -12,6 +13,7 @@ export const fetchManagers = createAsyncThunk('managers/fetchManagers', async (t
     console.log(err);
   }
 });
+
 
 export interface CounterState {
   managers: [];
@@ -42,6 +44,9 @@ export const managerSlice = createSlice({
       .addCase(fetchManagers.rejected, (state) => {
         state.status = 'error';
         state.managers = [];
+      })
+      .addCase(fetchAddOneManager.fulfilled, (state, action) => {
+        state.managers.push(action.payload);
       });
   },
 });

@@ -15,7 +15,6 @@ export const Managers = () => {
   }, [dispatch]);
 
   const { managers } = useSelector((state: RootState) => state.managers);
-  console.log(managers);
   return (
     <>
       <h1>Wolfs Team</h1>
