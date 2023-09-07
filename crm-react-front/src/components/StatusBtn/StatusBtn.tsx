@@ -10,7 +10,7 @@ export default function StatusBtn({ todo }: TodoItemProps) {
   const dispatch = useMyDispatch();
 
   const updateStatusHandler = async (): Promise<void> => {
-        const todoUpdated = { ...todo, status: !todo.status };
+    const todoUpdated = { ...todo, status: !todo.status };
     dispatch(fetchNewStatus(todoUpdated));
   };
 
@@ -19,7 +19,7 @@ export default function StatusBtn({ todo }: TodoItemProps) {
       {todo.status && (
         <Button
           onClick={() => {
-            updateStatusHandler(), console.log('Hello');
+            updateStatusHandler();
           }}
           flex="1"
           variant="ghost"
@@ -31,7 +31,7 @@ export default function StatusBtn({ todo }: TodoItemProps) {
       {!todo.status && (
         <Button
           onClick={() => {
-            updateStatusHandler(), console.log('Hello');
+            updateStatusHandler();
           }}
           flex="1"
           variant="ghost"
