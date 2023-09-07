@@ -1,0 +1,20 @@
+.stack {
+    display: flex !important;
+    flex-direction: row !important;
+}
+.cardBody,
+.footer {
+    padding: 5px !important;
+}
+
+.headerText {
+    text-align: left;
+}
+
+.text {
+    text-align: justify;
+}
+
+.footer {
+    flex-direction: column !important;
+}
