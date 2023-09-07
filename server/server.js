@@ -8,6 +8,7 @@ const cors = require('cors');
 const path = require('path');
 
 const FileStore = require('session-file-store')(session);
+
 const apiRouter = require('./src/routes/api.router');
 
 const sessionConfig = {

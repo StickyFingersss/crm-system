@@ -4,7 +4,7 @@ import axios from 'axios';
 import type { AxiosResponse } from 'axios';
 axios.defaults.withCredentials = true;
 
-import { CommentType, CommentsType, CustomersType, InputsType, TodosType } from '../types';
+import { CallsType, IManager, InputManagerType, CommentType, CommentsType, CustomersType, InputsType, TodosType } from '../types';
 
 export const fetchTodos = createAsyncThunk('todos/all', async () => {
   const response = await axios.get<TodosType>(
@@ -34,3 +34,17 @@ export const fetchAllComments = createAsyncThunk('comment/all', async () => {
     'http://localhost:3000/api/customer/comment/all');
   return response.data;
 });
+
+export const fetchCalls = createAsyncThunk('calls/all', async () => {
+  const response = await axios.get<CallsType>(
+    `${import.meta.env.VITE_URL}/calls/report`
+  );
+  return response.data;
+})
+
+export const fetchAddOneManager = createAsyncThunk('managers/create', async (inputs: InputManagerType) => {
+  const response = await axios.post<InputManagerType, AxiosResponse<IManager>>(`${import.meta.env.VITE_URL}/managers`,
+    inputs,
+  );
+  return response.data;
+})

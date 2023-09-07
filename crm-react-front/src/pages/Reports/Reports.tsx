@@ -1,15 +1,22 @@
+import { useEffect } from 'react';
 import { ReportsItem } from '../../components/ReportsItem/ReportsItem';
 import { ReportsNavBar } from '../../components/ReportsNavBar/ReportsNavBar';
+
+import { useMyDispatch, useMySelector } from '../../redux/hooks';
+import { fetchCalls } from '../../redux/thunkActions';
 
 import styles from './Reports.module.css';
 
 export const Reports = () => {
-  const reportsFromDb = [
-    { manager: 'Anton', calls: 23, deals: 46 },
-    { manager: 'Sergey', calls: 232, deals: 426 },
-    { manager: 'Olesya', calls: 21, deals: 43 },
-    { manager: 'Anna', calls: 11, deals: 1 },
-  ];
+  const calls = useMySelector((store) => store.callsSlice.calls);
+
+  const dispatch = useMyDispatch();
+
+  useEffect(() => {
+    void dispatch(fetchCalls());
+  }, [dispatch]);
+  console.log("calls", calls);
+  
   return (
     <>
       <div>Reports</div>
@@ -18,8 +25,8 @@ export const Reports = () => {
           <ReportsNavBar />
         </div>
         <div className="report-list">
-          {reportsFromDb.map((el, i) => (
-            <ReportsItem key={i} manager={el.manager} calls={el.calls} deals={el.deals} />
+          {calls?.map((el, i) => (
+            <ReportsItem key={i} name={el.name} count={el.count} />
           ))}
         </div>
         <button

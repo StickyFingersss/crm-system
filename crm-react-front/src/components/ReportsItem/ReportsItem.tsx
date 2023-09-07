@@ -1,15 +1,16 @@
 import styles from './ReportItem.module.css';
-import { reportProps } from '../../Types/ReportTypes';
+import { CallType } from '../../types';
 
-export const ReportsItem = (props: reportProps) => {
-  const { manager, calls, deals } = props;
-
+export const ReportsItem = (props: CallType) => {
+  const { name, count } = props;
+  console.log("🚀 ~ file: ReportsItem.tsx:6 ~ ReportsItem ~ props:", props);
+  
   return (
     <>
       <div className={styles.reportItem}>
-        <h3>{manager}</h3>
-        <p>Calls: {calls}</p>
-        <p>Deals: {deals}</p>
+        <h3>{name}</h3>
+        <p>Calls: {count}</p>
+        <p>Deals: {10}</p>
       </div>
     </>
   );

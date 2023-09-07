@@ -1,36 +1,38 @@
 const managerRouter = require('express').Router();
-const { where } = require('sequelize');
+
 const { User, Call } = require('../../db/models');
 
 managerRouter.get('/', async (req, res) => {
   try {
-    const { user } = req.sessions;
-    const users = await User.findAll({ where: { team_id: user.team_id, isAdmin: false } });
-    const calls = await Call.findAll();
-
-    const userCallCount = {};
-
-    calls.forEach((call) => {
-      const { user_id } = call;
-      if (userCallCount[user_id]) {
-        userCallCount[user_id]++;
-      } else {
-        userCallCount[user_id] = 1;
-      }
-    });
-
-    const userArr = [];
-
-    users.forEach((user) => {
-      const { id } = user;
-    });
-
-    const objKeys = Object.keys(userCallCount);
-
-    console.log(calls);
-    res.json(calls);
+    const { team_id } = req.session;
+    const users = await User.findAll({ where: { team_id, isAdmin: false } });
+    res.json(users);
   } catch (error) {
     console.log(error);
+  }
+});
+
+managerRouter.post('/', async (req, res) => {
+  const { name, login, password } = req.body
+  const { team_id } = req.session;
+  try {
+    const newUser = await User.create({ name, login, password, team_id, isAdmin: false });
+    res.json(newUser);
+  } catch (error) {
+    console.log(error);
+  }
+});
+
+managerRouter.put('/:id', async (req, res) => {
+  try {
+    const { id } = req.params;
+    const team_id = null;
+    const user = await User.findByPk(id);
+    const editUser = user.update({ team_id });
+    res.sendStatus(204); // Отправить статус "No Content" в ответе
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({ error: 'Внутренняя ошибка сервера' });
   }
 });
 

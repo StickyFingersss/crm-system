@@ -1,4 +1,5 @@
 import styles from './Client.module.css';
+import { Link } from 'react-router-dom';
 
 export const Client = ({ id, name, balance, phone, email, status, manager_id}): JSX.Element => {
   return (
@@ -13,9 +14,9 @@ export const Client = ({ id, name, balance, phone, email, status, manager_id}): 
         list="managers"
       />
       <datalist id="managers">
-          <option>John Smit</option>
-          <option>Max Revo</option>
-          <option>Elena Green</option>
+        <option>John Smit</option>
+        <option>Max Revo</option>
+        <option>Elena Green</option>
       </datalist>
       <h3>{manager_id}</h3>
       <input
@@ -26,11 +27,10 @@ export const Client = ({ id, name, balance, phone, email, status, manager_id}): 
         value={status? status : ''}
       />
       <datalist id="status">
-          <option>Deposit</option>
-          <option>No money</option>
-          <option>In work</option>
+        <option>Deposit</option>
+        <option>No money</option>
+        <option>In work</option>
       </datalist>
-      
     </div>
-  )
-}
+  );
+};
