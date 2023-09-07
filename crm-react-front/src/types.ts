@@ -2,9 +2,9 @@ export type InputsType = {
   title: string;
   text: string;
   status: boolean;
-  deadline: object;
-  user_id: number;
-  id: number;
+  deadline: string;
+  user_id?: number;
+  id?: number;
 };
 
 export type TodoType = {
@@ -18,6 +18,16 @@ export type TodoType = {
   updatedAt?: Date;
 };
 
+export interface IManager {
+  id: number;
+  name: string;
+  login: string;
+  password: string;
+  isAdmin: boolean;
+  team_id: number;
+  createdAt: object | null;
+  updatedAt: object | null;
+}
 export type TodosType = Array<TodoType>;
 
 export type TodoItemProps = {
@@ -27,5 +37,14 @@ export type TodoItemProps = {
 };
 
 export type SliceStateType = {
-  todos: TodosType;
+  todos?: TodosType;
+  calls?: CallsType;
+  managers?: Array<IManager>;
+};
+
+export type CallsType = Array<CallType>;
+
+export type CallType = {
+  name: string;
+  count: number;
 };

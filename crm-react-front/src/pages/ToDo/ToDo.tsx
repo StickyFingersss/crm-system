@@ -51,8 +51,7 @@ export default function ToDo({ todo }: TodoItemProps): JSX.Element {
         direction={{ base: 'column', sm: 'row' }}
         overflow="hidden"
         variant="outline"
-        className="taskCard"
-      >
+        className="taskCard">
         <Stack className="stack">
           <CardBody className="cardBody">
             <Heading className="headerText" size="sm">
@@ -74,12 +73,8 @@ export default function ToDo({ todo }: TodoItemProps): JSX.Element {
               '& > button': {
                 minW: '136px',
               },
-            }}
-          >
+            }}>
             <StatusBtn todo={todo} />
-            {/* <Button  flex="1" variant="ghost" leftIcon={<EditIcon />}>
-              Edit
-            </Button> */}
             <ModalButtonAddTodo editBtnTitle={editBtnTitle} todo={todo}/>
             <Button
               onClick={deleteHandler}

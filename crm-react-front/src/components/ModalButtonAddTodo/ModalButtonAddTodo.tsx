@@ -12,6 +12,9 @@ import {
   useDisclosure,
 } from '@chakra-ui/react';
 
+import axios from 'axios';
+import moment from 'moment';
+
 import { EditIcon } from '@chakra-ui/icons';
 import { ChangeEvent, useEffect, useState } from 'react';
 
@@ -31,7 +34,6 @@ export default function ModalButtonAddTodo({
       backdropFilter="blur(10px) hue-rotate(90deg)"
     />
   );
-
   const { isOpen, onOpen, onClose } = useDisclosure();
   const [overlay, setOverlay] = React.useState(<OverlayOne />);
 
@@ -39,9 +41,24 @@ export default function ModalButtonAddTodo({
     title: '',
     text: '',
     status: false,
-    deadline: {},
-    user_id: 0,
+    deadline: '',
   });
+
+  //! можно поставить флаг в состояние
+  //? использовать санки?
+
+  // useEffect(() => {
+  //   // Отправляем запрос на сервер для получения userId
+  //   axios
+  //   .get(`${import.meta.env.VITE_URL}/user/userData`)
+  //   .then((response) => {
+  //     const { userId } = response.data;
+  //     setInputs({ ...inputs, user_id: userId });
+  //   })
+  //   .catch((error) => {
+  //     console.error('Ошибка при получении данных', error);
+  //   });
+  // }, []);
 
   useEffect(() => {
     if (todo) {
@@ -49,7 +66,7 @@ export default function ModalButtonAddTodo({
         title: todo.title || '',
         text: todo.text || '',
         status: todo.status || false,
-        deadline: new Date(todo.deadline).toISOString().slice(0, 16) || {},
+        deadline: moment(todo.deadline).format().slice(0, 16),
         user_id: todo.user_id || 0,
       });
     }
@@ -64,7 +81,12 @@ export default function ModalButtonAddTodo({
   const addHandler = async (): Promise<void> => {
     if (inputs.title && inputs.text && inputs.deadline) {
       void dispatch(fetchAddTodo(inputs));
-      setInputs({ ...inputs, title: '', text: '', deadline: {} });
+      setInputs({
+        ...inputs,
+        title: '',
+        text: '',
+        deadline: '',
+      });
     }
   };
 
@@ -72,7 +94,12 @@ export default function ModalButtonAddTodo({
     if (inputs.title || inputs.text || inputs.deadline) {
       const newInputs = { ...inputs, id: todo.id };
       void dispatch(fetchEdit(newInputs));
-      setInputs({ ...inputs, title: '', text: '', deadline: {} });
+      setInputs({
+        ...inputs,
+        title: '',
+        text: '',
+        deadline: '',
+      });
     }
   };
 
@@ -186,7 +213,7 @@ export default function ModalButtonAddTodo({
                   type="datetime-local"
                   margin={5}
                   onChange={changeHandler}
-                  defaultValue={inputs.deadline}
+                  defaultValue={inputs.deadline || ''}
                   size="sm"
                 />
                 {/* <Text>Custom backdrop filters!</Text> */}

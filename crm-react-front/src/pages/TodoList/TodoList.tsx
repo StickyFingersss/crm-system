@@ -26,7 +26,7 @@ export default function TodoList(): JSX.Element {
       <h1>{header}</h1>
       <ModalButtonAddTodo createBtnTitle={createBtnTitle} />
       <ul>
-        {todos.map((todo) => (
+        {todos?.map((todo) => (
           <ToDo key={todo.id} todo={todo} />
         ))}
       </ul>

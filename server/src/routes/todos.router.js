@@ -13,12 +13,13 @@ todosRouter.get('/', async (req, res) => {
 });
 
 todosRouter.post('/', async (req, res) => {
+  const { userId } = req.session;
   const {
-    title, text, status, deadline, user_id,
+    title, text, status, deadline,
   } = req.body;
   try {
     const todo = await Task.create({
-      title, text, status, deadline, user_id,
+      title, text, status, deadline, user_id: userId,
     });
     res.json(todo);
   } catch (error) {
