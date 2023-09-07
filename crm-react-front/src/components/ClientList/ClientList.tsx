@@ -5,9 +5,20 @@ import { CustomerInfo } from '../Customer/CustomerInfo';
 import { Comments } from '../Comments/Comments';
 
 import { useState } from 'react';
+import { NavBar } from '../NavBar/NavBar';
 
 export const ClientList = (): JSX.Element => {
   const [inputModal, setInputModal] = useState(false);
+
+  const buttons = [
+    { name: 'Name', callback: () => setInputModal(!inputModal) },
+    { name: 'ID', callback: () => setInputModal(!inputModal) },
+    { name: 'Balance', callback: () => setInputModal(!inputModal) },
+    { name: 'Responsible', callback: () => setInputModal(!inputModal) },
+    { name: 'Assigned at', callback: () => setInputModal(!inputModal) },
+    { name: 'Status', callback: () => setInputModal(!inputModal) },
+  ];
+
   return (
     <div className={styles.mainClientList}>
       {/* модалка поиска по "навигации" */}
@@ -33,7 +44,10 @@ export const ClientList = (): JSX.Element => {
       </div>
 
       {/* "навигация" */}
-      <div className={styles.navClientList}>
+
+      <NavBar buttons={buttons} />
+
+      {/* <div className={styles.navClientList}>
         <button
           type="button"
           id="12"
@@ -88,7 +102,8 @@ export const ClientList = (): JSX.Element => {
           }}>
           Status
         </button>
-      </div>
+        BN
+      </div> */}
 
       {/* карточки клиентов */}
       <div className={styles.containerClients}>

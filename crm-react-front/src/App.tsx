@@ -9,6 +9,7 @@ import { Routes, Route } from 'react-router-dom';
 import ToDo from './pages/ToDo/ToDo';
 import TodoList from './pages/TodoList/TodoList';
 import { Customer } from './pages/Customer/Customer';
+import { NavBar } from './components/NavBar/NavBar';
 
 function App(): JSX.Element {
   return (
@@ -22,6 +23,7 @@ function App(): JSX.Element {
         <Route path="/customer" element={<Customer />}></Route>
         <Route path="/manager" element={<Manager />}></Route>
       </Route>
+      <Route path="/test" element={<NavBar />}></Route>
     </Routes>
   );
 }

@@ -1,0 +1,27 @@
+.modalBackground {
+  display: flex;
+  justify-content: space-between;
+  min-width: 400px;
+  width: 100%;
+}
+
+.modalBackground ul {
+  display: flex;
+  justify-content: space-between;
+  min-width: 400px;
+}
+
+.modalBackground ul li {
+  border-bottom: 0px solid !important;
+}
+
+/* .modalContent {
+  background-color: #fff;
+  border-radius: 4px;
+  padding: 20px;
+}
+
+.modalCloseButton {
+  cursor: pointer;
+  font-size: 20px;
+} */
