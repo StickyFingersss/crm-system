@@ -12,6 +12,7 @@ import ModalButtonAddTodo from '../../components/ModalButtonAddTodo/ModalButtonA
 
 export default function TodoList(): JSX.Element {
   const todos = useMySelector((store) => store.todoSlice.todos);
+
   const dispatch = useMyDispatch();
 
   useEffect(() => {

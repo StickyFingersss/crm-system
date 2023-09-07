@@ -48,3 +48,9 @@ export type CallType = {
   name: string;
   count: number;
 };
+
+export type InputManagerType = {
+  name: string;
+  login: string;
+  password: string;
+}

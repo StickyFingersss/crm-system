@@ -10,16 +10,33 @@ import {
   ModalFooter,
   Link as ChakraLink,
 } from '@chakra-ui/react';
-import { useState } from 'react';
+import { ChangeEvent, useState } from 'react';
+
+
+import { useMyDispatch } from '../../redux/hooks';
+import { fetchAddOneManager } from '../../redux/thunkActions';
 
 import { Link as ReactRouterLink } from 'react-router-dom';
+import { InputManagerType } from '../../types';
 
 export default function ModalButtonLead() {
   const [isManagerModalOpen, setManagerModalOpen] = useState(false);
   const [isStatusModalOpen, setStatusModalOpen] = useState(false);
-  const [isCreateStatusModalOpen, setCreateStatusModalOpen] = useState(false);
-  // const [managers, setManagers] = useState([]);
-  // const [statuses, setStatuses] = useState([]);
+  const [isCreateStatus, setCreateStatus] = useState(false);
+  const [inputs, setInputs] = useState<InputManagerType>({ name: '', login: '', password: '' });
+
+  const changeHandler = (e: ChangeEvent<HTMLInputElement>): void => {
+    setInputs((prev) => ({ ...prev, [e.target.name]: e.target.value }));
+  };
+
+  const dispatch = useMyDispatch();
+
+  const addManagerHandler = async (): Promise<void> => {
+    if (inputs.name && inputs.login && inputs.password) {
+      void dispatch(fetchAddOneManager(inputs));
+      setInputs({ name: '', login: '', password: '' });
+    }
+  };
 
   const openManagerModal = () => {
     setManagerModalOpen(true);
@@ -37,30 +54,14 @@ export default function ModalButtonLead() {
     setStatusModalOpen(false);
   };
 
-  const openCreateStatusModal = () => {
-    setCreateStatusModalOpen(true);
+  const openCreateStatus = () => {
+    setCreateStatus(true);
   };
 
-  const closeCreateStatusModal = () => {
-    setCreateStatusModalOpen(false);
+  const closeCreateStatus = () => {
+    setCreateStatus(false);
   };
 
-  // const addManager = () => {
-  //   // Добавить логику для сохранения нового менеджера
-  //   setManagers([...managers, { name: '', email: '', password: '' }]);
-  // };
-
-  // const addStatus = () => {
-  //   // Добавить логику для сохранения нового статуса
-  //   setStatuses([...statuses, 'Новый статус']);
-  // };
-
-  // const deleteStatus = (index) => {
-  //   // Добавить логику для удаления статуса по индексу
-  //   const updatedStatuses = [...statuses];
-  //   updatedStatuses.splice(index, 1);
-  //   setStatuses(updatedStatuses);
-  // }
   return (
     <>
       <div className="btnGrp">
@@ -76,12 +77,12 @@ export default function ModalButtonLead() {
             <ModalHeader>Добавить нового менеджера</ModalHeader>
             <ModalCloseButton />
             <ModalBody>
-              <Input placeholder="Введите имя" mb="4" />
-              <Input placeholder="Введите почту" mb="4" />
-              <Input placeholder="Введите пароль" mb="4" />
+              <Input name='name' value={inputs.name} onChange={changeHandler} placeholder="Введите имя" mb="4" />
+              <Input name='login' value={inputs.login} onChange={changeHandler} placeholder="Введите логин" mb="4" />
+              <Input name='password' value={inputs.password} onChange={changeHandler} placeholder="Введите пароль" mb="4" />
             </ModalBody>
             <ModalFooter>
-              <Button colorScheme="blue" mr={3} onClick={closeManagerModal}>
+              <Button colorScheme="blue" mr={3} onClick={addManagerHandler}>
                 Сохранить
               </Button>
               <Button variant="ghost" onClick={closeManagerModal}>
@@ -105,7 +106,7 @@ export default function ModalButtonLead() {
             ))} */}
             </ModalBody>
             <ModalFooter>
-              <Button colorScheme="blue" mr={3} onClick={openCreateStatusModal}>
+              <Button colorScheme="blue" mr={3} onClick={openCreateStatus}>
                 Новый статус
               </Button>
               <Button variant="ghost" onClick={closeStatusModal}>
@@ -113,17 +114,6 @@ export default function ModalButtonLead() {
               </Button>
             </ModalFooter>
           </ModalContent>
-        </Modal>
-        <Modal isOpen={isCreateStatusModalOpen} onClose={closeCreateStatusModal}>
-          <ModalBody>
-            <Input placeholder="Введите новый статус" mb="4" />
-            <Button colorScheme="blue" mr={3} onClick={closeCreateStatusModal}>
-              Создать статус
-            </Button>
-            <Button variant="ghost" onClick={closeCreateStatusModal}>
-              Закрыть
-            </Button>
-          </ModalBody>
         </Modal>
       </div>
       <div className="btnGrp">
