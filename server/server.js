@@ -31,7 +31,6 @@ app.use(cors({ credentials: true, origin: ['http://localhost:5173'] }));
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(morgan('dev'));
-app.use(express.static(path.join(process.cwd(), 'public'))); // ! зачем нам мидлварка на public?
 
 app.use('/api', apiRouter);
 

@@ -105,6 +105,7 @@ const Layout = ():JSX.Element => {
   const logoutHandler = async () => {
     try {
       await axios('http://localhost:3000/api/user/logout');
+      await axios('http://localhost:3000/api/user/logout');
     } catch (error) {
       console.log(error);
     }

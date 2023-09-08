@@ -1,10 +1,19 @@
+export type InputsType = {
+  title: string;
+  text: string;
+  status: boolean;
+  deadline: string;
+  user_id?: number;
+  id?: number;
+};
+
 export type TodoType = {
   id: number;
   title: string;
   text: string;
   status: boolean;
-  deadline: Date;
-  userID: number;
+  deadline: string;
+  user_id: number;
   createdAt?: Date;
   updatedAt?: Date;
 };
@@ -19,23 +28,29 @@ export interface IManager {
   createdAt: object | null;
   updatedAt: object | null;
 }
+
 export type TodosType = Array<TodoType>;
 
 export type TodoItemProps = {
   todo: TodoType;
+  editBtnTitle: string;
+  createBtnTitle: string;
 };
 
 export type SliceStateType = {
   todos?: TodosType;
   calls?: CallsType;
   managers?: Array<IManager>;
+  statuses?: StatusesType;
   customers?: CustomersType;
   customer?: CustomerType;
   comments?: CommentsType;
 };
-export type InputsType = {
-  comment: string;
-};
+// export type InputsType = {
+//   comment: string;
+// };
+// export type StatusesType = Array<StatusType>;
+
 export type CommentType = {
   id: number;
   text: string;

@@ -4,12 +4,13 @@ import type { ConfigureStoreOptions } from '@reduxjs/toolkit';
 import callsSlice from './callsSlice';
 
 import managers from './slices/managersSlice';
-import type { SliceStateType } from '../types';
+import type { SliceStateType, StatusesType } from '../types';
 import todoSlice from './todoSlice';
 import customerSlice from './customerSlice';
 import commentSlice from './commentSlice';
 
 import { IManager } from '../types';
+import statusSlice from './slices/statusSlice';
 
 type PreloadState = {
   todoSlice: SliceStateType;
@@ -17,6 +18,7 @@ type PreloadState = {
   commentSlice: SliceStateType;
   callsSlice: SliceStateType;
   managers: IManager;
+  statusSlice: SliceStateType;
 };
 
 const storeOptions: ConfigureStoreOptions<PreloadState> = {
@@ -25,6 +27,7 @@ const storeOptions: ConfigureStoreOptions<PreloadState> = {
     customerSlice,
     commentSlice,
     callsSlice,
+    statusSlice,
     managers,
   },
 };
