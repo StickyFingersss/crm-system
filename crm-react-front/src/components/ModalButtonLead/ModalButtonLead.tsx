@@ -18,7 +18,7 @@ import { fetchAddOneManager } from '../../redux/thunkActions';
 
 import { Link as ReactRouterLink } from 'react-router-dom';
 import { InputManagerType, InputStatusType } from '../../types';
-import { fetchAllStatuses, fetchAddStatus, fetchDelStatus } from '../../redux/thunkActions/statusesActions';
+import { fetchAllStatuses, fetchAddStatus } from '../../redux/thunkActions/statusesActions';
 import Status from '../Status/Status';
 
 export default function ModalButtonLead() {
