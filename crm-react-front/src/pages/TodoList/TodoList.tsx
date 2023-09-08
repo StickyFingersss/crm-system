@@ -13,9 +13,11 @@ import ModalButtonAddTodo from '../../components/ModalButtonAddTodo/ModalButtonA
 import DropDownFilterBtn from '../../components/DropDownFilterBtn/DropDownFilterBtn';
 
 export default function TodoList(): JSX.Element {
+  const session = useMySelector((store) => store.isAutenticatedSlice.session);
   const todos = useMySelector((store) => store.todoSlice.todos);
-
   const dispatch = useMyDispatch();
+
+  const [selectedManager, setSelectedManager] = useState<number | null>(null);
 
   useEffect(() => {
     void dispatch(fetchTodos());
@@ -31,17 +33,20 @@ export default function TodoList(): JSX.Element {
       <h1>{header}</h1>
 
       <ModalButtonAddTodo createBtnTitle={createBtnTitle} />
-      <br />
-      {/* <Select placeholder="Select option">
-        <option value="option1">Option 1</option>
-        <option value="option2">Option 2</option>
-        <option value="option3">Option 3</option>
-      </Select> */}
-      <DropDownFilterBtn />
+      <DropDownFilterBtn
+        selectedManager={selectedManager}
+        setSelectedManager={setSelectedManager}
+      />
       <ul>
-        {todos?.map((todo) => (
-          <ToDo key={todo.id} todo={todo} />
-        ))}
+        {todos
+          ?.filter(
+            (todo) =>
+              (!selectedManager && todo.user_id === session.userId) ||
+              todo.user_id === Number(selectedManager)
+          )
+          .map((todo) => (
+            <ToDo key={todo.id} todo={todo} />
+          ))}
       </ul>
       <BtnScrollUp />
     </div>
