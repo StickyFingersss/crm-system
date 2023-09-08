@@ -10,6 +10,7 @@ import ToDo from './pages/ToDo/ToDo';
 import TodoList from './pages/TodoList/TodoList';
 import { Customer } from './pages/Customer/Customer';
 
+
 function App(): JSX.Element {
   return (
     <Routes>

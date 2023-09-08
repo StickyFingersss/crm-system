@@ -4,7 +4,7 @@ const { Task } = require('../../db/models');
 todosRouter.get('/', async (req, res) => {
   try {
     const todos = await Task.findAll({
-      order: [['status', 'ASC'], ['id', 'ASC']],
+      order: [['status', 'ASC'], ['deadline', 'ASC']],
     });
     res.json(todos);
   } catch (error) {

@@ -11,14 +11,12 @@ export const fetchManagers = createAsyncThunk(
       const { data } = await axios.get<IManager[]>(
         'http://localhost:3000/api/managers'
       );
-
       return data;
     } catch (err) {
       console.log(err);
     }
   }
 );
-
 
 export interface CounterState {
   managers: [];

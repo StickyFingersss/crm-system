@@ -9,10 +9,9 @@ import {
   TodoType,
   CallsType,
   TodosType,
-  IManager, 
+  IManager,
   InputManagerType,
 } from '../types';
-
 
 export const fetchTodos = createAsyncThunk('todos/all', async () => {
   const response = await axios.get<TodosType>(
@@ -76,9 +75,13 @@ export const fetchCalls = createAsyncThunk('calls/all', async () => {
   return response.data;
 });
 
-export const fetchAddOneManager = createAsyncThunk('managers/create', async (inputs: InputManagerType) => {
-  const response = await axios.post<InputManagerType, AxiosResponse<IManager>>(`${import.meta.env.VITE_URL}/managers`,
-    inputs,
-  );
-  return response.data;
-});
+export const fetchAddOneManager = createAsyncThunk(
+  'managers/create',
+  async (inputs: InputManagerType) => {
+    const response = await axios.post<
+      InputManagerType,
+      AxiosResponse<IManager>
+    >(`${import.meta.env.VITE_URL}/managers`, inputs);
+    return response.data;
+  }
+);

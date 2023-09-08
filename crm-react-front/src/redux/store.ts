@@ -3,6 +3,7 @@ import type { ConfigureStoreOptions } from '@reduxjs/toolkit';
 
 import todoSlice from './todoSlice';
 import callsSlice from './callsSlice';
+import isAutenticatedSlice from './slices/isAutenticatedSlice';
 
 import managers from './slices/managersSlice';
 import type { SliceStateType } from '../types';
@@ -10,6 +11,7 @@ import type { SliceStateType } from '../types';
 import { IManager } from '../types';
 
 type PreloadState = {
+  isLoggedInSlice: any;
   todoSlice: SliceStateType;
   callsSlice: SliceStateType;
   managers: IManager;
@@ -20,6 +22,7 @@ const storeOptions: ConfigureStoreOptions<PreloadState> = {
     todoSlice,
     callsSlice,
     managers,
+    isAutenticatedSlice,
   },
 };
 
