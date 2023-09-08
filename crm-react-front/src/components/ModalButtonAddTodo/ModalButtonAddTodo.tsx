@@ -9,6 +9,7 @@ import {
   ModalBody,
   ModalCloseButton,
   Text,
+  Textarea,
   useDisclosure,
 } from '@chakra-ui/react';
 
@@ -118,13 +119,21 @@ export default function ModalButtonAddTodo({
               </ModalHeader>
 
               <ModalBody>
-                <Input
+                {/* <Input
                   name="text"
                   type="text"
                   margin={5}
                   onChange={changeHandler}
                   value={inputs.text}
                   placeholder="Describe the task"
+                  size="sm"
+                /> */}
+                <Textarea
+                  name="text"
+                  type="text"
+                  value={inputs.text}
+                  onChange={changeHandler}
+                  placeholder="Here is a sample placeholder"
                   size="sm"
                 />
                 <Input

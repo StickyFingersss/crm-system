@@ -49,7 +49,7 @@ export default function MiniToDos() {
           borderWidth="1px"
           borderRadius="10px"
           borderColor="black.10"
-          width="300px"
+          width="600px"
           height="fit-content"
           bgColor="white"
         >
