@@ -24,10 +24,10 @@ export const fetchOneCustomer = createAsyncThunk('customer/one', async (id: numb
 });
 
 //создаёт 1 CUMент
-export const fetchAddComment = createAsyncThunk('comment/one', async (dataInput: InputsCommentType) => {
+export const fetchAddComment = createAsyncThunk('comment/one', async (body) => {
   const response = await axios.post<InputsCommentType, AxiosResponse<CommentType>>(
-    'http://localhost:3000/api/customer/comment/create',
-    dataInput,
+    `http://localhost:3000/api/customer/comment/${body.id}/create`,
+    body.dataInput,
   );
   return response.data;
 });

@@ -18,14 +18,17 @@ export const Comments = () => {
     setDataInput((prev) => ({ ...prev, [el.target.name]: el.target.value }));
   };
 
+  const body = {dataInput: dataInput, id: id};
+
   const addHandler = async (): Promise<void> => {
     if (dataInput.comment) {
-      void dispatch(fetchAddComment(dataInput));
+      void dispatch(fetchAddComment(body));
       setDataInput({ comment: '' });
     }
   };
 
   const comments = useMySelector((store) => store.commentSlice.comments);
+  
     useEffect(() => {
     void dispatch(fetchAllComments());
   }, [dispatch]);

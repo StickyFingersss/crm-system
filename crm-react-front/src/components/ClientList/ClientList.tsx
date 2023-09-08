@@ -24,9 +24,12 @@ export const ClientList = (): JSX.Element => {
 
 
   const customers = useMySelector((store) => store.customerSlice.customers);
+
     useEffect(() => {
     void dispatch(fetchAllCustomers());
   }, [dispatch]);
+
+  
 
   return (
     <div className={styles.mainClientList}>
@@ -55,64 +58,6 @@ export const ClientList = (): JSX.Element => {
       {/* "навигация" */}
 
       <NavBar buttons={buttons} />
-
-      {/* <div className={styles.navClientList}>
-        <button
-          type="button"
-          id="12"
-          className={styles.navClientListBtn}
-          onClick={() => {
-            setInputModal(!inputModal);
-          }}>
-          Name
-        </button>
-        <button
-          type="button"
-          id="12"
-          className={styles.navClientListBtn}
-          onClick={() => {
-            setInputModal(!inputModal);
-          }}>
-          ID
-        </button>
-        <button
-          type="button"
-          id="12"
-          className={styles.navClientListBtn}
-          onClick={() => {
-            setInputModal(!inputModal);
-          }}>
-          Ballance
-        </button>
-        <button
-          type="button"
-          id="12"
-          className={styles.navClientListBtn}
-          onClick={() => {
-            setInputModal(!inputModal);
-          }}>
-          Responsible
-        </button>
-        <button
-          type="button"
-          id="12"
-          className={styles.navClientListBtn}
-          onClick={() => {
-            setInputModal(!inputModal);
-          }}>
-          Assigned at
-        </button>
-        <button
-          type="button"
-          id="12"
-          className={styles.navClientListBtn}
-          onClick={() => {
-            setInputModal(!inputModal);
-          }}>
-          Status
-        </button>
-        BN
-      </div> */}
 
       {/* карточки клиентов */}
       <div className={styles.containerClients}>

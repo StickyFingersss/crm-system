@@ -1,6 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { SliceStateType } from '../types';
-import { fetchAllComments } from './thunkActions';
+import { fetchAddComment, fetchAllComments } from './thunkActions';
 
 const initialState: SliceStateType = {
   comments: [],
@@ -13,6 +13,9 @@ const rtkSlice = createSlice({
   extraReducers: (builder) => {
     builder.addCase(fetchAllComments.fulfilled, (state, action) => {
       state.comments = action.payload;
+    });
+    builder.addCase(fetchAddComment.fulfilled, (state, action) => {
+      state.comments?.push(action.payload);
     });
   },
 });
