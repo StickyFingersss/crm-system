@@ -1,6 +1,6 @@
 import React from 'react';
 import { useEffect, useState } from 'react';
-import axios from 'axios';
+import { Link } from 'react-router-dom';
 
 import { useMyDispatch, useMySelector } from '../../redux/hooks';
 import { fetchTodos } from '../../redux/thunkActions';
@@ -23,8 +23,11 @@ export default function TodoList(): JSX.Element {
   const createBtnTitle = 'Create new task';
   return (
     <div className="toDoListContainer">
-      <a href="/">Back to main page</a>
+      <Link to="/">Back to main page</Link>
+      <Link to="/lead">To TeamLead page</Link>
+
       <h1>{header}</h1>
+
       <ModalButtonAddTodo createBtnTitle={createBtnTitle} />
       <ul>
         {todos?.map((todo) => (
