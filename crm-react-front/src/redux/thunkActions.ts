@@ -4,7 +4,7 @@ import axios from 'axios';
 import type { AxiosResponse } from 'axios';
 axios.defaults.withCredentials = true;
 
-import { CallsType, IManager, InputManagerType, CommentType, CommentsType, CustomersType, InputsType, TodosType } from '../types';
+import { CallsType, IManager, InputManagerType, CommentType, CommentsType, CustomersType, InputsType, TodosType, CustomerType } from '../types';
 
 export const fetchTodos = createAsyncThunk('todos/all', async () => {
   const response = await axios.get<TodosType>(
@@ -16,6 +16,12 @@ export const fetchTodos = createAsyncThunk('todos/all', async () => {
 //Все кастомеры
 export const fetchAllCustomers = createAsyncThunk('customer/all', async () => {
   const response = await axios.get<CustomersType>('http://localhost:3000/api/customer/all');
+  return response.data;
+});
+
+//Один кастомер
+export const fetchOneCustomer = createAsyncThunk('customer/one', async (id: number) => {
+  const response = await axios.get<CustomerType>(`http://localhost:3000/api/customer/${id}`);
   return response.data;
 });
 

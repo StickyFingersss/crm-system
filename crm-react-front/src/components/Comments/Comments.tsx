@@ -1,5 +1,6 @@
 import styles from './Comments.module.css';
 
+import { useParams } from 'react-router-dom';
 import { ChangeEvent, useEffect, useState } from 'react';
 import { useMyDispatch, useMySelector } from '../../redux/hooks';
 
@@ -7,6 +8,8 @@ import { Comment } from './Comment';
 import { fetchAddComment, fetchAllComments } from '../../redux/thunkActions';
 
 export const Comments = () => {
+
+  const { id } = useParams()
 
   const [dataInput, setDataInput] = useState({ comment: ''});
   const dispatch = useMyDispatch();
@@ -23,7 +26,6 @@ export const Comments = () => {
   };
 
   const comments = useMySelector((store) => store.commentSlice.comments);
-
     useEffect(() => {
     void dispatch(fetchAllComments());
   }, [dispatch]);
@@ -41,7 +43,7 @@ export const Comments = () => {
         <button type='button' className={styles.btnPublish} onClick={() => void addHandler()}>publish</button>
       </div>
       <div className={styles.comments}>
-        {comments?.map((el) => <Comment createdAt={el.createdAt} text={el.text} user_id={el.user_id}/>)}
+        {comments?.filter((el) => el.customer_id === Number(id)).map((el) => <Comment createdAt={el.createdAt} text={el.text} user_id={el.user_id}/>)}
       </div>
     </div>
   ) 

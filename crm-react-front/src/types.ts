@@ -26,10 +26,11 @@ export type TodoItemProps = {
 };
 
 export type SliceStateType = {
-  todos: TodosType;
+  todos?: TodosType;
   calls?: CallsType;
   managers?: Array<IManager>;
   customers?: CustomersType;
+  customer?: CustomerType;
   comments?: CommentsType;
 };
 export type InputsType = {

@@ -60,4 +60,14 @@ usersRouter.get('/logout', (req, res) => {
   res.send(200);
 });
 
+usersRouter.get('/:id', async (req, res) => {
+  try {
+    const { id } = req.params;
+    const user = await User.findOne({ where: { id } });
+    res.json(user);
+  } catch (error) {
+    console.log('Ошибка авторизации', error);
+  }
+});
+
 module.exports = usersRouter;

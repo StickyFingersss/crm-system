@@ -1,36 +1,32 @@
 import styles from './Client.module.css';
-import { Link } from 'react-router-dom';
+import { Link as ReactRouterLink } from 'react-router-dom';
 
-export const Client = ({ id, name, balance, phone, email, status, manager_id}): JSX.Element => {
+import { Link as ChakraLink } from '@chakra-ui/react';
+import { useEffect, useState } from 'react';
+import axios from 'axios';
+
+export const Client = ({ id, name, balance, manager_id}): JSX.Element => {
+  
+  const [user, setUser] = useState('')
+
+  useEffect(() => {
+  const response = axios.get(`http://localhost:3000/api/user/${manager_id}`);
+    response
+    .then((data) => setUser(data))
+    .catch((err) => console.log(err));
+}, [manager_id]);
+
+
   return (
     <div className={styles.oneClientList}>
-      <button type='button'>{name}</button>
+        <ChakraLink as={ReactRouterLink} to={`/customer/${id}`}>
+          {name}
+        </ChakraLink>
       <h3>{id}</h3>
       <h3>{balance}</h3>
-      <input
-        name="managers"
-        className={styles.statusInput}
-        autoComplete="off"
-        list="managers"
-      />
-      <datalist id="managers">
-        <option>John Smit</option>
-        <option>Max Revo</option>
-        <option>Elena Green</option>
-      </datalist>
-      <h3>{manager_id}</h3>
-      <input
-        name="status"
-        className={styles.statusInput}
-        autoComplete="off"
-        list="status"
-        value={status? status : ''}
-      />
-      <datalist id="status">
-        <option>Deposit</option>
-        <option>No money</option>
-        <option>In work</option>
-      </datalist>
+      <h3>{user?.data?.name}</h3>
+      <h3>?????</h3>
+      <h3>Status: ????</h3>
     </div>
   );
 };

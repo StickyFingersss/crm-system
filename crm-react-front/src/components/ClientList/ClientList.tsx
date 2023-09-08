@@ -13,7 +13,6 @@ export const ClientList = (): JSX.Element => {
   const [inputModal, setInputModal] = useState(false);
 
   const customers = useMySelector((store) => store.customerSlice.customers);
-
     useEffect(() => {
     void dispatch(fetchAllCustomers());
   }, [dispatch]);
@@ -102,7 +101,7 @@ export const ClientList = (): JSX.Element => {
 
       {/* карточки клиентов */}
       <div className={styles.containerClients}>
-        {customers?.map((customer) => <Client id={customer.id} name={customer.name} balance={customer.balance} phone={customer.phone} email={customer.email} status={customer.status} manager_id={customer.manager_id}/>)}
+        {customers?.map((customer) => <Client id={customer.id} name={customer.name} balance={customer.balance} manager_id={customer.manager_id}/>)}
       </div>
     </div>
   );
