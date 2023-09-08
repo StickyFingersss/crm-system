@@ -2,7 +2,7 @@ import { createAsyncThunk } from '@reduxjs/toolkit';
 
 import axios from 'axios';
 import type { AxiosResponse } from 'axios';
-import { CallsType, IManager, InputManagerType, CommentType, CommentsType, CustomersType, InputsType, TodosType, CustomerType } from '../types';
+import { CallsType, IManager, InputManagerType, CommentType, CommentsType, CustomersType, InputsType, TodosType, CustomerType, InputsCommentType } from '../types';
 
 export const fetchTodos = createAsyncThunk('todos/all', async () => {
   const response = await axios.get<TodosType>(
@@ -24,8 +24,8 @@ export const fetchOneCustomer = createAsyncThunk('customer/one', async (id: numb
 });
 
 //создаёт 1 CUMент
-export const fetchAddComment = createAsyncThunk('comment/one', async (dataInput: InputsType) => {
-  const response = await axios.post<InputsType, AxiosResponse<CommentType>>(
+export const fetchAddComment = createAsyncThunk('comment/one', async (dataInput: InputsCommentType) => {
+  const response = await axios.post<InputsCommentType, AxiosResponse<CommentType>>(
     'http://localhost:3000/api/customer/comment/create',
     dataInput,
   );
