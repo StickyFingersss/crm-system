@@ -1,13 +1,16 @@
 import styles from './ClientList.module.css';
 
 import { Client } from './Client';
-import { CustomerInfo } from '../Customer/CustomerInfo';
-import { Comments } from '../Comments/Comments';
 
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { NavBar } from '../NavBar/NavBar';
+import { useMyDispatch, useMySelector } from '../../redux/hooks';
+import { fetchAllCustomers } from '../../redux/thunkActions';
 
 export const ClientList = (): JSX.Element => {
+
+  const dispatch = useMyDispatch();
+
   const [inputModal, setInputModal] = useState(false);
 
   const buttons = [
@@ -18,6 +21,12 @@ export const ClientList = (): JSX.Element => {
     { name: 'Assigned at', callback: () => setInputModal(!inputModal) },
     { name: 'Status', callback: () => setInputModal(!inputModal) },
   ];
+
+
+  const customers = useMySelector((store) => store.customerSlice.customers);
+    useEffect(() => {
+    void dispatch(fetchAllCustomers());
+  }, [dispatch]);
 
   return (
     <div className={styles.mainClientList}>
@@ -107,12 +116,7 @@ export const ClientList = (): JSX.Element => {
 
       {/* карточки клиентов */}
       <div className={styles.containerClients}>
-        <Client />
-        <Client />
-        <Client />
-        <Client />
-        <Client />
-        <Client />
+        {customers?.map((customer) => <Client id={customer.id} name={customer.name} balance={customer.balance} manager_id={customer.manager_id}/>)}
       </div>
     </div>
   );

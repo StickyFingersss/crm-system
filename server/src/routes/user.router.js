@@ -4,27 +4,26 @@ const { User } = require('../../db/models');
 
 usersRouter.post('/register', async (req, res) => {
   try {
-    const { name, login, password } = req.body;
+    const { name, login, password, team_id } = req.body;
     const hash = await bcrypt.hash(password, 10);
     const user = await User.findOne({ where: { name } });
     if (user) {
-      res.send(201);
+      res.json({ err: 'неверные данные' });
     } else {
       const newUser = await User.create({
         name,
         login,
         password: hash,
         isAdmin: true,
-        team_id: 2,
+        team_id,
       });
       req.session.userId = newUser.id;
       req.session.name = newUser.name;
       req.session.login = newUser.login;
       req.session.isAdmin = newUser.isAdmin;
       req.session.team_id = newUser.team_id;
-      req.session.save(() => {
-        res.json(newUser);
-      });
+      req.session.save();
+      res.json({ message: 'есть пробитие' });
     }
   } catch (error) {
     console.log('Ошибка регистрации', error);
@@ -42,12 +41,13 @@ usersRouter.post('/login', async (req, res) => {
         req.session.name = user.name;
         req.session.login = user.login;
         req.session.team_id = user.team_id;
-        req.session.save(() => {
-          res.json(user);
-        });
+        req.session.save();
+        res.json({ message: 'есть пробитие' });
       } else {
-        res.status(201);
+        res.json({ err: 'неверные данные' });
       }
+    } else {
+      res.json({ err: 'пользователь не найден' });
     }
   } catch (error) {
     console.log('Ошибка авторизации', error);
@@ -60,9 +60,17 @@ usersRouter.get('/logout', (req, res) => {
   res.send(200);
 });
 
-// usersRouter.get('/userData', (req, res) => {
-//   const { userId } = req.session;
-//   res.json({ userId });
-// });
+usersRouter.get('/userData', (req, res) => {
+  res.json(req.session);
+});
+usersRouter.get('/:id', async (req, res) => {
+  try {
+    const { id } = req.params;
+    const user = await User.findOne({ where: { id } });
+    res.json(user);
+  } catch (error) {
+    console.log('Ошибка авторизации', error);
+  }
+});
 
 module.exports = usersRouter;

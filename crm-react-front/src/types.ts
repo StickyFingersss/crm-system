@@ -42,21 +42,12 @@ export type SliceStateType = {
   calls?: CallsType;
   managers?: Array<IManager>;
   statuses?: StatusesType;
+  customers?: CustomersType;
+  customer?: CustomerType;
+  comments?: CommentsType;
 };
-
-export type CallsType = Array<CallType>;
-
-export type StatusesType = Array<StatusType>;
-
-export type CallType = {
-  name: string;
-  count: number;
-};
-
-export type InputManagerType = {
-  name: string;
-  login: string;
-  password: string;
+export type InputsCommentType = {
+  comment: string;
 };
 
 export type StatusType = {
@@ -66,10 +57,38 @@ export type StatusType = {
   updatedAt: Date;
 };
 
-export type InputStatusType = {
-  name: string;
-};
+export type StatusesType = Array<StatusType>;
 
-export type StatusPropsType = {
-  status: StatusType;
+export type CommentType = {
+  id: number;
+  text: string;
+  user_id: number;
+  customer_id: number;
+  createdAt: Date;
+  updatedAt: Date;
+};
+export type CommentsType = Array<CommentType>;
+
+export type InputManagerType = {
+  name: string;
+  login: string;
+  password: string;
 }
+export type CallsType = Array<CallType>;
+
+export type CallType = {
+  name: string;
+  count: number;
+}
+export type CustomerType = {
+  id: number;
+  name: string;
+  balance: number;
+  phone:string;
+  email: string,
+  status: string,
+  manager_id: number,
+  createdAt: Date;
+  updatedAt: Date;
+};
+export type CustomersType = Array<CustomerType>;

@@ -4,7 +4,7 @@ import type { TodoItemProps } from '../../types';
 import { useMyDispatch } from '../../redux/hooks';
 import { fetchDel } from '../../redux/thunkActions';
 
-import { EditIcon, DeleteIcon } from '@chakra-ui/icons';
+import { DeleteIcon } from '@chakra-ui/icons';
 
 import {
   Button,

@@ -12,7 +12,6 @@ import {
   useDisclosure,
 } from '@chakra-ui/react';
 
-import axios from 'axios';
 import moment from 'moment';
 
 import { EditIcon } from '@chakra-ui/icons';
@@ -36,22 +35,6 @@ export default function ModalButtonAddTodo({ createBtnTitle, editBtnTitle, todo 
     status: false,
     deadline: '',
   });
-
-  //! можно поставить флаг в состояние
-  //? использовать санки?
-
-  // useEffect(() => {
-  //   // Отправляем запрос на сервер для получения userId
-  //   axios
-  //   .get(`${import.meta.env.VITE_URL}/user/userData`)
-  //   .then((response) => {
-  //     const { userId } = response.data;
-  //     setInputs({ ...inputs, user_id: userId });
-  //   })
-  //   .catch((error) => {
-  //     console.error('Ошибка при получении данных', error);
-  //   });
-  // }, []);
 
   useEffect(() => {
     if (todo) {

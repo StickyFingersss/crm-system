@@ -2,7 +2,6 @@ import React from 'react';
 import MiniToDos from '../../components/MiniToDos/MiniToDos';
 import TaskCreator from '../../components/TaskCreator/TaskCreator';
 import { ClientList } from '../../components/ClientList/ClientList';
-
 export const Manager = () => {
   return (
     <>

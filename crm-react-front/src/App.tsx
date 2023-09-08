@@ -12,6 +12,7 @@ import TodoList from './pages/TodoList/TodoList';
 import { Customer } from './pages/Customer/Customer';
 import { StartPage } from './pages/StartPage/StartPage';
 
+
 function App(): JSX.Element {
   return (
     <Routes>
@@ -23,6 +24,7 @@ function App(): JSX.Element {
         <Route path="/managers" element={<Managers />}></Route>
         <Route path="/reports" element={<Reports />}></Route>
         <Route path="/customer" element={<Customer />}></Route>
+        <Route path="/customer/:id" element={<Customer />}></Route>
         <Route path="/manager" element={<Manager />}></Route>
       </Route>
       <Route path="/advertiser" element={<Advertiser />}></Route>
