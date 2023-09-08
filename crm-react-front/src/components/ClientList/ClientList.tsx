@@ -24,9 +24,12 @@ export const ClientList = (): JSX.Element => {
 
 
   const customers = useMySelector((store) => store.customerSlice.customers);
+
     useEffect(() => {
     void dispatch(fetchAllCustomers());
   }, [dispatch]);
+
+  
 
   return (
     <div className={styles.mainClientList}>

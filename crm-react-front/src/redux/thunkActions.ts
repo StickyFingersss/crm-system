@@ -44,11 +44,11 @@ export const fetchOneCustomer = createAsyncThunk(
 //создаёт 1 CUMент
 export const fetchAddComment = createAsyncThunk(
   'comment/one',
-  async (dataInput: InputsCommentType) => {
+  async (body) => {
     const response = await axios.post<
       InputsCommentType,
       AxiosResponse<CommentType>
-    >(`${import.meta.env.VITE_URL}/customer/comment/create`, dataInput);
+    >(`${import.meta.env.VITE_URL}/customer/comment/${body.id}/create`, body.dataInput);
     return response.data;
   }
 );
