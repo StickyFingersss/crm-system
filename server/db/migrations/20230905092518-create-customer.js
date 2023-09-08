@@ -25,15 +25,21 @@ module.exports = {
       },
       status_id: {
         type: Sequelize.INTEGER,
-        allowNull: false,
         references: {
           model: 'Statuses',
           key: 'id',
         },
       },
-      manager_id: {
+      team_id: {
         type: Sequelize.INTEGER,
         allowNull: false,
+        references: {
+          model: 'Teams',
+          key: 'id',
+        },
+      },
+      manager_id: {
+        type: Sequelize.INTEGER,
         references: {
           model: 'Users',
           key: 'id',

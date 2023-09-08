@@ -39,7 +39,8 @@ export type TodoItemProps = {
 
 export type SliceStateType = {
   todos?: TodosType;
-  calls?: CallsType;
+  calls?: CallsCreateType;
+  statsCalls?: CallsType;
   managers?: Array<IManager>;
   statuses?: StatusesType;
   customers?: CustomersType;
@@ -59,6 +60,10 @@ export type StatusType = {
 
 export type StatusesType = Array<StatusType>;
 
+export type InputStatusType = {
+  name: string;
+}
+
 export type CommentType = {
   id: number;
   text: string;
@@ -75,6 +80,13 @@ export type InputManagerType = {
   password: string;
 }
 export type CallsType = Array<CallType>;
+
+export type CallsCreateType = Array<CallCreateType>
+
+export type CallCreateType = {
+  user_id: number;
+  customer_id: number;
+}
 
 export type CallType = {
   name: string;

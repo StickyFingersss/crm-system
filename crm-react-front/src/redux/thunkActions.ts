@@ -25,7 +25,7 @@ export const fetchTodos = createAsyncThunk('todos/all', async () => {
 //Все кастомеры
 export const fetchAllCustomers = createAsyncThunk('customer/all', async () => {
   const response = await axios.get<CustomersType>(
-    'http://localhost:3000/api/customer/all'
+    `${import.meta.env.VITE_URL}/customer/all`
   );
   return response.data;
 });
@@ -35,7 +35,7 @@ export const fetchOneCustomer = createAsyncThunk(
   'customer/one',
   async (id: number) => {
     const response = await axios.get<CustomerType>(
-      `http://localhost:3000/api/customer/${id}`
+      `${import.meta.env.VITE_URL}/customer/${id}`
     );
     return response.data;
   }
@@ -44,11 +44,11 @@ export const fetchOneCustomer = createAsyncThunk(
 //создаёт 1 CUMент
 export const fetchAddComment = createAsyncThunk(
   'comment/one',
-  async (dataInput: InputsCommentType) => {
+  async (body) => {
     const response = await axios.post<
       InputsCommentType,
       AxiosResponse<CommentType>
-    >('http://localhost:3000/api/customer/comment/create', dataInput);
+    >(`${import.meta.env.VITE_URL}/customer/comment/${body.id}/create`, body.dataInput);
     return response.data;
   }
 );
@@ -56,7 +56,7 @@ export const fetchAddComment = createAsyncThunk(
 //Все CUMентарии
 export const fetchAllComments = createAsyncThunk('comment/all', async () => {
   const response = await axios.get<InputsType, AxiosResponse<CommentsType>>(
-    'http://localhost:3000/api/customer/comment/all'
+    `${import.meta.env.VITE_URL}/customer/comment/all`
   );
   return response.data;
 });

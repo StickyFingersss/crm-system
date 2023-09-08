@@ -18,17 +18,21 @@ export const Comments = () => {
     setDataInput((prev) => ({ ...prev, [el.target.name]: el.target.value }));
   };
 
+  const body = {dataInput: dataInput, id: id};
+
+  const comments = useMySelector((store) => store.commentSlice.comments);
+
+  useEffect(() => {
+    void dispatch(fetchAllComments());
+  }, [dispatch, comments?.length]);
+
   const addHandler = async (): Promise<void> => {
+    void dispatch(fetchAllComments());
     if (dataInput.comment) {
-      void dispatch(fetchAddComment(dataInput));
+      void dispatch(fetchAddComment(body));
       setDataInput({ comment: '' });
     }
   };
-
-  const comments = useMySelector((store) => store.commentSlice.comments);
-    useEffect(() => {
-    void dispatch(fetchAllComments());
-  }, [dispatch]);
 
   return (
     <div className={styles.mainComments}>
@@ -40,7 +44,7 @@ export const Comments = () => {
         onChange={changeHandler}
         value={dataInput.comment} 
         />
-        <button type='button' className={styles.btnPublish} onClick={() => void addHandler()}>publish</button>
+        <button type='button' className={styles.btnPublish} onClick={() => {addHandler()}}>publish</button>
       </div>
       <div className={styles.comments}>
         {comments?.filter((el) => el.customer_id === Number(id)).map((el) => <Comment createdAt={el.createdAt} text={el.text} user_id={el.user_id}/>)}

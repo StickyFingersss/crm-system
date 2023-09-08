@@ -12,20 +12,20 @@ import ToDo from '../../pages/ToDo/ToDo';
 export default function MiniToDos() {
   const todos = useMySelector((store) => store.todoSlice.todos);
   const session = useMySelector((store) => store.isAutenticatedSlice.session);
-
   const dispatch = useMyDispatch();
-  
+
   const [filteredTodos, setFilteredTodos] = useState([]);
-  
+
   useEffect(() => {
     void dispatch(fetchTodos());
   }, [dispatch]);
-  
+
   useEffect(() => {
     if (todos?.length) {
       const todosWithDateObj = todos.map((todo) => {
         return { ...todo, deadline: new Date(todo.deadline) };
       });
+
       const filteredTodos = todosWithDateObj
         .filter(
           (todo) =>
@@ -36,9 +36,10 @@ export default function MiniToDos() {
         .sort((a, b) => a.deadline - b.deadline);
 
       const topTodos = filteredTodos.slice(0, 3);
+
       setFilteredTodos(topTodos);
     }
-  }, [todos]);
+  }, [todos, session]);
 
   return (
     <>
@@ -48,8 +49,8 @@ export default function MiniToDos() {
           borderWidth="1px"
           borderRadius="10px"
           borderColor="black.10"
-          width="300px"
-          height="240px"
+          width="600px"
+          height="fit-content"
           bgColor="white"
         >
           <Text
