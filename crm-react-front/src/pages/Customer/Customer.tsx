@@ -1,5 +1,4 @@
-import { Client } from '../../components/ClientList/Client';
-import { Comment } from '../../components/Comments/Comment';
+import { ClientMax } from '../../components/ClientList/ClientMax';
 import { Comments } from '../../components/Comments/Comments';
 
 export const Customer = () => {
@@ -7,8 +6,7 @@ export const Customer = () => {
     <>
       <div>Client Page</div>
       <div className="container">
-        <Client />
-        <Comment />
+        <ClientMax />
         <Comments />
       </div>
     </>
