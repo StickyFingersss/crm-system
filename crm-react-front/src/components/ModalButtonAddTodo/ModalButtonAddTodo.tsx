@@ -23,16 +23,9 @@ import { InputsType, TodoItemProps } from '../../types';
 import { useMyDispatch } from '../../redux/hooks';
 import { fetchAddTodo, fetchEdit } from '../../redux/thunkActions';
 
-export default function ModalButtonAddTodo({
-  createBtnTitle,
-  editBtnTitle,
-  todo,
-}: TodoItemProps) {
+export default function ModalButtonAddTodo({ createBtnTitle, editBtnTitle, todo }: TodoItemProps) {
   const OverlayOne = () => (
-    <ModalOverlay
-      bg="blackAlpha.300"
-      backdropFilter="blur(10px) hue-rotate(90deg)"
-    />
+    <ModalOverlay bg="blackAlpha.300" backdropFilter="blur(10px) hue-rotate(90deg)" />
   );
   const { isOpen, onOpen, onClose } = useDisclosure();
   const [overlay, setOverlay] = React.useState(<OverlayOne />);
@@ -114,8 +107,7 @@ export default function ModalButtonAddTodo({
             }}
             flex="1"
             variant="ghost"
-            leftIcon={<EditIcon />}
-          >
+            leftIcon={<EditIcon />}>
             {createBtnTitle}
             {editBtnTitle}
           </Button>
@@ -159,8 +151,7 @@ export default function ModalButtonAddTodo({
                   onClick={() => {
                     addHandler();
                     onClose();
-                  }}
-                >
+                  }}>
                   Save
                 </Button>
                 <Button onClick={() => (onClose(), setInputs)}>Close</Button>
@@ -178,8 +169,7 @@ export default function ModalButtonAddTodo({
             }}
             flex="1"
             variant="ghost"
-            leftIcon={<EditIcon />}
-          >
+            leftIcon={<EditIcon />}>
             {createBtnTitle}
             {editBtnTitle}
           </Button>
@@ -223,8 +213,7 @@ export default function ModalButtonAddTodo({
                   onClick={() => {
                     editHandler();
                     onClose();
-                  }}
-                >
+                  }}>
                   Save changes
                 </Button>
                 <Button onClick={onClose}>Close</Button>
