@@ -60,6 +60,9 @@ usersRouter.get('/logout', (req, res) => {
   res.send(200);
 });
 
+usersRouter.get('/userData', (req, res) => {
+  res.json(req.session);
+});
 usersRouter.get('/:id', async (req, res) => {
   try {
     const { id } = req.params;

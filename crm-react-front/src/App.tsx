@@ -12,6 +12,7 @@ import { Customer } from './pages/Customer/Customer';
 import { StartPage } from './pages/StartPage/StartPage';
 import { NavBar } from './components/NavBar/NavBar';
 
+
 function App(): JSX.Element {
   return (
     <Routes>

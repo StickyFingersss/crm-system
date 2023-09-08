@@ -2,6 +2,7 @@ import { configureStore } from '@reduxjs/toolkit';
 import type { ConfigureStoreOptions } from '@reduxjs/toolkit';
 
 import callsSlice from './callsSlice';
+import isAutenticatedSlice from './slices/isAutenticatedSlice';
 
 import managers from './slices/managersSlice';
 import type { SliceStateType, StatusesType } from '../types';
@@ -13,6 +14,7 @@ import { IManager } from '../types';
 import statusSlice from './slices/statusSlice';
 
 type PreloadState = {
+  isLoggedInSlice: any;
   todoSlice: SliceStateType;
   customerSlice: SliceStateType;
   commentSlice: SliceStateType;
@@ -29,7 +31,11 @@ const storeOptions: ConfigureStoreOptions<PreloadState> = {
     callsSlice,
     statusSlice,
     managers,
+    isAutenticatedSlice,
   },
+  // ! вопрос для Антона про сериализацию: без отключения middleware выходит ошибка на помещение в store не сериализуемых данных. Че за нах?
+  middleware: (getDefaultMiddleware) =>
+    getDefaultMiddleware({ serializableCheck: false }),
 };
 
 export const store = configureStore(storeOptions);
