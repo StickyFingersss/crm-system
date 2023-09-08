@@ -46,10 +46,18 @@ export type SliceStateType = {
   customer?: CustomerType;
   comments?: CommentsType;
 };
-// export type InputsType = {
-//   comment: string;
-// };
-// export type StatusesType = Array<StatusType>;
+export type InputsCommentType = {
+  comment: string;
+};
+
+export type StatusType = {
+  id: number;
+  name: string;
+  createdAt: Date;
+  updatedAt: Date;
+};
+
+export type StatusesType = Array<StatusType>;
 
 export type CommentType = {
   id: number;
