@@ -6,6 +6,8 @@ import { ChangeEvent, useEffect, useState } from 'react';
 import { useMyDispatch, useMySelector } from '../../redux/hooks';
 
 import { fetchOneCustomer } from '../../redux/thunkActions';
+import { fetchAddCall } from '../../redux/thunkActions/callsActions'
+
 import axios from 'axios';
 
 
@@ -36,6 +38,10 @@ export const ClientMax = (): JSX.Element => {
     useEffect(() => {
     void dispatch(fetchOneCustomer(id));
   }, [dispatch]);
+
+  const addCallHandler = async (): Promise<void> => {
+    void dispatch(fetchAddCall(OneCustomer.id));
+  };
 
   // useEffect(() => {
   //   const response = axios.get(`http://localhost:3000/api/customer/${id}`).then((value) => {
@@ -77,7 +83,7 @@ export const ClientMax = (): JSX.Element => {
       }
       <h3>email: {OneCustomer?.email}</h3>
       <h3>Balance: {OneCustomer?.balance}</h3>
-      <h3>phone number: <button>{OneCustomer?.phone}</button></h3>
+      <h3>phone number: <button onClick={addCallHandler}>{OneCustomer?.phone}</button></h3>
       
     </div>
   )

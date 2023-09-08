@@ -38,4 +38,18 @@ callsRouter.get('/report', async (req, res) => {
   }
 });
 
+callsRouter.post('/:id/create', async (req, res) => {
+  const { id } = req.params;
+  const { userId } = req.session;
+  try {
+    const call = await Call.create({
+      user_id: userId,
+      customer_id: id,
+    });
+    res.json(call);
+  } catch (error) {
+    console.log(error);
+  }
+});
+
 module.exports = callsRouter;

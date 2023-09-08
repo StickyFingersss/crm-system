@@ -56,64 +56,6 @@ export const ClientList = (): JSX.Element => {
 
       <NavBar buttons={buttons} />
 
-      {/* <div className={styles.navClientList}>
-        <button
-          type="button"
-          id="12"
-          className={styles.navClientListBtn}
-          onClick={() => {
-            setInputModal(!inputModal);
-          }}>
-          Name
-        </button>
-        <button
-          type="button"
-          id="12"
-          className={styles.navClientListBtn}
-          onClick={() => {
-            setInputModal(!inputModal);
-          }}>
-          ID
-        </button>
-        <button
-          type="button"
-          id="12"
-          className={styles.navClientListBtn}
-          onClick={() => {
-            setInputModal(!inputModal);
-          }}>
-          Ballance
-        </button>
-        <button
-          type="button"
-          id="12"
-          className={styles.navClientListBtn}
-          onClick={() => {
-            setInputModal(!inputModal);
-          }}>
-          Responsible
-        </button>
-        <button
-          type="button"
-          id="12"
-          className={styles.navClientListBtn}
-          onClick={() => {
-            setInputModal(!inputModal);
-          }}>
-          Assigned at
-        </button>
-        <button
-          type="button"
-          id="12"
-          className={styles.navClientListBtn}
-          onClick={() => {
-            setInputModal(!inputModal);
-          }}>
-          Status
-        </button>
-        BN
-      </div> */}
-
       {/* карточки клиентов */}
       <div className={styles.containerClients}>
         {customers?.map((customer) => <Client id={customer.id} name={customer.name} balance={customer.balance} manager_id={customer.manager_id}/>)}
