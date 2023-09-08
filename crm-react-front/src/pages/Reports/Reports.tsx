@@ -10,6 +10,7 @@ import { NavBar } from '../../components/NavBar/NavBar';
 
 export const Reports = () => {
   const calls = useMySelector((store) => store.callsSlice.calls);
+  const session = useMySelector((store) => store.isAutenticatedSlice.session);
 
   const dispatch = useMyDispatch();
 
@@ -39,7 +40,8 @@ export const Reports = () => {
           className={styles.reportButton}
           onClick={() => {
             console.log('first');
-          }}>
+          }}
+        >
           Sent report as PDF
         </button>
       </div>

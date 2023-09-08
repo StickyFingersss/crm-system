@@ -9,10 +9,10 @@ import {
   ModalBody,
   ModalCloseButton,
   Text,
+  Textarea,
   useDisclosure,
 } from '@chakra-ui/react';
 
-import axios from 'axios';
 import moment from 'moment';
 
 import { EditIcon } from '@chakra-ui/icons';
@@ -43,22 +43,6 @@ export default function ModalButtonAddTodo({
     status: false,
     deadline: '',
   });
-
-  //! можно поставить флаг в состояние
-  //? использовать санки?
-
-  // useEffect(() => {
-  //   // Отправляем запрос на сервер для получения userId
-  //   axios
-  //   .get(`${import.meta.env.VITE_URL}/user/userData`)
-  //   .then((response) => {
-  //     const { userId } = response.data;
-  //     setInputs({ ...inputs, user_id: userId });
-  //   })
-  //   .catch((error) => {
-  //     console.error('Ошибка при получении данных', error);
-  //   });
-  // }, []);
 
   useEffect(() => {
     if (todo) {
@@ -135,13 +119,21 @@ export default function ModalButtonAddTodo({
               </ModalHeader>
 
               <ModalBody>
-                <Input
+                {/* <Input
                   name="text"
                   type="text"
                   margin={5}
                   onChange={changeHandler}
                   value={inputs.text}
                   placeholder="Describe the task"
+                  size="sm"
+                /> */}
+                <Textarea
+                  name="text"
+                  type="text"
+                  value={inputs.text}
+                  onChange={changeHandler}
+                  placeholder="Here is a sample placeholder"
                   size="sm"
                 />
                 <Input
