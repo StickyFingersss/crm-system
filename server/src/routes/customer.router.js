@@ -37,4 +37,6 @@ customerRouter.get('/:id', async (req, res) => {
   }
 });
 
+customerRouter.put('/create');
+
 module.exports = customerRouter;

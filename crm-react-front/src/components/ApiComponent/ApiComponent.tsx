@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
+import styles from './ApiComponent.module.css'; // Импортируем модульные стили
 
 export const ApiComponent = () => {
   const [formData, setFormData] = useState({
     currentApi: '',
+    newApi: '',
     teamId: '',
   });
 
@@ -16,8 +18,10 @@ export const ApiComponent = () => {
   };
 
   return (
-    <>
-      <span>You can change AD api here</span>
+    <div className={styles['api-component']}>
+      {' '}
+      {/* Применяем класс из модульных стилей */}
+      <span className={styles.header}>You can change AD api here</span>
       <br />
       <label htmlFor="currentApi">Your current Api:</label>
       <input
@@ -46,7 +50,9 @@ export const ApiComponent = () => {
         onChange={handleChange}
       />
       <br />
-      <button onClick={handleSubmit}>Submit</button>
-    </>
+      <button className={styles.button} onClick={handleSubmit}>
+        Submit
+      </button>
+    </div>
   );
 };
