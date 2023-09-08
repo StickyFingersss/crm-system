@@ -74,9 +74,10 @@ export const ClientMax = (): JSX.Element => {
           <option>In work</option>
       </select >
       </>
-      } 
-
+      }
+      <h3>email: {OneCustomer?.email}</h3>
       <h3>Balance: {OneCustomer?.balance}</h3>
+      <h3>phone number: <button>{OneCustomer?.phone}</button></h3>
       
     </div>
   )
