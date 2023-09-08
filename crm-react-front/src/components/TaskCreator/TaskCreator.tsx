@@ -1,27 +1,21 @@
-import React, { useState, ChangeEvent } from 'react';
+import { useState, ChangeEvent } from 'react';
 import styles from './TaskCreator.module.css'; // Импорт классов стилей из файла
-
 type TaskState = {
   title: string;
   body: string;
 };
-
 function TaskCreator({ setOpenModal }) {
   const [task, setTask] = useState<TaskState>({ title: '', body: '' });
-
   const handleTitleChange = (event: ChangeEvent<HTMLInputElement>) => {
     setTask({ ...task, title: event.target.value });
   };
-
   const handleBodyChange = (event: ChangeEvent<HTMLInputElement>) => {
     setTask({ ...task, body: event.target.value });
   };
-
   const createTask = () => {
     setTask({ title: '', body: '' });
     setOpenModal(false);
   };
-
   return (
     <div className={styles.taskCreator}>
       <h2>Task Creator</h2>
@@ -44,5 +38,4 @@ function TaskCreator({ setOpenModal }) {
     </div>
   );
 }
-
 export default TaskCreator;
