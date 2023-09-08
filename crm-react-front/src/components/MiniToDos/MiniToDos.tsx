@@ -13,17 +13,14 @@ export default function MiniToDos() {
   const todos = useMySelector((store) => store.todoSlice.todos);
   const session = useMySelector((store) => store.isAutenticatedSlice.session);
   const dispatch = useMyDispatch();
-  console.log('TODOS', todos);
 
   const [filteredTodos, setFilteredTodos] = useState([]);
-  console.log('FILTER-STATE', filteredTodos);
 
   useEffect(() => {
     void dispatch(fetchTodos());
   }, [dispatch]);
 
   useEffect(() => {
-    console.log('SESSION', session);
     if (todos?.length) {
       const todosWithDateObj = todos.map((todo) => {
         return { ...todo, deadline: new Date(todo.deadline) };
@@ -39,7 +36,6 @@ export default function MiniToDos() {
         .sort((a, b) => a.deadline - b.deadline);
 
       const topTodos = filteredTodos.slice(0, 3);
-      console.log('TOP', topTodos);
 
       setFilteredTodos(topTodos);
     }
