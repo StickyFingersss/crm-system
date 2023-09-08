@@ -7,12 +7,12 @@ import { useMyDispatch, useMySelector } from '../../redux/hooks';
 import { fetchIsAutenticated } from '../../redux/thunkIsAutenticated';
 
 export const TeamLead = () => {
-  const session = useMySelector((store) => store.isAutenticatedSlice.session);
-  const dispatch = useMyDispatch();
+  // const session = useMySelector((store) => store.isAutenticatedSlice.session);
+  // const dispatch = useMyDispatch();
 
-  useEffect(() => {
-    void dispatch(fetchIsAutenticated());
-  }, [dispatch]);
+  // useEffect(() => {
+  //   void dispatch(fetchIsAutenticated());
+  // }, [dispatch]);
 
   return (
     <>
