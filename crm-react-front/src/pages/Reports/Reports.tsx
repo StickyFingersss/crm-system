@@ -9,7 +9,7 @@ import styles from './Reports.module.css';
 import { NavBar } from '../../components/NavBar/NavBar';
 
 export const Reports = () => {
-  const calls = useMySelector((store) => store.callsSlice.calls);
+  const calls = useMySelector((store) => store.callsSlice.statsCalls);
 
   const dispatch = useMyDispatch();
 

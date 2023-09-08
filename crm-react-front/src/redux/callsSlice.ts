@@ -3,7 +3,7 @@ import { SliceStateType } from '../types';
 import { fetchCalls } from './thunkActions';
 
 const initialState: SliceStateType = {
-  calls: [],
+  statsCalls: [],
 };
 
 const callsSlice = createSlice({
@@ -12,7 +12,7 @@ const callsSlice = createSlice({
   reducers: {},
   extraReducers: (builder) => {
     builder.addCase(fetchCalls.fulfilled, (state, action) => {
-      state.calls = action.payload;
+      state.statsCalls = action.payload;
     });
   },
 });
