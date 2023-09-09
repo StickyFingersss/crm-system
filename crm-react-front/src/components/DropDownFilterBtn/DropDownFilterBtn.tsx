@@ -17,6 +17,8 @@ export default function DropDownFilterBtn({
   }, [dispatch]);
 
   const { managers } = allManagersObj;
+  console.log('MANAGERS: ', managers);
+  
 
   return (
     <div>
@@ -27,7 +29,7 @@ export default function DropDownFilterBtn({
       >
         {managers.map((manager) => (
           <option key={manager.id} value={manager.id}>
-            {manager.name}
+            Tasks of {manager.name}
           </option>
         ))}
       </Select>

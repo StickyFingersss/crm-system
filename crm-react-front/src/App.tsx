@@ -14,6 +14,7 @@ import { NavBar } from './components/NavBar/NavBar';
 import { useMyDispatch, useMySelector } from './redux/hooks';
 import { useEffect, useState } from 'react';
 import { fetchIsAutenticated } from './redux/thunkIsAutenticated';
+import Pagination2 from './components/Pagination/Pagination2';
 
 function App(): JSX.Element {
   const session = useMySelector((store) => store.isAutenticatedSlice.session);
@@ -28,7 +29,7 @@ function App(): JSX.Element {
       <Route path="/" element={<Layout />}>
         <Route index element={<StartPage />} />
         <Route path="/lead" element={<TeamLead />} />
-        <Route path="/todos" element={<TodoList />} />
+        <Route path="/todos" element={<Pagination2 />} />
         <Route path="/todos/:id" element={<ToDo />} />
         <Route path="/managers" element={<Managers />}></Route>
         <Route path="/reports" element={<Reports />}></Route>

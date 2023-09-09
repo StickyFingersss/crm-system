@@ -1,35 +1,53 @@
-import React from 'react';, 
+import React from 'react';
 import { useEffect, useState } from 'react';
-import ReactPaginate from 'react-paginate'
-import { TodosType } from '../../types';
+import ReactPaginate from 'react-paginate';
+import TodoList from '../../pages/TodoList/TodoList';
+import { useMyDispatch, useMySelector } from '../../redux/hooks';
+import { fetchTodos } from '../../redux/thunkActions';
 
-export default function Pagination2(itemsPerPage: number, todos: TodosType) {
-  // We start with an empty list of items.
-  const [currentItems, setCurrentItems] = useState(null);
+import './Pagination2.css';
+
+export default function Pagination2() {
+  const todos = useMySelector((store) => store.todoSlice.todos);
+  const session = useMySelector((store) => store.isAutenticatedSlice.session);
+  const [selectedManager, setSelectedManager] = useState<number | null>(null);
+  const dispatch = useMyDispatch();
+
+  useEffect(() => {
+    void dispatch(fetchTodos());
+  }, [dispatch]);
+
+  const todosPerPage = 3;
+  const [currentTodos, setCurrentTodos] = useState(null);
+
   const [pageCount, setPageCount] = useState(0);
-  // Here we use item offsets; we could also use page offsets
-  // following the API or data you're working with.
-  const [itemOffset, setItemOffset] = useState(0);
+  const [todoOffset, setItemOffset] = useState(0);
 
   useEffect(() => {
     // Fetch items from another resources.
-    const endOffset = itemOffset + itemsPerPage;
-    console.log(`Loading items from ${itemOffset} to ${endOffset}`);
-    setCurrentItems(todos.slice(itemOffset, endOffset));
-    setPageCount(Math.ceil(todos.length / itemsPerPage));
-  }, [itemOffset, itemsPerPage]);
+    const endOffset = todoOffset + todosPerPage;
+    const filteredTodos = todos?.filter(
+      (todo) =>
+        (!selectedManager && todo.user_id === session?.userId) ||
+        todo.user_id === Number(selectedManager)
+    );
+    const slicedTodos = filteredTodos?.slice(todoOffset, endOffset);
+    setPageCount(Math.ceil(filteredTodos?.length / todosPerPage));
+    setCurrentTodos(slicedTodos);
+  }, [todoOffset, todosPerPage, todos, selectedManager, session]);
 
   // Invoke when user click to request another page.
   const handlePageClick = (event) => {
-    const newOffset = (event.selected * itemsPerPage) % todos.length;
-    console.log(
-      `User requested page number ${event.selected}, which is offset ${newOffset}`
-    );
+    const newOffset = (event.selected * todosPerPage) % todos?.length;
     setItemOffset(newOffset);
   };
   return (
     <>
-      <Items currentItems={currentItems} />
+      <TodoList
+        currentTodos={currentTodos}
+        selectedManager={selectedManager}
+        setSelectedManager={setSelectedManager}
+      />
       <ReactPaginate
         nextLabel="next >"
         onPageChange={handlePageClick}
