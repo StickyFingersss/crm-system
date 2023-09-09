@@ -6,7 +6,7 @@ const initialState = {
 };
 
 export const isAutenticatedSlice = createSlice({
-  name: 'isLoggedInSlice',
+  name: 'isAutenticatedSlice',
   initialState,
   reducers: {},
   extraReducers: (builder) => {

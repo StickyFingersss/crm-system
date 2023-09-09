@@ -12,9 +12,8 @@ import { Customer } from './pages/Customer/Customer';
 import { StartPage } from './pages/StartPage/StartPage';
 import { NavBar } from './components/NavBar/NavBar';
 import { useMyDispatch, useMySelector } from './redux/hooks';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { fetchIsAutenticated } from './redux/thunkIsAutenticated';
-
 
 function App(): JSX.Element {
   const session = useMySelector((store) => store.isAutenticatedSlice.session);
@@ -23,7 +22,7 @@ function App(): JSX.Element {
   useEffect(() => {
     void dispatch(fetchIsAutenticated());
   }, [dispatch]);
-  
+
   return (
     <Routes>
       <Route path="/" element={<Layout />}>
