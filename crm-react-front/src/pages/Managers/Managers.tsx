@@ -1,5 +1,5 @@
 import { NavigationBar } from '../../components/NavigationBar/NavigationBar';
-import { Manager } from '../../components/Manager/Manager';
+import { Manager } from '../../components/Manager/Manager.jsx';
 
 import type { RootState } from '../../redux/store.ts';
 import { useSelector, useDispatch } from 'react-redux';
