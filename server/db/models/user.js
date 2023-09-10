@@ -14,8 +14,9 @@ module.exports = (sequelize, DataTypes) => {
       this.belongsTo(Team, { foreignKey: 'team_id' });
       this.hasMany(Customer, { foreignKey: 'manager_id' });
       this.hasMany(Task, { foreignKey: 'user_id' });
-      this.belongsToMany(Customer, { through: 'Comments', foreignKey: 'customer_id' });
-      this.belongsToMany(Customer, { through: 'Calls', foreignKey: 'customer_id' });
+      this.belongsToMany(Customer, { through: 'Comments', foreignKey: 'user_id' });
+      this.belongsToMany(Customer, { through: 'Calls', foreignKey: 'user_id' });
+      this.belongsToMany(Customer, { through: 'Deals', foreignKey: 'user_id' });
     }
   }
   User.init({
