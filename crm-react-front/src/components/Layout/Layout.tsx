@@ -19,6 +19,8 @@ import {
 import { Outlet } from 'react-router-dom';
 import { useRef, ChangeEvent, useState, FormEvent } from 'react';
 import { IDataLog, IDataReg } from './LayoutType';
+import { useMyDispatch } from '../../redux/hooks';
+import { fetchIsAutenticated } from '../../redux/thunkIsAutenticated';
 
 const initStateLog: IDataLog = {
   name: '',
@@ -33,6 +35,8 @@ const initStateReg: IDataReg = {
 };
 
 const Layout = (): JSX.Element => {
+  const dispatch = useMyDispatch();
+
   const [isLogModalOpen, setLogModalOpen] = useState(false);
   const [isRegModalOpen, setRegModalOpen] = useState(false);
 
@@ -74,15 +78,16 @@ const Layout = (): JSX.Element => {
       );
       if (response.data.message) {
         setSuccessMessage(true);
+        dispatch(fetchIsAutenticated());
         setTimeout(() => {
-          setDataLog(initStateLog)
-          setDataReg(initStateReg)
+          setDataLog(initStateLog);
+          setDataReg(initStateReg);
           closeLogModal();
           setSuccessMessage(false);
         }, 1500);
       } else {
-        setDataLog(initStateLog)
-        setDataReg(initStateReg)
+        setDataLog(initStateLog);
+        setDataReg(initStateReg);
         setSuccessMessage(false);
         setErrorMessage(true);
         setTimeout(() => {
@@ -103,14 +108,15 @@ const Layout = (): JSX.Element => {
       );
       if (response.data.message) {
         setSuccessMessage(true);
+        dispatch(fetchIsAutenticated());
         setTimeout(() => {
-          setDataLog(initStateLog)
-          setDataReg(initStateReg)
+          setDataLog(initStateLog);
+          setDataReg(initStateReg);
           closeRegModal();
         }, 1500);
       } else {
-        setDataLog(initStateLog)
-        setDataReg(initStateReg)
+        setDataLog(initStateLog);
+        setDataReg(initStateReg);
         setSuccessMessage(false);
         setErrorMessage(true);
       }

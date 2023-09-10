@@ -1,5 +1,6 @@
 import React from 'react';
 import { useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import MiniToDos from '../../components/MiniToDos/MiniToDos';
 import ModalButtonLead from '../../components/ModalButtonLead/ModalButtonLead';
 import { ClientList } from '../../components/ClientList/ClientList';
@@ -12,6 +13,9 @@ export const TeamLead = () => {
   if (session.isAdmin) {
     return (
       <>
+        <Link to="/todos">Todos</Link>
+        <Link to="/managers">Managers</Link>
+
         <button>
           <a href="/todos">Todos</a>
         </button>

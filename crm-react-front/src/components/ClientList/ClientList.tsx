@@ -98,6 +98,8 @@ export const ClientList = (): JSX.Element => {
             name={customer.name}
             balance={customer.balance}
             manager_id={customer.manager_id}
+            createdAt={customer.createdAt}
+            status={customer.Status.name}
           />
         ))}
       </div>
