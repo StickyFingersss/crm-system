@@ -7,8 +7,9 @@ const { Customer, Comment, User, Status } = require('../../db/models');
 customerRouter.use('/comment', commentRouter);
 
 customerRouter.get('/all', async (req, res) => {
+  const { team_id } = req.session;
   try {
-    const customers = await Customer.findAll({ raw: true });
+    const customers = await Customer.findAll({ where: { team_id }, raw: true });
     res.json(customers);
   } catch (error) {
     console.log(error);
@@ -16,8 +17,8 @@ customerRouter.get('/all', async (req, res) => {
 });
 
 customerRouter.get('/special', async (req, res) => {
-  const { name, balance, id, createdAt } = req.query;
-  console.log("🚀 ~ file: customer.router.js:20 ~ customerRouter.get ~ req.query:", req.query);
+  const { name, balance, id, createdAt, status_id, manager_id } = req.query;
+  const { team_id } = req.session;
   const filter = {};
   try {
     if (name) {
@@ -41,11 +42,54 @@ customerRouter.get('/special', async (req, res) => {
     // Проверяем наличие ключа createdAt
     if (createdAt) {
       // Используем оператор = для поиска клиентов, зарегистрированных в заданную дату
-      filter.createdAt = createdAt;
+      const start = new Date(createdAt).toISOString();
+      filter.createdAt = {
+        [Op.gte]: start,
+      };
+    }
+    // Проверяем наличие ключа status_id
+    if (status_id) {
+      // Проверяем значение ключа status на равенство "empty"
+      if (status_id === 'Пустой' || status_id === 'пустой' || status_id === 'empty' || status_id === 'Empty') { // Используем оператор IS NULL для поиска клиентов со значением status_id, равным null
+        filter.status_id = {
+          [Op.is]: null,
+        };
+      } else {
+        // Ищем запись о статусе с заданным именем
+        const statusData = await Status.findOne({
+          where: { name: status_id },
+        });
+
+        if (statusData) {
+          // Используем оператор = для поиска клиентов с заданным значением status_id
+          filter.status_id = statusData.id;
+        }
+      }
+    }
+    // Проверяем наличие ключа manager_id
+    if (manager_id) {
+      // Проверяем значение manager_id
+      if (manager_id === 'Пусто' || manager_id === 'пусто' || manager_id === 'empty' || manager_id === 'Empty') {
+        // Показываем всех клиентов с manager_id = null
+        filter.manager_id = null;
+      } else {
+        // Ищем менеджера с заданным именем
+        const manager = await User.findOne({
+          where: { name: manager_id },
+        });
+
+        if (manager) {
+          // Показываем всех клиентов с текущим manager_id
+          filter.manager_id = manager.id;
+        }
+      }
     }
     // Выполняем запрос к базе данных с использованием созданного фильтра
     const customers = await Customer.findAll({
-      where: filter,
+      where: {
+        ...filter,
+        team_id,
+      },
     });
     // Отправляем полученные данные на фронтенд
     console.log('!!!!!!!!!!!!!!!!!!', customers);

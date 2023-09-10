@@ -21,7 +21,7 @@ export const ClientList = (): JSX.Element => {
   });
   const [inputModal, setInputModal] = useState(false);
   const [fieldName, setFieldName] = useState('');
-  const [newInfo, setNewInfo] = useState({});
+  // const [newInfo, setNewInfo] = useState(customers);
 
   function buildQueryString(data) {
     setInputModal(!inputModal);
@@ -29,12 +29,11 @@ export const ClientList = (): JSX.Element => {
       .filter(([_, value]) => value !== null)
       .map(([key, value]) => `${key}=${encodeURIComponent(value)}`)
       .join('&');
-    console.log(queryString);
     
       const response = axios.get(`http://localhost:3000/api/customer/special?${queryString}`);
-      // response
-      //   .then((data) => setNewInfo(data))
-      //   .catch((err) => console.log(err));
+      response
+        .then((data) => setNewInfo(data.data))
+        .catch((err) => console.log(err));
   }
 
   const handleInputChange = (fieldName: string) => (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -55,14 +54,31 @@ export const ClientList = (): JSX.Element => {
     { name: 'Status', callback: handleInputChange('status_id') },
   ];
 
-  useEffect(() => {
-    console.log(inputData);
-  }, [inputData]);
-
   const customers = useMySelector((store) => store.customerSlice.customers);
+  console.log("🚀 ~ file: ClientList.tsx:64 ~ ClientList ~ customers:", customers);
   useEffect(() => {
     void dispatch(fetchAllCustomers());
   }, [dispatch]);
+
+  const [newInfo, setNewInfo] = useState([]);
+  console.log("🚀 ~ file: ClientList.tsx:69 ~ ClientList ~ newInfo:", newInfo);
+
+  
+  useEffect(() => {
+    console.log(newInfo);
+  }, [newInfo]);
+
+  const resetFilter = () => {
+    setNewInfo([]);
+    setInputData({
+      name: null,
+      balance: null,
+      id: null,
+      manager_id: null,
+      createdAt: null,
+      status_id: null,
+    });
+  };
 
   return (
     <div className={styles.mainClientList}>
@@ -90,20 +106,44 @@ export const ClientList = (): JSX.Element => {
         </div>
       </div>
 
+      {/* "Кнопка сброса фильтров" */}
+      <button type="button" onClick={resetFilter}>Сбросить фильтр</button>
+
       {/* "навигация" */}
 
       <NavBar buttons={buttons} />
 
       {/* карточки клиентов */}
       <div className={styles.containerClients}>
-        {customers?.map((customer) => (
+      {newInfo.length === 0 ? (
+        customers?.map((customer) => (
+          <Client
+            key={customer.id}
+            id={customer.id}
+            name={customer.name}
+            balance={customer.balance}
+            manager_id={customer.manager_id}
+          />
+        ))
+      ) : (
+        newInfo.map((customer) => (
+          <Client
+            key={customer.id}
+            id={customer.id}
+            name={customer.name}
+            balance={customer.balance}
+            manager_id={customer.manager_id}
+          />
+        ))
+      )}
+        {/* {customers?.map((customer) => (
           <Client
             id={customer.id}
             name={customer.name}
             balance={customer.balance}
             manager_id={customer.manager_id}
           />
-        ))}
+        ))} */}
       </div>
     </div>
   );

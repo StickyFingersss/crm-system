@@ -25,15 +25,20 @@ module.exports = {
       },
       status_id: {
         type: Sequelize.INTEGER,
-        allowNull: false,
         references: {
           model: 'Statuses',
           key: 'id',
         },
       },
+      team_id: {
+        type: Sequelize.INTEGER,
+        references: {
+          model: 'Teams',
+          key: 'id',
+        },
+      },
       manager_id: {
         type: Sequelize.INTEGER,
-        allowNull: false,
         references: {
           model: 'Users',
           key: 'id',
@@ -41,11 +46,11 @@ module.exports = {
       },
       createdAt: {
         allowNull: false,
-        type: Sequelize.DATE,
+        type: Sequelize.DATEONLY,
       },
       updatedAt: {
         allowNull: false,
-        type: Sequelize.DATE,
+        type: Sequelize.DATEONLY,
       },
     });
   },
