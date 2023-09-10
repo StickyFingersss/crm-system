@@ -16,13 +16,6 @@ export const TeamLead = () => {
         <Link to="/todos">Todos</Link>
         <Link to="/managers">Managers</Link>
 
-        <button>
-          <a href="/todos">Todos</a>
-        </button>
-        <button>
-          <a href="/managers">Managers</a>
-        </button>
-
         <MiniToDos />
         <ModalButtonLead />
         <ClientList />
