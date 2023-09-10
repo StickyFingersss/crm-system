@@ -12,7 +12,7 @@ const callsSlice = createSlice({
   reducers: {},
   extraReducers: (builder) => {
     builder.addCase(fetchAddCall.fulfilled, (state, action) => {
-      state.calls.push(action.payload);
+      state.calls?.push(action.payload);
     });
   },
 });

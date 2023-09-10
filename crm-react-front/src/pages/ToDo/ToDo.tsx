@@ -19,6 +19,13 @@ import {
   Flex,
   Avatar,
   Box,
+  AlertDialog,
+  AlertDialogContent,
+  AlertDialogHeader,
+  AlertDialogOverlay,
+  AlertDialogBody,
+  AlertDialogFooter,
+  useDisclosure,
 } from '@chakra-ui/react';
 
 import StatusBtn from '../../components/StatusBtn/StatusBtn';
@@ -26,6 +33,8 @@ import ModalButtonAddTodo from '../../components/ModalButtonAddTodo/ModalButtonA
 
 export default function ToDo({ todo }: TodoItemProps): JSX.Element {
   const dispatch = useMyDispatch();
+  const { isOpen, onOpen, onClose } = useDisclosure()
+  const cancelRef = React.useRef()
 
   const deleteHandler = async (): Promise<void> => {
     void dispatch(fetchDel(todo.id));
@@ -77,16 +86,44 @@ export default function ToDo({ todo }: TodoItemProps): JSX.Element {
             <StatusBtn todo={todo} />
             <ModalButtonAddTodo editBtnTitle={editBtnTitle} todo={todo}/>
             <Button
-              onClick={deleteHandler}
+              
               flex="1"
               variant="ghost"
               leftIcon={<DeleteIcon />}
+              colorScheme='red' 
+              onClick={onOpen}
             >
               Delete
             </Button>
           </CardFooter>
         </Stack>
       </Card>
+      <AlertDialog
+        isOpen={isOpen}
+        leastDestructiveRef={cancelRef}
+        onClose={onClose}
+      >
+        <AlertDialogOverlay>
+          <AlertDialogContent>
+            <AlertDialogHeader fontSize='lg' fontWeight='bold'>
+              Delete Task
+            </AlertDialogHeader>
+
+            <AlertDialogBody>
+              Are you sure? You can't undo this action afterwards.
+            </AlertDialogBody>
+
+            <AlertDialogFooter>
+              <Button ref={cancelRef} onClick={onClose}>
+                Cancel
+              </Button>
+              <Button colorScheme='red' onClick={deleteHandler} ml={3}>
+                Delete
+              </Button>
+            </AlertDialogFooter>
+          </AlertDialogContent>
+        </AlertDialogOverlay>
+      </AlertDialog>
     </>
   );
 }
