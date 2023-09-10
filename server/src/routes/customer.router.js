@@ -8,8 +8,12 @@ customerRouter.use('/comment', commentRouter);
 customerRouter.get('/all/', async (req, res) => {
   const { team_id } = req.session;
   try {
-    const customers = await Customer.findAll({ where: { team_id } });
-    console.log(customers);
+    const customers = await Customer.findAll({
+      where: { team_id },
+      include: [{ model: Status }],
+      raw: true,
+      nest: true,
+    });
     res.json(customers);
   } catch (error) {
     console.log(error);

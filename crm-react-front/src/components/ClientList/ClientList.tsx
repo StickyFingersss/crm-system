@@ -61,7 +61,7 @@ export const ClientList = (): JSX.Element => {
 
       {/* карточки клиентов */}
       <div className={styles.containerClients}>
-        {customers?.map((customer) => <Client id={customer.id} name={customer.name} balance={customer.balance} manager_id={customer.manager_id}/>)}
+        {customers?.map((customer) => <Client id={customer.id} name={customer.name} balance={customer.balance} manager_id={customer.manager_id} createdAt={customer.createdAt} status={customer.Status.name}/>)}
       </div>
     </div>
   );
