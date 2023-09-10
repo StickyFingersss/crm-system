@@ -25,7 +25,7 @@ export const Manager = () => {
         <h2>Anton Belkin</h2>
         <MiniToDos />
 
-        <ClientList />
+        <ClientList path={'/customer/by-manager'} />
       </>
     );
   }

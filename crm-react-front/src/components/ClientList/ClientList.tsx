@@ -60,8 +60,8 @@ export const ClientList = ({ path }): JSX.Element => {
   const [newInfo, setNewInfo] = useState([]);
 
   useEffect(() => {
-    console.log(newInfo);
-  }, [newInfo]);
+    console.log(customers);
+  }, []);
 
   const resetFilter = () => {
     setNewInfo([]);
