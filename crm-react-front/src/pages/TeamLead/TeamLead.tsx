@@ -7,18 +7,24 @@ import { useMyDispatch, useMySelector } from '../../redux/hooks';
 import { fetchIsAutenticated } from '../../redux/thunkIsAutenticated';
 
 export const TeamLead = () => {
-  return (
-    <>
-      <button>
-        <a href="/todos">Todos</a>
-      </button>
-      <button>
-        <a href="/managers">Managers</a>
-      </button>
+  const session = useMySelector((store) => store.isAutenticatedSlice.session);
 
-      <MiniToDos />
-      <ModalButtonLead />
-      <ClientList />
-    </>
-  );
+  if (session.isAdmin) {
+    return (
+      <>
+        <button>
+          <a href="/todos">Todos</a>
+        </button>
+        <button>
+          <a href="/managers">Managers</a>
+        </button>
+
+        <MiniToDos />
+        <ModalButtonLead />
+        <ClientList />
+      </>
+    );
+  } else {
+    return <h1>Login as team lead or register</h1>;
+  }
 };

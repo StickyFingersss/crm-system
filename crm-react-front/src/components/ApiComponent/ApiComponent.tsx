@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import styles from './ApiComponent.module.css'; // Импортируем модульные стили
-
+import axios from 'axios';
 export const ApiComponent = () => {
   const [formData, setFormData] = useState({
     currentApi: '',
@@ -13,8 +13,13 @@ export const ApiComponent = () => {
     setFormData({ ...formData, [name]: value });
   };
 
-  const handleSubmit = (e) => {
-    console.log('Отправка данных:', formData);
+  const handleSubmit = async (e) => {
+    const response = await axios.post('http://localhost:3000/api/advertiser', formData);
+    setFormData({
+      currentApi: '',
+      newApi: '',
+      teamId: '',
+    });
   };
 
   return (

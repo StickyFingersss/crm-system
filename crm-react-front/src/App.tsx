@@ -35,8 +35,8 @@ function App(): JSX.Element {
         <Route path="/customer" element={<Customer />}></Route>
         <Route path="/customer/:id" element={<Customer />}></Route>
         <Route path="/manager" element={<Manager />}></Route>
+        <Route path="/advertiser" element={<Advertiser />}></Route>
       </Route>
-      <Route path="/advertiser" element={<Advertiser />}></Route>
     </Routes>
   );
 }
