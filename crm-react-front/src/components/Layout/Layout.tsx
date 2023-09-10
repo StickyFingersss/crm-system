@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 axios.defaults.withCredentials = true;
 
 import {
@@ -36,6 +37,7 @@ const initStateReg: IDataReg = {
 
 const Layout = (): JSX.Element => {
   const dispatch = useMyDispatch();
+  const navigate = useNavigate();
 
   const [isLogModalOpen, setLogModalOpen] = useState(false);
   const [isRegModalOpen, setRegModalOpen] = useState(false);
@@ -129,7 +131,7 @@ const Layout = (): JSX.Element => {
     try {
       const response = await axios('http://localhost:3000/api/user/logout');
       if (response.status === 200) {
-        window.location.replace('/');
+        navigate('/');
       }
     } catch (error) {
       console.log(error);
