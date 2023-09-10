@@ -54,13 +54,13 @@ export const ClientList = (): JSX.Element => {
   ];
 
   const customers = useMySelector((store) => store.customerSlice.customers);
+
   useEffect(() => {
     void dispatch(fetchAllCustomers());
   }, [dispatch]);
 
   const [newInfo, setNewInfo] = useState([]);
-
-  
+    
   useEffect(() => {
     console.log(newInfo);
   }, [newInfo]);
@@ -121,6 +121,7 @@ export const ClientList = (): JSX.Element => {
             manager_id={customer.manager_id}
             createdAt={customer.createdAt}
             status={customer.Status.name}
+            team_id={customer.team_id}
           />
         ))
       ) : (
@@ -133,6 +134,7 @@ export const ClientList = (): JSX.Element => {
             manager_id={customer.manager_id}
             createdAt={customer.createdAt}
             status={customer.Status.name}
+            team_id={customer.team_id}
           />
         ))
       )}
