@@ -35,7 +35,7 @@ export const ClientMax = (): JSX.Element => {
   };
   const comments = useMySelector((store) => store.commentSlice.comments)?.filter((el) => el.customer_id === Number(id)).length;
 
-    useEffect(() => {
+  useEffect(() => {
     void dispatch(fetchOneCustomer(id));
   }, [dispatch]);
 
