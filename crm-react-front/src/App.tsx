@@ -33,7 +33,7 @@ function App(): JSX.Element {
         <Route path="/todos/:id" element={<ToDo />} />
         <Route path="/managers" element={<Managers />}></Route>
         <Route path="/reports" element={<Reports />}></Route>
-        <Route path="/customer" element={<Customer />}></Route>
+        {/* <Route path="/customer" element={<Customer />}></Route> */}
         <Route path="/customer/:id" element={<Customer />}></Route>
         <Route path="/manager" element={<Manager />}></Route>
         <Route path="/advertiser" element={<Advertiser />}></Route>
