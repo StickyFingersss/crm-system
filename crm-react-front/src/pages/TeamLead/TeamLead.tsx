@@ -10,6 +10,10 @@ import { fetchIsAutenticated } from '../../redux/thunkIsAutenticated';
 export const TeamLead = () => {
   const session = useMySelector((store) => store.isAutenticatedSlice.session);
 
+  // useEffect(() => {
+  //   console.log('component update');
+  // }, [session]);
+
   if (session.isAdmin) {
     return (
       <>
@@ -18,7 +22,7 @@ export const TeamLead = () => {
 
         <MiniToDos />
         <ModalButtonLead />
-        <ClientList />
+        <ClientList path={'/customer/all'} />
       </>
     );
   } else {

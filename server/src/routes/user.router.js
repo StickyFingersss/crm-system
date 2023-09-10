@@ -41,6 +41,8 @@ usersRouter.post('/login', async (req, res) => {
         req.session.name = user.name;
         req.session.login = user.login;
         req.session.team_id = user.team_id;
+        req.session.isAdmin = user.isAdmin;
+
         req.session.save();
         res.json({ message: 'есть пробитие' });
       } else {

@@ -24,11 +24,17 @@ export const Managers = () => {
 
   return (
     <>
-      <h1>Wolfs Team</h1>
-      <NavBar buttons={buttons} />
-
-      {/* <NavigationBar /> */}
-      {managers.length && managers.map((el) => <Manager key={el.id} name={el.name} id={el.id} />)}
+      {managers.length ? (
+        <>
+          <h1>Wolfs Team</h1>
+          <NavBar buttons={buttons} />
+          {managers.map((el) => (
+            <Manager key={el.id} name={el.name} id={el.id} />
+          ))}
+        </>
+      ) : (
+        <h1>You haven't access to this page</h1>
+      )}
     </>
   );
 };
