@@ -8,7 +8,7 @@ import { useMySelector } from '../../redux/hooks';
 export const Manager = () => {
   const session = useMySelector((store) => store.isAutenticatedSlice.session);
 
-  if (session.login) {
+  if (session.isAdmin) {
     return (
       <>
         <h1>Manager Page</h1>
@@ -18,11 +18,21 @@ export const Manager = () => {
         <ClientList path={'/customer/by-manager'} />
       </>
     );
-  } else {
+  } else if (session.login) {
     return (
-      <div>
-        <h1>Login or register</h1>
-      </div>
+      <>
+        <h1>Manager Page</h1>
+        <h2>Anton Belkin</h2>
+        <MiniToDos />
+
+        <ClientList />
+      </>
     );
   }
+
+  return (
+    <div>
+      <h1>Login or register</h1>
+    </div>
+  );
 };
