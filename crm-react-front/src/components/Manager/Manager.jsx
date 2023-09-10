@@ -13,7 +13,6 @@ export function Manager(props) {
   const [openModal, setOpenModal] = React.useState(false);
 
   const removeManagerFromTeam = async () => {
-    console.log(id);
     await axios.put(`http://localhost:3000/api/managers/${id}`);
     dispatch(removeManager(id));
   };

@@ -1,0 +1,17 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 300px;
+}
+
+.link {
+  padding: 7px;
+  background-color: #3639ed;
+  color: #fff;
+  cursor: pointer;
+}
+
+.headline {
+  margin-bottom: 30px;
+}

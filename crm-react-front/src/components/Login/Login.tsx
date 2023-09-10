@@ -1,4 +1,4 @@
-import React, { ChangeEvent, useState } from "react";
+import React, { ChangeEvent, useState } from 'react';
 
 import {
   Box,
@@ -11,8 +11,8 @@ import {
   SimpleGrid,
   Stack,
   Text,
-} from "@chakra-ui/react";
-import axios from "axios";
+} from '@chakra-ui/react';
+import axios from 'axios';
 axios.defaults.withCredentials = true;
 
 interface IReg {
@@ -21,12 +21,11 @@ interface IReg {
 }
 
 const initState: IReg = {
-  name: "",
-  password: "",
+  name: '',
+  password: '',
 };
 
 export const Login = () => {
-
   const [dataLog, setDataLog] = useState(initState);
   const [showSuccessMessage, setShowSuccessMessage] = useState(false);
   const [showErrorMessage, setShowErrorMessage] = useState(false);
@@ -38,10 +37,14 @@ export const Login = () => {
   const submitHandler = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     try {
-      const response = await axios.post('http://localhost:3000/api/user/login', dataLog);
+      const response = await axios.post(
+        'http://localhost:3000/api/user/login',
+        dataLog
+      );
       if (response.status === 200) {
         setShowSuccessMessage(true);
         setShowErrorMessage(false);
+        
       } else {
         setShowSuccessMessage(false);
         setShowErrorMessage(true);
@@ -51,63 +54,62 @@ export const Login = () => {
     }
   };
 
-
   return (
     <>
-    <form onSubmit={submitHandler}>
-      <Box position={"relative"}>
-        <Container
-          as={SimpleGrid}
-          maxW={"7xl"}
-          columns={{ base: 1, md: 2 }}
-          spacing={{ base: 10, lg: 32 }}
-          py={{ base: 10, sm: 20, lg: 32 }}
-        >          
-          <FormControl>
-            <Stack
-              rounded={'xl'}
-              p={{ base: 4, sm: 6, md: 6 }}
-              spacing={{ base: 8 }}
-              maxW={{ lg: 'lg' }}
-            >
-              <Stack spacing={4} />
-              <Heading
-                color={'gray.800'}
-                lineHeight={1.1}
-                fontSize={{ base: '2xl', sm: '3xl', md: '3xl' }}
+      <form onSubmit={submitHandler}>
+        <Box position={'relative'}>
+          <Container
+            as={SimpleGrid}
+            maxW={'7xl'}
+            columns={{ base: 1, md: 2 }}
+            spacing={{ base: 10, lg: 32 }}
+            py={{ base: 10, sm: 20, lg: 32 }}
+          >
+            <FormControl>
+              <Stack
+                rounded={'xl'}
+                p={{ base: 4, sm: 6, md: 6 }}
+                spacing={{ base: 8 }}
+                maxW={{ lg: 'lg' }}
               >
-                Login
-              </Heading>
-            </Stack>
-            <FormLabel>Введите имя</FormLabel>
-            <Input
-              name="name"
-              onChange={inputHandler}
-              value={dataLog.name}
-              type="text"
-              placeholder="Pro100_Dima228_1337"
-              margin="2"
-            />
-            <FormLabel>Введите пароль</FormLabel>
-            <Input
-              name="password"
-              onChange={inputHandler}
-              value={dataLog.password}
-              type="password"
-              placeholder="qwerty"
-              margin="2"
-            />
-            <Button type="submit" colorScheme="yellow" margin="2">
-              Войти
-            </Button>
-            <Box mt={4}>
-              {showSuccessMessage && <Text>Авторизация прошла успешно!</Text>}
-              {showErrorMessage && <Text>Такого пользователя нет!</Text>}
-            </Box>
-          </FormControl>
-        </Container>
-      </Box>
-    </form>
-  </>
-  )
-}
+                <Stack spacing={4} />
+                <Heading
+                  color={'gray.800'}
+                  lineHeight={1.1}
+                  fontSize={{ base: '2xl', sm: '3xl', md: '3xl' }}
+                >
+                  Login
+                </Heading>
+              </Stack>
+              <FormLabel>Введите имя</FormLabel>
+              <Input
+                name="name"
+                onChange={inputHandler}
+                value={dataLog.name}
+                type="text"
+                placeholder="Pro100_Dima228_1337"
+                margin="2"
+              />
+              <FormLabel>Введите пароль</FormLabel>
+              <Input
+                name="password"
+                onChange={inputHandler}
+                value={dataLog.password}
+                type="password"
+                placeholder="qwerty"
+                margin="2"
+              />
+              <Button type="submit" colorScheme="yellow" margin="2">
+                Войти
+              </Button>
+              <Box mt={4}>
+                {showSuccessMessage && <Text>Авторизация прошла успешно!</Text>}
+                {showErrorMessage && <Text>Такого пользователя нет!</Text>}
+              </Box>
+            </FormControl>
+          </Container>
+        </Box>
+      </form>
+    </>
+  );
+};

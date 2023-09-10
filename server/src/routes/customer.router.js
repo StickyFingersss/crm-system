@@ -9,7 +9,12 @@ customerRouter.use('/comment', commentRouter);
 customerRouter.get('/all', async (req, res) => {
   const { team_id } = req.session;
   try {
-    const customers = await Customer.findAll({ where: { team_id }, raw: true });
+    const customers = await Customer.findAll({
+      where: { team_id },
+      include: [{ model: Status }],
+      raw: true,
+      nest: true,
+    });
     res.json(customers);
   } catch (error) {
     console.log(error);
@@ -90,9 +95,10 @@ customerRouter.get('/special', async (req, res) => {
         ...filter,
         team_id,
       },
+      include: [{ model: Status }],
+      raw: true,
+      nest: true,
     });
-    // Отправляем полученные данные на фронтенд
-    console.log('!!!!!!!!!!!!!!!!!!', customers);
     res.json(customers);
   } catch (error) {
     console.log(error);
@@ -108,18 +114,12 @@ customerRouter.get('/:id', async (req, res) => {
       raw: true,
       nest: true,
     });
-    const comment = await Comment.findAll({ where: { user_id: id } });
-    const manager = await User.findOne({
-      where: { id },
-      raw: true,
-      nest: true,
-    });
-    console.log('asdasdsadasdadasasd');
-    console.log(customers);
     res.json(customers);
   } catch (error) {
     console.log(error);
   }
 });
+
+customerRouter.put('/create');
 
 module.exports = customerRouter;

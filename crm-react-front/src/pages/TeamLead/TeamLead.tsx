@@ -1,5 +1,6 @@
 import React from 'react';
 import { useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import MiniToDos from '../../components/MiniToDos/MiniToDos';
 import ModalButtonLead from '../../components/ModalButtonLead/ModalButtonLead';
 import { ClientList } from '../../components/ClientList/ClientList';
@@ -8,24 +9,19 @@ import { fetchIsAutenticated } from '../../redux/thunkIsAutenticated';
 
 export const TeamLead = () => {
   const session = useMySelector((store) => store.isAutenticatedSlice.session);
-  const dispatch = useMyDispatch();
 
-  useEffect(() => {
-    void dispatch(fetchIsAutenticated());
-  }, [dispatch]);
+  if (session.isAdmin) {
+    return (
+      <>
+        <Link to="/todos">Todos</Link>
+        <Link to="/managers">Managers</Link>
 
-  return (
-    <>
-      <button>
-        <a href="/todos">Todos</a>
-      </button>
-      <button>
-        <a href="/managers">Managers</a>
-      </button>
-
-      <MiniToDos />
-      <ModalButtonLead />
-      <ClientList />
-    </>
-  );
+        <MiniToDos />
+        <ModalButtonLead />
+        <ClientList />
+      </>
+    );
+  } else {
+    return <h1>Login as team lead or register</h1>;
+  }
 };

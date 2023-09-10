@@ -21,7 +21,6 @@ export const ClientList = (): JSX.Element => {
   });
   const [inputModal, setInputModal] = useState(false);
   const [fieldName, setFieldName] = useState('');
-  // const [newInfo, setNewInfo] = useState(customers);
 
   function buildQueryString(data) {
     setInputModal(!inputModal);
@@ -55,13 +54,11 @@ export const ClientList = (): JSX.Element => {
   ];
 
   const customers = useMySelector((store) => store.customerSlice.customers);
-  console.log("🚀 ~ file: ClientList.tsx:64 ~ ClientList ~ customers:", customers);
   useEffect(() => {
     void dispatch(fetchAllCustomers());
   }, [dispatch]);
 
   const [newInfo, setNewInfo] = useState([]);
-  console.log("🚀 ~ file: ClientList.tsx:69 ~ ClientList ~ newInfo:", newInfo);
 
   
   useEffect(() => {
@@ -110,7 +107,6 @@ export const ClientList = (): JSX.Element => {
       <button type="button" onClick={resetFilter}>Сбросить фильтр</button>
 
       {/* "навигация" */}
-
       <NavBar buttons={buttons} />
 
       {/* карточки клиентов */}
@@ -123,6 +119,8 @@ export const ClientList = (): JSX.Element => {
             name={customer.name}
             balance={customer.balance}
             manager_id={customer.manager_id}
+            createdAt={customer.createdAt}
+            status={customer.Status.name}
           />
         ))
       ) : (
@@ -133,17 +131,11 @@ export const ClientList = (): JSX.Element => {
             name={customer.name}
             balance={customer.balance}
             manager_id={customer.manager_id}
+            createdAt={customer.createdAt}
+            status={customer.Status.name}
           />
         ))
       )}
-        {/* {customers?.map((customer) => (
-          <Client
-            id={customer.id}
-            name={customer.name}
-            balance={customer.balance}
-            manager_id={customer.manager_id}
-          />
-        ))} */}
       </div>
     </div>
   );
