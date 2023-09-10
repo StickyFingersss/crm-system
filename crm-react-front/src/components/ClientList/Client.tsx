@@ -5,8 +5,8 @@ import { Link as ChakraLink } from '@chakra-ui/react';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 
-export const Client = ({ id, name, balance, manager_id}): JSX.Element => {
-  
+export const Client = ({ id, name, balance, manager_id, createdAt, status}): JSX.Element => {
+  const normalDate = `${createdAt.slice(8, 10)}.${createdAt.slice(5, 7)}.${createdAt.slice(0, 4)}`;
   const [user, setUser] = useState('')
 
   useEffect(() => {
@@ -25,8 +25,8 @@ export const Client = ({ id, name, balance, manager_id}): JSX.Element => {
       <h3>{id}</h3>
       <h3>{balance}</h3>
       <h3>{user?.data?.name}</h3>
-      <h3>?????</h3>
-      <h3>Status: ????</h3>
+      <h3>{normalDate}</h3>
+      <h3>Status: {status}</h3>
     </div>
   );
 };
