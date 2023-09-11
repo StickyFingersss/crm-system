@@ -83,13 +83,11 @@ const Layout = (): JSX.Element => {
         dispatch(fetchIsAutenticated());
         setTimeout(() => {
           setDataLog(initStateLog);
-          setDataReg(initStateReg);
           closeLogModal();
           setSuccessMessage(false);
         }, 1500);
       } else {
         setDataLog(initStateLog);
-        setDataReg(initStateReg);
         setSuccessMessage(false);
         setErrorMessage(true);
         setTimeout(() => {
@@ -112,15 +110,17 @@ const Layout = (): JSX.Element => {
         setSuccessMessage(true);
         dispatch(fetchIsAutenticated());
         setTimeout(() => {
-          setDataLog(initStateLog);
           setDataReg(initStateReg);
           closeRegModal();
+          setSuccessMessage(false);
         }, 1500);
       } else {
-        setDataLog(initStateLog);
         setDataReg(initStateReg);
         setSuccessMessage(false);
         setErrorMessage(true);
+        setTimeout(() => {
+          setErrorMessage(false);
+        }, 1500);
       }
     } catch (error) {
       console.log(error);
