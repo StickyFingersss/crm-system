@@ -47,6 +47,7 @@ export type SliceStateType = {
   customer?: CustomerType;
   comments?: CommentsType;
   deals?: DealsType;
+  isLoading: boolean;
 };
 export type InputsCommentType = {
   comment: string;
@@ -92,6 +93,8 @@ export type CallCreateType = {
 export type CallType = {
   name: string;
   count: number;
+  total: number;
+  dealCount: number;
 }
 export type CustomerType = {
   id: number;
