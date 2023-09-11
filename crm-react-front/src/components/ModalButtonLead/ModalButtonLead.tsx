@@ -12,7 +12,6 @@ import {
 } from '@chakra-ui/react';
 import { ChangeEvent, useEffect, useState } from 'react';
 
-
 import { useMyDispatch, useMySelector } from '../../redux/hooks';
 import { fetchAddOneManager } from '../../redux/thunkActions';
 

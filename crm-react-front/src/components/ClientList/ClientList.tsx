@@ -1,12 +1,13 @@
 import styles from './ClientList.module.css';
 
+import axios from 'axios';
+
 import { Client } from './Client';
+import { NavBar } from '../NavBar/NavBar';
 
 import { useEffect, useState } from 'react';
-import { NavBar } from '../NavBar/NavBar';
 import { useMyDispatch, useMySelector } from '../../redux/hooks';
 import { fetchAllCustomers } from '../../redux/thunkActions';
-import axios from 'axios';
 
 export const ClientList = ({ path }): JSX.Element => {
   const dispatch = useMyDispatch();
@@ -59,10 +60,6 @@ export const ClientList = ({ path }): JSX.Element => {
 
   const [newInfo, setNewInfo] = useState([]);
 
-  useEffect(() => {
-    console.log(customers);
-  }, []);
-
   const resetFilter = () => {
     setNewInfo([]);
     setInputData({
@@ -74,8 +71,6 @@ export const ClientList = ({ path }): JSX.Element => {
       status_id: null,
     });
   };
-
-  console.log(customers);
 
   return (
     <div className={styles.mainClientList}>
@@ -123,7 +118,6 @@ export const ClientList = ({ path }): JSX.Element => {
                 manager_id={customer?.manager_id}
                 createdAt={customer.createdAt}
                 status={customer.Status?.name}
-                team_id={customer.team_id}
               />
             ))
           : newInfo.map((customer) => (
@@ -135,7 +129,6 @@ export const ClientList = ({ path }): JSX.Element => {
                 manager_id={customer?.manager_id}
                 createdAt={customer.createdAt}
                 status={customer.Status?.name}
-                team_id={customer.team_id}
               />
             ))}
       </div>

@@ -10,17 +10,16 @@ import { fetchAddComment, fetchAllComments } from '../../redux/thunkActions';
 export const Comments = () => {
 
   const { id } = useParams()
+  const dispatch = useMyDispatch();
+  const comments = useMySelector((store) => store.commentSlice.comments);
 
   const [dataInput, setDataInput] = useState({ comment: ''});
-  const dispatch = useMyDispatch();
 
   const changeHandler = (el: ChangeEvent<HTMLInputElement>): void => {
     setDataInput((prev) => ({ ...prev, [el.target.name]: el.target.value }));
   };
 
   const body = {dataInput: dataInput, id: id};
-
-  const comments = useMySelector((store) => store.commentSlice.comments);
 
   useEffect(() => {
     void dispatch(fetchAllComments());

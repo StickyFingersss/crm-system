@@ -1,7 +1,7 @@
 const managerRouter = require('express').Router();
 const bcrypt = require('bcrypt');
 
-const { User, Call } = require('../../db/models');
+const { User } = require('../../db/models');
 
 managerRouter.get('/', async (req, res) => {
   try {
@@ -36,7 +36,7 @@ managerRouter.put('/:id', async (req, res) => {
     const { id } = req.params;
     const team_id = null;
     const user = await User.findByPk(id);
-    const editUser = user.update({ team_id });
+    user.update({ team_id });
     res.sendStatus(204); // Отправить статус "No Content" в ответе
   } catch (error) {
     console.log(error);

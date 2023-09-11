@@ -1,4 +1,4 @@
-import { Box, Checkbox, Text, Link as ChakraLink } from '@chakra-ui/react';
+import { Box, Text, Link as ChakraLink } from '@chakra-ui/react';
 
 import './MiniToDos.css';
 
@@ -6,7 +6,6 @@ import { Link as ReactRouterLink } from 'react-router-dom';
 import { useMyDispatch, useMySelector } from '../../redux/hooks';
 import { useEffect, useState } from 'react';
 import { fetchTodos } from '../../redux/thunkActions';
-import { TodosType } from '../../types';
 import ToDo from '../../pages/ToDo/ToDo';
 
 export default function MiniToDos() {

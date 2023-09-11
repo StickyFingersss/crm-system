@@ -1,12 +1,16 @@
-import styles from './Client.module.css';
-import { Link as ReactRouterLink } from 'react-router-dom';
-
-import { Link as ChakraLink } from '@chakra-ui/react';
-import { useEffect, useState } from 'react';
 import axios from 'axios';
 
-export const Client = ({ id, name, balance, manager_id, createdAt, status, team_id}): JSX.Element => {
+import styles from './Client.module.css';
+import { Link as ChakraLink } from '@chakra-ui/react';
+
+import { Link as ReactRouterLink } from 'react-router-dom';
+import { useEffect, useState } from 'react';
+
+
+export const Client = ({ id, name, balance, manager_id, createdAt, status}): JSX.Element => {
+  //Преобразование даты из базы в нормальный вид
   const normalDate = `${createdAt.slice(8, 10)}.${createdAt.slice(5, 7)}.${createdAt.slice(0, 4)}`;
+
   const [user, setUser] = useState('')
   //состояние для всех доступных для назначения менеджеров
   const [managers, setManagers] = useState([])
@@ -21,32 +25,32 @@ export const Client = ({ id, name, balance, manager_id, createdAt, status, team_
     .catch((err) => console.log(err));
 }, [manager_id]);
 
-//всё доступные для назначения менеджеры
-useEffect(() => {
-  const response = axios.get(`http://localhost:3000/api/managers`);
-    response
-    .then((data) => setManagers(data))
-    .catch((err) => console.log(err));
-}, []);
+  //все доступные для назначения менеджеры
+  useEffect(() => {
+    const response = axios.get(`http://localhost:3000/api/managers`);
+      response
+      .then((data) => setManagers(data))
+      .catch((err) => console.log(err));
+  }, []);
 
-//всё доступные статусы
-useEffect(() => {
-  const response = axios.get(`http://localhost:3000/api/status/all`);
-    response
-    .then((data) => setStatuses(data))
-    .catch((err) => console.log(err));
-}, []);
+  //все доступные статусы
+  useEffect(() => {
+    const response = axios.get(`http://localhost:3000/api/status/all`);
+      response
+      .then((data) => setStatuses(data))
+      .catch((err) => console.log(err));
+  }, []);
 
 
-const [selectedStatus, setSelectedStatus] = useState(status);
+  const [selectedStatus, setSelectedStatus] = useState(status);
 
-const changeStatus = (status_id) => {
-  axios.put(`http://localhost:3000/api/customer/status/${id}`, {status_id})
-}
+  const changeStatus = (status_id) => {
+    axios.put(`http://localhost:3000/api/customer/status/${id}`, {status_id})
+  }
 
-const changeManager = (manager_id) => {
-  axios.put(`http://localhost:3000/api/customer/manager/${id}`, {manager_id})
-}
+  const changeManager = (manager_id) => {
+    axios.put(`http://localhost:3000/api/customer/manager/${id}`, {manager_id})
+  }
   return (
     <div className={styles.oneClientList}>
         <ChakraLink as={ReactRouterLink} to={`/customer/${id}`}>
@@ -54,7 +58,6 @@ const changeManager = (manager_id) => {
         </ChakraLink>
       <h3>{id}</h3>
       <h3>{balance}</h3>
-      
       <select name="manager" onChange={(e) => {
         const newManagerId = e.target.value;
         changeManager(newManagerId);
@@ -64,9 +67,7 @@ const changeManager = (manager_id) => {
           <option key={manager.id} value={manager.id}>{manager.name}</option>
         ))}
       </select>
-
       <h3>{normalDate}</h3>
-
       <select name="status" onChange={(e) => {
         const newStatusId = e.target.value;
         setSelectedStatus(newStatusId);
@@ -77,7 +78,6 @@ const changeManager = (manager_id) => {
           <option key={status.id} value={status.id}>{status.name}</option>
         ))}
       </select>
-
     </div>
   );
 };

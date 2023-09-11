@@ -1,24 +1,11 @@
-import React from 'react';
-import './Todo.css';
-import type { TodoItemProps } from '../../types';
-import { useMyDispatch } from '../../redux/hooks';
-import { fetchDel } from '../../redux/thunkActions';
-
-import { DeleteIcon } from '@chakra-ui/icons';
-
 import {
   Button,
   Card,
-  CardHeader,
   CardBody,
   CardFooter,
   Heading,
-  IconButton,
   Stack,
-  Text,
-  Flex,
-  Avatar,
-  Box,
+  Text, 
   AlertDialog,
   AlertDialogContent,
   AlertDialogHeader,
@@ -27,11 +14,20 @@ import {
   AlertDialogFooter,
   useDisclosure,
 } from '@chakra-ui/react';
+import { DeleteIcon } from '@chakra-ui/icons';
+
+import './Todo.css';
+
+import React from 'react';
+import type { TodoItemProps } from '../../types';
+import { useMyDispatch } from '../../redux/hooks';
+import { fetchDel } from '../../redux/thunkActions';
 
 import StatusBtn from '../../components/StatusBtn/StatusBtn';
 import ModalButtonAddTodo from '../../components/ModalButtonAddTodo/ModalButtonAddTodo';
 
 export default function ToDo({ todo }: TodoItemProps): JSX.Element {
+  
   const dispatch = useMyDispatch();
   const { isOpen, onOpen, onClose } = useDisclosure()
   const cancelRef = React.useRef()
@@ -39,7 +35,6 @@ export default function ToDo({ todo }: TodoItemProps): JSX.Element {
   const deleteHandler = async (): Promise<void> => {
     void dispatch(fetchDel(todo.id));
   };
-
 
   const options = {
     year: 'numeric',
