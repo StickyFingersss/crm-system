@@ -2,14 +2,13 @@ const customerRouter = require('express').Router();
 const { Op } = require('sequelize');
 const commentRouter = require('./comment.router');
 
-const { Customer, Comment, User, Status } = require('../../db/models');
+const { Customer, User, Status } = require('../../db/models');
 
 customerRouter.use('/comment', commentRouter);
 
 customerRouter.get('/by-manager', async (req, res) => {
   try {
     const { userId, isAdmin } = req.session;
-    console.log('----------------------------------->');
 
     if (isAdmin || userId) {
       const customers = await Customer.findAll({

@@ -1,20 +1,20 @@
-import { NavigationBar } from '../../components/NavigationBar/NavigationBar';
-import { Manager } from '../../components/Manager/Manager.jsx';
 
-import type { RootState } from '../../redux/store.ts';
-import { useSelector, useDispatch } from 'react-redux';
-import { fetchManagers } from '../../redux/slices/managersSlice.ts';
-import { useEffect, useState } from 'react';
-import { NavBar } from '../../components/NavBar/NavBar.tsx';
+import { useEffect } from 'react';
 import { useMySelector } from '../../redux/hooks';
+import { useSelector, useDispatch } from 'react-redux';
+import type { RootState } from '../../redux/store.ts';
+import { fetchManagers } from '../../redux/slices/managersSlice.ts';
+import { useNavigate } from 'react-router-dom';
+
+import { Manager } from '../../components/Manager/Manager.jsx';
+import { NavBar } from '../../components/NavBar/NavBar.tsx';
 
 export const Managers = () => {
   const dispatch = useDispatch();
-  // const [stateManagers, setStateManagers] = useState([]);
+  const navigate = useNavigate()
 
   const buttons = [
-    { name: 'Name', callback: () => console.log('Name') },
-    { name: 'Calls', callback: () => console.log('Calls') },
+    { name: 'Back', callback: () => navigate('/lead') },
   ];
 
   useEffect(() => {
@@ -31,7 +31,7 @@ export const Managers = () => {
         {managers.length ? (
           <>
             <h1>Wolfs Team</h1>
-            <NavBar buttons={buttons} />
+              <NavBar buttons={buttons} />
             {managers.map((el) => (
               <Manager key={el.id} name={el.name} id={el.id} />
             ))}

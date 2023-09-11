@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { ReportsItem } from '../../components/ReportsItem/ReportsItem';
 // import { ReportsNavBar } from '../../components/ReportsNavBar/ReportsNavBar';
 
@@ -7,18 +7,20 @@ import { fetchCalls } from '../../redux/thunkActions';
 
 import styles from './Reports.module.css';
 import { NavBar } from '../../components/NavBar/NavBar';
+import { useNavigate } from 'react-router-dom';
 
 export const Reports = () => {
   const calls = useMySelector((store) => store.callsSlice.calls);
-  const session = useMySelector((store) => store.isAutenticatedSlice.session);
 
   const dispatch = useMyDispatch();
+  const navigate = useNavigate()
 
   useEffect(() => {
     void dispatch(fetchCalls());
   }, [dispatch]);
 
   const buttons = [
+    { name: 'Back', callback: () => navigate('/lead') },
     { name: 'name', callback: () => console.log('name') },
     { name: 'calls', callback: () => console.log('calls') },
   ];

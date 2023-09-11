@@ -1,14 +1,4 @@
 import styles from './Client.module.css';
-
-import { useParams } from 'react-router-dom';
-import { ChangeEvent, useEffect, useState } from 'react';
-
-import { useMyDispatch, useMySelector } from '../../redux/hooks';
-
-import { fetchOneCustomer } from '../../redux/thunkActions';
-import { fetchAddCall } from '../../redux/thunkActions/callsActions';
-
-import axios from 'axios';
 import {
   Button,
   Input,
@@ -20,15 +10,26 @@ import {
   ModalHeader,
   ModalOverlay,
 } from '@chakra-ui/react';
-import { InputDealType } from '../../types';
+
+import axios from 'axios';
+
+import { ChangeEvent, useEffect, useState } from 'react';
+import { useMyDispatch, useMySelector } from '../../redux/hooks';
+import { useParams } from 'react-router-dom';
+
+import { fetchOneCustomer } from '../../redux/thunkActions';
+import { fetchAddCall } from '../../redux/thunkActions/callsActions';
 import { fetchAddDeal } from '../../redux/thunkActions/dealsActions';
 
+import { InputDealType } from '../../types';
+
+
 export const ClientMax = ({ setGetAccess }): JSX.Element => {
+
   const { id } = useParams();
-
   const dispatch = useMyDispatch();
-
   const OneCustomer = useMySelector((store) => store.customerSlice.customer);
+  const session = useMySelector((store) => store.isAutenticatedSlice.session);
 
   const [value, setValue] = useState('');
   const [isDealModalOpen, setDealModalOpen] = useState(false); //стэйт модалки
@@ -82,7 +83,6 @@ export const ClientMax = ({ setGetAccess }): JSX.Element => {
       closeDealModal();
     }
   };
-  const session = useMySelector((store) => store.isAutenticatedSlice.session);
 
   if (
     (OneCustomer.team_id === session.team_id && OneCustomer.manager_id === session.userId) ||
@@ -117,7 +117,6 @@ export const ClientMax = ({ setGetAccess }): JSX.Element => {
         <>
           <h3>Status: </h3>
           <select name="status" onChange={chengeSelect}>
-            {/* онченч -> санка -> бд */}
             <option>Deposit</option>
             <option>No money</option>
             <option>In work</option>
@@ -126,10 +125,12 @@ export const ClientMax = ({ setGetAccess }): JSX.Element => {
       )}
       <h3>email: {OneCustomer?.email}</h3>
       <h3>
-        Balance: <button onClick={openDealModal}>{OneCustomer?.balance}</button>
+        Balance: {session.isAdmin ? `${OneCustomer?.balance}` : <button onClick={openDealModal}>{OneCustomer?.balance}</button>}
+        
       </h3>
       <h3>
-        phone number: <button onClick={addCallHandler}>{OneCustomer?.phone}</button>
+        phone number: 
+        {session.isAdmin ? `${OneCustomer?.phone}` : <button onClick={addCallHandler}>{OneCustomer?.phone}</button>}
       </h3>
 
       {/* модалка на создание сделки и изменение баланса у пользователя */}

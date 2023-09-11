@@ -5,7 +5,7 @@ import callsSlice from './callsSlice';
 import isAutenticatedSlice from './slices/isAutenticatedSlice';
 
 import managers from './slices/managersSlice';
-import type { SliceStateType, StatusesType } from '../types';
+import type { SliceStateType } from '../types';
 import todoSlice from './todoSlice';
 import customerSlice from './customerSlice';
 import commentSlice from './commentSlice';

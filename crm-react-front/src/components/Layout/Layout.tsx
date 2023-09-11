@@ -1,5 +1,4 @@
 import axios from 'axios';
-import { useNavigate } from 'react-router-dom';
 axios.defaults.withCredentials = true;
 
 import {
@@ -17,14 +16,18 @@ import {
   Box,
 } from '@chakra-ui/react';
 
-import { Outlet } from 'react-router-dom';
 import { useRef, ChangeEvent, useState, FormEvent } from 'react';
-import { IDataLog, IDataReg } from './LayoutType';
+import { useNavigate } from 'react-router-dom';
+import { Outlet } from 'react-router-dom';
+
 import { useMyDispatch } from '../../redux/hooks';
 import { fetchIsAutenticated } from '../../redux/thunkIsAutenticated';
 
+import { IDataLog, IDataReg } from './LayoutType';
+
+
 const initStateLog: IDataLog = {
-  name: '',
+  login: '',
   password: '',
 };
 
@@ -41,6 +44,13 @@ const Layout = (): JSX.Element => {
 
   const [isLogModalOpen, setLogModalOpen] = useState(false);
   const [isRegModalOpen, setRegModalOpen] = useState(false);
+  
+  const [dataLog, setDataLog] = useState(initStateLog);
+  const [dataReg, setDataReg] = useState(initStateReg);
+
+  const [successMessage, setSuccessMessage] = useState(false);
+  const [errorMessage, setErrorMessage] = useState(false);
+
 
   const openLogModal = () => {
     setLogModalOpen(true);
@@ -57,11 +67,6 @@ const Layout = (): JSX.Element => {
   const closeRegModal = () => {
     setRegModalOpen(false);
   };
-
-  const [dataLog, setDataLog] = useState(initStateLog);
-  const [dataReg, setDataReg] = useState(initStateReg);
-  const [successMessage, setSuccessMessage] = useState(false);
-  const [errorMessage, setErrorMessage] = useState(false);
 
   const inputHandlerLog = (e: ChangeEvent<HTMLInputElement>) => {
     setDataLog((pre) => ({ ...pre, [e.target.name]: e.target.value }));
@@ -85,14 +90,14 @@ const Layout = (): JSX.Element => {
           setDataLog(initStateLog);
           closeLogModal();
           setSuccessMessage(false);
-        }, 1500);
+        }, 700);
       } else {
         setDataLog(initStateLog);
         setSuccessMessage(false);
         setErrorMessage(true);
         setTimeout(() => {
           setErrorMessage(false);
-        }, 1500);
+        }, 700);
       }
     } catch (error) {
       console.log(error);
@@ -113,14 +118,14 @@ const Layout = (): JSX.Element => {
           setDataReg(initStateReg);
           closeRegModal();
           setSuccessMessage(false);
-        }, 1500);
+        }, 700);
       } else {
         setDataReg(initStateReg);
         setSuccessMessage(false);
         setErrorMessage(true);
         setTimeout(() => {
           setErrorMessage(false);
-        }, 1500);
+        }, 700);
       }
     } catch (error) {
       console.log(error);
@@ -143,11 +148,10 @@ const Layout = (): JSX.Element => {
 
   return (
     <div className="wrapper">
-      <div className="something">OIJOINININ</div>
-      <Button onClick={openLogModal}>Login</Button>
-      <Button onClick={openRegModal}>Register</Button>
+      <Button onClick={openLogModal}>Войти</Button>
+      <Button onClick={openRegModal}>Зарегистрироваться</Button>
       <Button type="button" onClick={logoutHandler}>
-        Logout
+        Выйти
       </Button>
 
       {/* Модалка логина */}
@@ -158,18 +162,18 @@ const Layout = (): JSX.Element => {
       >
         <ModalOverlay />
         <ModalContent>
-          <ModalHeader>Login</ModalHeader>
+          <ModalHeader>Войти</ModalHeader>
           <ModalCloseButton />
           <ModalBody pb={6}>
             <form onSubmit={submitHandlerLog}>
               <FormControl>
-                <FormLabel>Введите имя</FormLabel>
+                <FormLabel>Введите логин</FormLabel>
                 <Input
-                  name="name"
+                  name="login"
                   onChange={inputHandlerLog}
-                  value={dataLog.name}
+                  value={dataLog.login}
                   type="text"
-                  placeholder="Pro100_Dima228_1337"
+                  placeholder="Pro100_Dima_1337"
                   margin="2"
                 />
               </FormControl>
@@ -185,12 +189,12 @@ const Layout = (): JSX.Element => {
                   margin="2"
                 />
               </FormControl>
-              <Button type="submit" colorScheme="yellow" margin="2">
+              <Button type="submit" colorScheme="green" margin="2">
                 Войти
               </Button>
               <Box mt={4}>
-                {successMessage && <Text color="green">Есть пробитие</Text>}
-                {errorMessage && <Text color="red">Увы</Text>}
+                {successMessage && <Text color="green">Успешный вход!</Text>}
+                {errorMessage && <Text color="red">Введены неверные данные!</Text>}
               </Box>
             </form>
           </ModalBody>
@@ -206,7 +210,7 @@ const Layout = (): JSX.Element => {
       >
         <ModalOverlay />
         <ModalContent>
-          <ModalHeader>Register</ModalHeader>
+          <ModalHeader>Зарегистрироваться</ModalHeader>
           <ModalCloseButton />
           <ModalBody pb={6}>
             <form onSubmit={submitHandlerReg}>
@@ -259,7 +263,7 @@ const Layout = (): JSX.Element => {
                 />
               </FormControl>
 
-              <Button type="submit" colorScheme="yellow" margin="2">
+              <Button type="submit" colorScheme="green" margin="2">
                 Зарегистрироваться
               </Button>
               <Box mt={4}>

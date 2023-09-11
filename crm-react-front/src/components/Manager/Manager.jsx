@@ -1,10 +1,12 @@
-import React from 'react';
 import styles from './Manager.module.css'; // Импорт классов стилей из файла
-import TaskCreator from '../TaskCreator/TaskCreator';
-import axios from 'axios';
-import { useDispatch } from 'react-redux';
 
+import axios from 'axios';
+
+import React from 'react';
+import { useDispatch } from 'react-redux';
 import { removeManager } from '../../redux/slices/managersSlice';
+
+import TaskCreator from '../TaskCreator/TaskCreator';
 
 export function Manager(props) {
   const dispatch = useDispatch();

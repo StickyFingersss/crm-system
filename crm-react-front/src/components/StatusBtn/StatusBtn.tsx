@@ -1,5 +1,3 @@
-import React from 'react';
-
 import { CheckIcon, CloseIcon } from '@chakra-ui/icons';
 import { Button } from '@chakra-ui/react';
 import { TodoItemProps } from '../../types';
