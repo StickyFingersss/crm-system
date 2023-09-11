@@ -17,8 +17,6 @@ export default function DropDownFilterBtn({
   }, [dispatch]);
 
   const { managers } = allManagersObj;
-  console.log('MANAGERS: ', managers);
-  
 
   return (
     <div>

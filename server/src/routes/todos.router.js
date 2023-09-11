@@ -14,16 +14,28 @@ todosRouter.get('/', async (req, res) => {
 
 todosRouter.post('/', async (req, res) => {
   const { userId } = req.session;
+
   const {
-    title, text, status, deadline,
+    title, text, status, deadline, user_id,
   } = req.body;
-  try {
-    const todo = await Task.create({
-      title, text, status, deadline, user_id: userId,
-    });
-    res.json(todo);
-  } catch (error) {
-    console.log(error);
+  if (req.body.user_id) {
+    try {
+      const todo = await Task.create({
+        title, text, status, deadline, user_id,
+      });
+      res.json(todo);
+    } catch (error) {
+      console.log(error);
+    }
+  } else {
+    try {
+      const todo = await Task.create({
+        title, text, status, deadline, user_id: userId,
+      });
+      res.json(todo);
+    } catch (error) {
+      console.log(error);
+    }
   }
 });
 
