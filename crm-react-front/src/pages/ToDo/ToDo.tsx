@@ -29,8 +29,8 @@ import ModalButtonAddTodo from '../../components/ModalButtonAddTodo/ModalButtonA
 export default function ToDo({ todo }: TodoItemProps): JSX.Element {
   
   const dispatch = useMyDispatch();
-  const { isOpen, onOpen, onClose } = useDisclosure()
-  const cancelRef = React.useRef()
+  const { isOpen, onOpen, onClose } = useDisclosure();
+  const cancelRef = React.useRef();
 
   const deleteHandler = async (): Promise<void> => {
     void dispatch(fetchDel(todo.id));
@@ -48,6 +48,7 @@ export default function ToDo({ todo }: TodoItemProps): JSX.Element {
   const date = new Date(todo.deadline).toLocaleString('ru-RU', options);
 
   const editBtnTitle = 'Edit';
+  // console.log('TODO-IN-TODO', todo);
 
   return (
     <>
@@ -55,7 +56,8 @@ export default function ToDo({ todo }: TodoItemProps): JSX.Element {
         direction={{ base: 'column', sm: 'row' }}
         overflow="hidden"
         variant="outline"
-        className="taskCard">
+        className="taskCard"
+      >
         <Stack className="stack">
           <CardBody className="cardBody">
             <Heading className="headerText" size="sm">
@@ -77,15 +79,15 @@ export default function ToDo({ todo }: TodoItemProps): JSX.Element {
               '& > button': {
                 minW: '136px',
               },
-            }}>
+            }}
+          >
             <StatusBtn todo={todo} />
-            <ModalButtonAddTodo editBtnTitle={editBtnTitle} todo={todo}/>
+            <ModalButtonAddTodo editBtnTitle={editBtnTitle} todo={todo} />
             <Button
-              
               flex="1"
               variant="ghost"
               leftIcon={<DeleteIcon />}
-              colorScheme='red' 
+              colorScheme="red"
               onClick={onOpen}
             >
               Delete
@@ -100,7 +102,7 @@ export default function ToDo({ todo }: TodoItemProps): JSX.Element {
       >
         <AlertDialogOverlay>
           <AlertDialogContent>
-            <AlertDialogHeader fontSize='lg' fontWeight='bold'>
+            <AlertDialogHeader fontSize="lg" fontWeight="bold">
               Delete Task
             </AlertDialogHeader>
 
@@ -112,7 +114,7 @@ export default function ToDo({ todo }: TodoItemProps): JSX.Element {
               <Button ref={cancelRef} onClick={onClose}>
                 Cancel
               </Button>
-              <Button colorScheme='red' onClick={deleteHandler} ml={3}>
+              <Button colorScheme="red" onClick={deleteHandler} ml={3}>
                 Delete
               </Button>
             </AlertDialogFooter>

@@ -17,14 +17,12 @@ export default function DropDownFilterBtn({
   }, [dispatch]);
 
   const { managers } = allManagersObj;
-  console.log('MANAGERS: ', managers);
-  
 
   return (
     <div>
       <Select
         onChange={(e) => setSelectedManager(e.target.value)}
-        value={selectedManager || ''}
+        value={selectedManager || 0}
         placeholder="My tasks"
       >
         {managers.map((manager) => (

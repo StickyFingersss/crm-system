@@ -14,26 +14,53 @@ todosRouter.get('/', async (req, res) => {
 
 todosRouter.post('/', async (req, res) => {
   const { userId } = req.session;
+
   const {
-    title, text, status, deadline,
+    title, text, status, deadline, user_id,
   } = req.body;
-  try {
-    const todo = await Task.create({
-      title, text, status, deadline, user_id: userId,
-    });
-    res.json(todo);
-  } catch (error) {
-    console.log(error);
+  if (req.body.user_id) {
+    try {
+      const todo = await Task.create({
+        title, text, status, deadline, user_id,
+      });
+      res.json(todo);
+    } catch (error) {
+      console.log(error);
+    }
+  } else {
+    try {
+      const todo = await Task.create({
+        title, text, status, deadline, user_id: userId,
+      });
+      res.json(todo);
+    } catch (error) {
+      console.log(error);
+    }
   }
 });
 
 todosRouter.patch('/:id', async (req, res) => {
-  try {
-    const todo = await Task.findByPk(req.params.id);
-    await todo.update(req.body);
-    res.json(todo);
-  } catch (error) {
-    console.log(error);
+  const { userId } = req.session;
+  const {
+    title, text, status, deadline, user_id,
+  } = req.body;
+
+  if (user_id) {
+    try {
+      const todo = await Task.findByPk(req.params.id);
+      await todo.update(req.body);
+      res.json(todo);
+    } catch (error) {
+      console.log(error);
+    }
+  } else {
+    try {
+      const todo = await Task.findByPk(req.params.id);
+      await todo.update({ title, text, status, deadline, user_id: userId });
+      res.json(todo);
+    } catch (error) {
+      console.log(error);
+    }
   }
 });
 

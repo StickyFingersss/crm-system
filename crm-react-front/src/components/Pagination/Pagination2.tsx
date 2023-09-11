@@ -13,6 +13,8 @@ export default function Pagination2() {
   const [selectedManager, setSelectedManager] = useState<number | null>(null);
   const dispatch = useMyDispatch();
 
+  console.log('TODOS', todos);
+
   useEffect(() => {
     void dispatch(fetchTodos());
   }, [dispatch]);
@@ -24,19 +26,18 @@ export default function Pagination2() {
   const [todoOffset, setItemOffset] = useState(0);
 
   useEffect(() => {
-    // Fetch items from another resources.
     const endOffset = todoOffset + todosPerPage;
     const filteredTodos = todos?.filter(
       (todo) =>
-        (!selectedManager && todo.user_id === session?.userId) ||
-        todo.user_id === Number(selectedManager)
+        (!selectedManager && Number(todo.user_id) === session?.userId) ||
+        Number(todo.user_id) === Number(selectedManager)
     );
+    console.log('filteredTodos', filteredTodos);
     const slicedTodos = filteredTodos?.slice(todoOffset, endOffset);
     setPageCount(Math.ceil(filteredTodos?.length / todosPerPage));
     setCurrentTodos(slicedTodos);
   }, [todoOffset, todosPerPage, todos, selectedManager, session]);
 
-  // Invoke when user click to request another page.
   const handlePageClick = (event) => {
     const newOffset = (event.selected * todosPerPage) % todos?.length;
     setItemOffset(newOffset);
