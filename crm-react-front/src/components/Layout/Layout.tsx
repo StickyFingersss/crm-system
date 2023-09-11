@@ -1,6 +1,7 @@
 import axios from 'axios';
 axios.defaults.withCredentials = true;
 
+import styles from './Layout.module.css';
 import {
   Button,
   FormControl,
@@ -20,7 +21,7 @@ import { useRef, ChangeEvent, useState, FormEvent } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Outlet } from 'react-router-dom';
 
-import { useMyDispatch } from '../../redux/hooks';
+import { useMyDispatch, useMySelector } from '../../redux/hooks';
 import { fetchIsAutenticated } from '../../redux/thunkIsAutenticated';
 
 import { IDataLog, IDataReg } from './LayoutType';
@@ -145,13 +146,12 @@ const Layout = (): JSX.Element => {
 
   const initialRef = useRef(null);
   const finalRef = useRef(null);
-
   return (
-    <div className="wrapper">
-      <Button onClick={openLogModal}>Войти</Button>
-      <Button onClick={openRegModal}>Зарегистрироваться</Button>
-      <Button type="button" onClick={logoutHandler}>
-        Выйти
+    <div className={styles.wrapper}>
+      <Button onClick={openLogModal} className={styles.btnLog}>Sign in</Button>
+      <Button onClick={openRegModal} className={styles.btnReg}>Sign up</Button>
+      <Button type="button" onClick={logoutHandler} className={styles.btnLogout}>
+        Logout
       </Button>
 
       {/* Модалка логина */}
@@ -160,14 +160,16 @@ const Layout = (): JSX.Element => {
         isOpen={isLogModalOpen}
         onClose={closeLogModal}
       >
-        <ModalOverlay />
-        <ModalContent>
-          <ModalHeader>Войти</ModalHeader>
+        <ModalOverlay 
+          backdropFilter='auto'
+          backdropInvert='80%'/>
+        <ModalContent background='#bebebe' className={styles.modal}>
+          <ModalHeader fontSize='4xl'>Sign in</ModalHeader>
           <ModalCloseButton />
           <ModalBody pb={6}>
             <form onSubmit={submitHandlerLog}>
               <FormControl>
-                <FormLabel>Введите логин</FormLabel>
+                <FormLabel fontSize='3xl'>Login</FormLabel>
                 <Input
                   name="login"
                   onChange={inputHandlerLog}
@@ -175,11 +177,12 @@ const Layout = (): JSX.Element => {
                   type="text"
                   placeholder="Pro100_Dima_1337"
                   margin="2"
+                  fontSize='2xl'
                 />
               </FormControl>
 
               <FormControl mt={4}>
-                <FormLabel>Введите пароль</FormLabel>
+                <FormLabel fontSize='3xl'>Password</FormLabel>
                 <Input
                   name="password"
                   onChange={inputHandlerLog}
@@ -187,14 +190,20 @@ const Layout = (): JSX.Element => {
                   type="password"
                   placeholder="qwerty"
                   margin="2"
+                  fontSize='2xl'
                 />
               </FormControl>
-              <Button type="submit" colorScheme="green" margin="2">
-                Войти
+              <Button 
+              type="submit" 
+              colorScheme="green" 
+              margin="2" 
+              fontSize='2xl'
+              color='black'>
+                Sign in
               </Button>
               <Box mt={4}>
-                {successMessage && <Text color="green">Успешный вход!</Text>}
-                {errorMessage && <Text color="red">Введены неверные данные!</Text>}
+                {successMessage && <Text color="green" fontSize='4xl'>Success!</Text>}
+                {errorMessage && <Text color="red" fontSize='4xl'>Incorrect data entered!</Text>}
               </Box>
             </form>
           </ModalBody>
@@ -208,14 +217,17 @@ const Layout = (): JSX.Element => {
         isOpen={isRegModalOpen}
         onClose={closeRegModal}
       >
-        <ModalOverlay />
-        <ModalContent>
-          <ModalHeader>Зарегистрироваться</ModalHeader>
+        <ModalOverlay           
+          backdropFilter='auto'
+          backdropInvert='80%'
+        />
+        <ModalContent background='#bebebe' className={styles.modal}>
+          <ModalHeader fontSize='4xl'>Sign up</ModalHeader>
           <ModalCloseButton />
           <ModalBody pb={6}>
             <form onSubmit={submitHandlerReg}>
               <FormControl>
-                <FormLabel>Придумайте name</FormLabel>
+                <FormLabel fontSize='3xl'>Name</FormLabel>
                 <Input
                   ref={initialRef}
                   onChange={inputHandlerReg}
@@ -224,11 +236,12 @@ const Layout = (): JSX.Element => {
                   type="text"
                   placeholder="Billy"
                   margin="2"
+                  fontSize='2xl'
                 />
               </FormControl>
 
               <FormControl>
-                <FormLabel>Придумайте login</FormLabel>
+                <FormLabel fontSize='3xl'>Login</FormLabel>
                 <Input
                   onChange={inputHandlerReg}
                   value={dataReg.login}
@@ -236,11 +249,12 @@ const Layout = (): JSX.Element => {
                   type="text"
                   placeholder="BoyNextDoor"
                   margin="2"
+                  fontSize='2xl'
                 />
               </FormControl>
 
               <FormControl mt={4}>
-                <FormLabel>Придумайте пароль</FormLabel>
+                <FormLabel fontSize='3xl'>Password</FormLabel>
                 <Input
                   onChange={inputHandlerReg}
                   value={dataReg.password}
@@ -248,11 +262,12 @@ const Layout = (): JSX.Element => {
                   type="password"
                   placeholder="qwerty"
                   margin="2"
+                  fontSize='2xl'
                 />
               </FormControl>
 
               <FormControl mt={4}>
-                <FormLabel>Номер команды</FormLabel>
+                <FormLabel fontSize='3xl'>Team</FormLabel>
                 <Input
                   onChange={inputHandlerReg}
                   value={dataReg.team_id}
@@ -260,15 +275,22 @@ const Layout = (): JSX.Element => {
                   type="text"
                   placeholder="1"
                   margin="2"
+                  fontSize='2xl'
                 />
               </FormControl>
 
-              <Button type="submit" colorScheme="green" margin="2">
-                Зарегистрироваться
+              <Button 
+              type="submit" 
+              colorScheme="green" 
+              margin="2"
+              fontSize='2xl'
+              color='black'
+              >
+                Sign up
               </Button>
               <Box mt={4}>
-                {successMessage && <Text color="green">Есть пробитие</Text>}
-                {errorMessage && <Text color="red">Увы</Text>}
+              {successMessage && <Text color="green" fontSize='4xl'>Success!</Text>}
+                {errorMessage && <Text color="red" fontSize='4xl'>Incorrect data entered!</Text>}
               </Box>
             </form>
           </ModalBody>

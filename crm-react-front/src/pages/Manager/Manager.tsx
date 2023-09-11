@@ -1,3 +1,5 @@
+import styles from './Manager.module.css';
+
 import MiniToDos from '../../components/MiniToDos/MiniToDos';
 import TaskCreator from '../../components/TaskCreator/TaskCreator';
 import { ClientList } from '../../components/ClientList/ClientList';
@@ -30,8 +32,6 @@ export const Manager = () => {
   }
 
   return (
-    <div>
-      <h1>Login or register</h1>
-    </div>
+      <h1 className={styles.h1Err}><img src="/404.png" alt="" />#Error: Login or register</h1>
   );
 };
