@@ -8,7 +8,7 @@ import { useMyDispatch, useMySelector } from '../../redux/hooks';
 import { fetchAllCustomers } from '../../redux/thunkActions';
 import axios from 'axios';
 
-export const ClientList = (): JSX.Element => {
+export const ClientList = ({ path }): JSX.Element => {
   const dispatch = useMyDispatch();
 
   const [inputData, setInputData] = useState({
@@ -28,11 +28,9 @@ export const ClientList = (): JSX.Element => {
       .filter(([_, value]) => value !== null)
       .map(([key, value]) => `${key}=${encodeURIComponent(value)}`)
       .join('&');
-    
-      const response = axios.get(`http://localhost:3000/api/customer/special?${queryString}`);
-      response
-        .then((data) => setNewInfo(data.data))
-        .catch((err) => console.log(err));
+
+    const response = axios.get(`http://localhost:3000/api/customer/special?${queryString}`);
+    response.then((data) => setNewInfo(data.data)).catch((err) => console.log(err));
   }
 
   const handleInputChange = (fieldName: string) => (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -54,16 +52,16 @@ export const ClientList = (): JSX.Element => {
   ];
 
   const customers = useMySelector((store) => store.customerSlice.customers);
-
+  // передаю в парамс санок путь
   useEffect(() => {
-    void dispatch(fetchAllCustomers());
+    void dispatch(fetchAllCustomers(path));
   }, [dispatch]);
 
   const [newInfo, setNewInfo] = useState([]);
-    
+
   useEffect(() => {
-    console.log(newInfo);
-  }, [newInfo]);
+    console.log(customers);
+  }, []);
 
   const resetFilter = () => {
     setNewInfo([]);
@@ -76,6 +74,8 @@ export const ClientList = (): JSX.Element => {
       status_id: null,
     });
   };
+
+  console.log(customers);
 
   return (
     <div className={styles.mainClientList}>
@@ -104,40 +104,40 @@ export const ClientList = (): JSX.Element => {
       </div>
 
       {/* "Кнопка сброса фильтров" */}
-      <button type="button" onClick={resetFilter}>Сбросить фильтр</button>
+      <button type="button" onClick={resetFilter}>
+        Сбросить фильтр
+      </button>
 
       {/* "навигация" */}
       <NavBar buttons={buttons} />
 
       {/* карточки клиентов */}
       <div className={styles.containerClients}>
-      {newInfo.length === 0 ? (
-        customers?.map((customer) => (
-          <Client
-            key={customer.id}
-            id={customer.id}
-            name={customer.name}
-            balance={customer.balance}
-            manager_id={customer.manager_id}
-            createdAt={customer.createdAt}
-            status={customer.Status.name}
-            team_id={customer.team_id}
-          />
-        ))
-      ) : (
-        newInfo.map((customer) => (
-          <Client
-            key={customer.id}
-            id={customer.id}
-            name={customer.name}
-            balance={customer.balance}
-            manager_id={customer.manager_id}
-            createdAt={customer.createdAt}
-            status={customer.Status.name}
-            team_id={customer.team_id}
-          />
-        ))
-      )}
+        {newInfo.length === 0
+          ? customers?.map((customer) => (
+              <Client
+                key={customer.id}
+                id={customer.id}
+                name={customer.name}
+                balance={customer.balance}
+                manager_id={customer?.manager_id}
+                createdAt={customer.createdAt}
+                status={customer.Status?.name}
+                team_id={customer.team_id}
+              />
+            ))
+          : newInfo.map((customer) => (
+              <Client
+                key={customer.id}
+                id={customer.id}
+                name={customer.name}
+                balance={customer.balance}
+                manager_id={customer?.manager_id}
+                createdAt={customer.createdAt}
+                status={customer.Status?.name}
+                team_id={customer.team_id}
+              />
+            ))}
       </div>
     </div>
   );
