@@ -33,7 +33,7 @@ export const Reports = () => {
         </div>
         <div className="report-list">
           {calls?.map((el, i) => (
-            <ReportsItem key={i} name={el.name} count={el.count} />
+            <ReportsItem key={i} name={el.name} count={el.count} total={el.total} dealCount={el.dealCount} />
           ))}
         </div>
         <button

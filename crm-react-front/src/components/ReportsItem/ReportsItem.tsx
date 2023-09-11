@@ -2,7 +2,7 @@ import styles from './ReportItem.module.css';
 import { CallType } from '../../types';
 
 export const ReportsItem = (props: CallType) => {
-  const { name, count } = props;
+  const { name, count, total, dealCount } = props;
   console.log("🚀 ~ file: ReportsItem.tsx:6 ~ ReportsItem ~ props:", props);
   
   return (
@@ -10,7 +10,8 @@ export const ReportsItem = (props: CallType) => {
       <div className={styles.reportItem}>
         <h3>{name}</h3>
         <p>Calls: {count}</p>
-        <p>Deals: {10}</p>
+        <p>Deals: {dealCount}</p>
+        <p>Total: {total}</p>
       </div>
     </>
   );

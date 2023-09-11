@@ -1,5 +1,8 @@
+/* eslint-disable no-prototype-builtins */
+/* eslint-disable no-await-in-loop */
+/* eslint-disable no-restricted-syntax */
 const callsRouter = require('express').Router();
-const { User, Call } = require('../../db/models');
+const { User, Call, Deal } = require('../../db/models');
 
 callsRouter.get('/report', async (req, res) => {
   try {
@@ -9,29 +12,43 @@ callsRouter.get('/report', async (req, res) => {
         team_id,
         isAdmin: false,
       },
-      attributes: ['id', 'name'], // Include only id and name attributes
+      attributes: ['id', 'name'],
     });
     const calls = await Call.findAll();
     const userCallCount = {};
 
-    calls.forEach((call) => {
+    for (const call of calls) {
       const { user_id } = call;
       if (userCallCount[user_id]) {
         userCallCount[user_id] += 1;
       } else {
         userCallCount[user_id] = 1;
       }
-    });
+    }
+    console.log("🚀 ~ file: calls.router.js:19 ~ callsRouter.get ~ userCallCount:", userCallCount);
+
     const callsForTeamMembers = [];
-    users.forEach((user) => {
+
+    for (const user of users) {
       const userId = user.id;
-      if (userCallCount.hasOwnProperty(userId)) {
-        const callObj = {};
-        callObj.name = user.name;
-        callObj.count = userCallCount[userId];
-        callsForTeamMembers.push(callObj);
-      }
-    });
+      const callObj = {};
+      callObj.name = user.name;
+      callObj.count = userCallCount[userId] || 0;
+
+      const deals = await Deal.findAll({
+        where: {
+          user_id: user.id,
+        },
+      });
+
+      const total = deals.reduce((sum, deal) => sum + deal.total, 0);
+      callObj.total = total || 0;
+
+      callObj.dealCount = deals.length || 0;
+
+      callsForTeamMembers.push(callObj);
+    }
+
     res.json(callsForTeamMembers);
   } catch (error) {
     console.log(error);
