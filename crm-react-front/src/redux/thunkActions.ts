@@ -109,7 +109,7 @@ export const fetchNewStatus = createAsyncThunk(
   }
 );
 
-export const fetchCalls = createAsyncThunk('calls/all', async () => {
+export const fetchCalls = createAsyncThunk('calls/report', async () => {
   const response = await axios.get<CallsType>(
     `${import.meta.env.VITE_URL}/calls/report`
   );

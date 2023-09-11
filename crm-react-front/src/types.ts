@@ -47,6 +47,7 @@ export type SliceStateType = {
   customer?: CustomerType;
   comments?: CommentsType;
   deals?: DealsType;
+  isLoading: boolean;
 };
 export type InputsCommentType = {
   comment: string;

@@ -1,4 +1,3 @@
-/* eslint-disable no-prototype-builtins */
 /* eslint-disable no-await-in-loop */
 /* eslint-disable no-restricted-syntax */
 const callsRouter = require('express').Router();
@@ -25,8 +24,6 @@ callsRouter.get('/report', async (req, res) => {
         userCallCount[user_id] = 1;
       }
     }
-    console.log("🚀 ~ file: calls.router.js:19 ~ callsRouter.get ~ userCallCount:", userCallCount);
-
     const callsForTeamMembers = [];
 
     for (const user of users) {
@@ -48,7 +45,6 @@ callsRouter.get('/report', async (req, res) => {
 
       callsForTeamMembers.push(callObj);
     }
-
     res.json(callsForTeamMembers);
   } catch (error) {
     console.log(error);
