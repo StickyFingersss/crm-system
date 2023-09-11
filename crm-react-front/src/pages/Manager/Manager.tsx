@@ -1,4 +1,3 @@
-import React from 'react';
 import MiniToDos from '../../components/MiniToDos/MiniToDos';
 import TaskCreator from '../../components/TaskCreator/TaskCreator';
 import { ClientList } from '../../components/ClientList/ClientList';
@@ -17,7 +16,7 @@ export const Manager = () => {
   //! заменить на получение user_id из req.params
   const user_id = '11';
 
-  if (session.login) {
+  if (session.isAdmin) {
     return (
       <>
         <h1>Manager Page</h1>
@@ -27,15 +26,24 @@ export const Manager = () => {
           createTaskForManagerBtnTitle={createTaskForManagerBtnTitle}
           user_id={user_id}
         />
-        {/* <TaskCreator /> */}
-        <ClientList />
+        <ClientList path={'/customer/by-manager'} />
       </>
     );
-  } else {
+  } else if (session.login) {
     return (
-      <div>
-        <h1>Login or register</h1>
-      </div>
+      <>
+        <h1>Manager Page</h1>
+        <h2>{session.name}</h2>
+        <MiniToDos />
+
+        <ClientList path={'/customer/by-manager'} />
+      </>
     );
   }
+
+  return (
+    <div>
+      <h1>Login or register</h1>
+    </div>
+  );
 };

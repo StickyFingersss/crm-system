@@ -6,6 +6,7 @@ const managerRouter = require('./manager.router');
 const customerRouter = require('./customer.router');
 const statusRouter = require('./status.router');
 const advertisierRouter = require('./advertiser.router');
+const dealRouter = require('./deal.router');
 
 apiRouter.use('/todos', todosRouter);
 apiRouter.use('/user', userRouter);
@@ -14,5 +15,6 @@ apiRouter.use('/managers', managerRouter);
 apiRouter.use('/customer', customerRouter);
 apiRouter.use('/status', statusRouter);
 apiRouter.use('/advertiser', advertisierRouter);
+apiRouter.use('/deal', dealRouter);
 
 module.exports = apiRouter;

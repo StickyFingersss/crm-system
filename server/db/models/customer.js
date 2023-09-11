@@ -14,8 +14,9 @@ module.exports = (sequelize, DataTypes) => {
       this.belongsTo(User, { foreignKey: 'manager_id' });
       this.belongsTo(Status, { foreignKey: 'status_id' });
       this.belongsTo(Team, { foreignKey: 'team_id' });
-      this.belongsToMany(User, { through: 'Comments', foreignKey: 'user_id' });
-      this.belongsToMany(User, { through: 'Calls', foreignKey: 'user_id' });
+      this.belongsToMany(User, { through: 'Comments', foreignKey: 'customer_id' });
+      this.belongsToMany(User, { through: 'Calls', foreignKey: 'customer_id' });
+      this.belongsToMany(User, { through: 'Deals', foreignKey: 'customer_id' });
     }
   }
   Customer.init({

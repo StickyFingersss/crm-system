@@ -2,9 +2,24 @@ const customerRouter = require('express').Router();
 const { Op } = require('sequelize');
 const commentRouter = require('./comment.router');
 
-const { Customer, Comment, User, Status } = require('../../db/models');
+const { Customer, User, Status } = require('../../db/models');
 
 customerRouter.use('/comment', commentRouter);
+
+customerRouter.get('/by-manager', async (req, res) => {
+  try {
+    const { userId, isAdmin } = req.session;
+
+    if (isAdmin || userId) {
+      const customers = await Customer.findAll({
+        where: { manager_id: userId },
+      });
+      res.json(customers);
+    }
+  } catch (error) {
+    console.log(error);
+  }
+});
 
 customerRouter.get('/all', async (req, res) => {
   const { team_id } = req.session;
@@ -148,7 +163,6 @@ customerRouter.put('/status/:id', async (req, res) => {
   try {
     const { id } = req.params;
     const { status_id } = req.body;
-    console.log('------------------', req.body);
     const customer = await Customer.findByPk(id);
     customer.update({ status_id });
     res.sendStatus(204);

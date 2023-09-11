@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from 'react';
-import axios from 'axios';
-import styles from './ApiStatisticComponent.module.css'; // Импорт стилей
+import { useEffect, useState } from 'react';
+// import axios from 'axios';
+import styles from './ApiStatisticComponent.module.css'; // Импортируем модульные стили
 
 export const ApiStatisticComponent = () => {
   const [clientsToday, setClientsToday] = useState(0);
@@ -25,10 +25,13 @@ export const ApiStatisticComponent = () => {
   }, []);
 
   return (
-    <div className={styles['api-statistic']}>
-      <h2>Статистика клиентов</h2>
-      <p>Клиентов за сегодня: {clientsToday}</p>
-      <p>Клиентов за все время: {clientsTotal}</p>
-    </div>
+    <>
+      {/* Применяем класс из модульных стилей */}
+      <div className={styles['api-statistic']}>
+        <h2>Статистика клиентов</h2>
+        <p>Клиентов за сегодня: {clientsToday}</p>
+        <p>Клиентов за все время: {clientsTotal}</p>
+      </div>
+    </>
   );
 };
