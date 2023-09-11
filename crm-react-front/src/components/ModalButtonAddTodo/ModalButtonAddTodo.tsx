@@ -30,8 +30,8 @@ export default function ModalButtonAddTodo({
   createBtnTitle,
   editBtnTitle,
   todo,
-  user_id,
-}: TodoItemProps) {
+}: // user_id,
+TodoItemProps) {
   const OverlayOne = () => (
     <ModalOverlay
       bg="blackAlpha.300"
@@ -43,13 +43,15 @@ export default function ModalButtonAddTodo({
   const [overlay, setOverlay] = React.useState(<OverlayOne />);
   const { isOpen, onOpen, onClose } = useDisclosure();
 
+  // console.log('USERID', user_id);
+
   const [inputs, setInputs] = useState<InputsType>({
     title: '',
     text: '',
     status: false,
     deadline: '',
+    user_id: 0,
   });
-  console.log('INPUTS', inputs);
 
   useEffect(() => {
     if (todo) {
@@ -77,12 +79,13 @@ export default function ModalButtonAddTodo({
         title: '',
         text: '',
         deadline: '',
+        user_id: 0,
       });
     }
   };
 
   const editHandler = async (): Promise<void> => {
-    if (inputs.title || inputs.text || inputs.deadline) {
+    if (inputs.user_id || inputs.title || inputs.text || inputs.deadline) {
       const newInputs = { ...inputs, id: todo.id };
       void dispatch(fetchEdit(newInputs));
       setInputs({
@@ -90,10 +93,11 @@ export default function ModalButtonAddTodo({
         title: '',
         text: '',
         deadline: '',
+        user_id: 0,
       });
     }
   };
-
+  
   return (
     <>
       <Button
@@ -117,7 +121,7 @@ export default function ModalButtonAddTodo({
             <DropDownChooseManager
               changeHandler={changeHandler}
               inputs={inputs}
-              user_id={user_id}
+              // user_id={user_id}
             />
           )}
           {!todo && (

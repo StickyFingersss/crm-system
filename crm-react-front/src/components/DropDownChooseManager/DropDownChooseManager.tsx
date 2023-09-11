@@ -5,7 +5,7 @@ import { useMyDispatch, useMySelector } from '../../redux/hooks';
 import { RootState } from '../../redux/store';
 import { fetchManagers } from '../../redux/slices/managersSlice';
 
-export default function DropDownFilterBtn({ changeHandler, inputs, user_id }) {
+export default function DropDownFilterBtn({ changeHandler, inputs }) {
   const allManagersObj = useMySelector((state: RootState) => state.managers);
   const dispatch = useMyDispatch();
 
@@ -15,9 +15,11 @@ export default function DropDownFilterBtn({ changeHandler, inputs, user_id }) {
 
   const { managers } = allManagersObj;
 
+  console.log('Managers: ', managers);
+
   return (
     <>
-      {user_id && (
+      {/* {user_id && (
         <div>
           <Select
             name="user_id"
@@ -32,23 +34,23 @@ export default function DropDownFilterBtn({ changeHandler, inputs, user_id }) {
             ))}
           </Select>
         </div>
-      )}
-      {!user_id && (
-        <div>
-          <Select
-            name="user_id"
-            onChange={changeHandler}
-            value={inputs.user_id}
-            placeholder="My tasks"
-          >
-            {managers.map((manager) => (
-              <option key={manager.id} value={manager.id}>
-                Tasks of {manager.name}
-              </option>
-            ))}
-          </Select>
-        </div>
-      )}
+      )} */}
+      {/* {!user_id && ( */}
+      <div>
+        <Select
+          name="user_id"
+          onChange={changeHandler}
+          value={Number(inputs.user_id)}
+          placeholder="My tasks"
+        >
+          {managers.map((manager) => (
+            <option key={manager.id} value={manager.id}>
+              Tasks for {manager.name}
+            </option>
+          ))}
+        </Select>
+      </div>
+      {/* )} */}
     </>
   );
 }
