@@ -10,13 +10,9 @@ import { NavBar } from '../../components/NavBar/NavBar';
 import { useNavigate } from 'react-router-dom';
 
 export const Reports = () => {
-<<<<<<< HEAD
-  const calls = useMySelector((store) => store.callsSlice.calls);
-=======
   const calls = useMySelector((store) => store.callsSlice.statsCalls); //запрос статистики
   const session = useMySelector((store) => store.isAutenticatedSlice.session);
   const isLoading = useMySelector((store) => store.callsSlice.isLoading); // проверка состояния
->>>>>>> 6c2fcb61d653207926ee7d197173c0ee9cca2eaa
 
   const dispatch = useMyDispatch();
   const navigate = useNavigate()
