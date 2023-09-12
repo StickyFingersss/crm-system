@@ -16,7 +16,6 @@ export default function TodoList({
   const createBtnTitle = 'Create new task';
   const session = useMySelector((store) => store.isAutenticatedSlice.session);
 
-  console.log('Session', session)
   return (
     <div className="toDoListContainer">
       <Link to="/">Back to main page</Link>

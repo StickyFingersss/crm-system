@@ -21,7 +21,6 @@ export const ManagerPage = () => {
   const { id } = useParams();
 
   const [selectedManager, setSelectedManager] = useState({});
-  console.log('SELECTED', selectedManager);
 
   useEffect(() => {
     if (session.isAdmin) {
@@ -32,22 +31,21 @@ export const ManagerPage = () => {
   const createTaskForManagerBtnTitle = selectedManager
     ? `Create task for ${selectedManager.name}`
     : '';
-  console.log('SESSION', session);
-  console.log('MANAGERS', managers);
+
   return (
     <div className={styles.mainManager}>
+      {!session.login && (
+        <div>
+          <h1 className={styles.h1Err}><img src="/404.png" alt="" />#Error: Login or register </h1>
+        </div>
+      )}
       <h1>{selectedManager?.name}'s manager page</h1>
       {!session.isAdmin && <MiniToDos />}
       <ModalButtonAddTodo 
         createTaskForManagerBtnTitle={createTaskForManagerBtnTitle}
         selectedManager={selectedManager}        
       />
-      <ClientList path={'/customer/by-manager'} />
-      {!session.login && (
-        <div>
-          <h1 className={styles.h1Err}><img src="/404.png" alt="" />#Error: Login or register </h1>
-        </div>
-      )}
+      <ClientList path={`/customer/by-manager/${id}`} />
     </div>
   );
 };
