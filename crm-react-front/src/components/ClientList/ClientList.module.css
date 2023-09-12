@@ -2,10 +2,11 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    width: 65%;
 }
 .modalSerchTrue{
     position: fixed;
-    top: 555px;
+    top: 285px;
     right: 0;
     bottom: 0;
     left: 0;
@@ -17,7 +18,7 @@
 }
 .modalSerchFalse{
     position: fixed;
-    top: 555px;
+    top: 285px;
     right: 0;
     bottom: 0;
     left: 0;
@@ -30,21 +31,22 @@
 }
 .modalSerch:target {
     opacity: 1; 
-	  pointer-events: auto; 
+	pointer-events: auto; 
     overflow-y: auto; 
 }
 @media (min-width: 576px) {
   .serchClient {
-      max-width: 650px;
-      margin: 30px auto; 
+    max-width: 650px;
+    margin: 30px auto; 
   }
 }
 .serchClient{
-    background-color: aqua;
+    background-color: #3d3f9d;
     padding: 10px;
     width: 650px;
     height: 8%;
     border-radius: 15px;
+    display: flex;
 }
 .serchClient input{
     width: 80%;
@@ -70,12 +72,12 @@
     width: 25px;
     height: 25px;
 }
-.button:hover, .button:hover svg {
-    fill: white;
+.button:hover {
+    color: white;
     background-color: rgb(0, 0, 0);
 }
-.button:active, .button:active svg {
-    fill: rgb(0, 0, 0);
+.button:active {
+    color: rgb(0, 0, 0);
     background-color: rgb(26, 165, 28);
 }
 .navClientList{
@@ -120,4 +122,7 @@
     background-color: rgb(19, 19, 86);
     border-radius: 15px;
     padding: 10px;
+}
+.mainClientList div ul{
+    width: 100%;
 }

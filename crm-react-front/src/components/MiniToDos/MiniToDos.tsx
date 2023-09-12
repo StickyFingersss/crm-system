@@ -48,7 +48,7 @@ export default function MiniToDos() {
           borderWidth="1px"
           borderRadius="10px"
           borderColor="black.10"
-          width="600px"
+          width="200px"
           height="fit-content"
           bgColor="white"
         >

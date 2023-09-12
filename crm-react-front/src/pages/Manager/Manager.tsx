@@ -1,7 +1,6 @@
 import styles from './Manager.module.css';
 
 import MiniToDos from '../../components/MiniToDos/MiniToDos';
-import TaskCreator from '../../components/TaskCreator/TaskCreator';
 import { ClientList } from '../../components/ClientList/ClientList';
 
 import { useMySelector } from '../../redux/hooks';
@@ -20,7 +19,7 @@ export const Manager = () => {
 
   if (session.isAdmin) {
     return (
-      <>
+      <div className={styles.mainManager}>
         <h1>Manager Page</h1>
         <h2>{name}</h2>
         <MiniToDos />
@@ -29,17 +28,16 @@ export const Manager = () => {
           user_id={user_id}
         />
         <ClientList path={'/customer/by-manager'} />
-      </>
+      </div>
     );
   } else if (session.login) {
     return (
-      <>
+      <div className={styles.mainManager}>
         <h1>Manager Page</h1>
         <h2>{session.name}</h2>
         <MiniToDos />
-
         <ClientList path={'/customer/by-manager'} />
-      </>
+      </div>
     );
   }
 
