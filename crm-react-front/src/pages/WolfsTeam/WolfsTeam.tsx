@@ -1,21 +1,18 @@
-
 import { useEffect } from 'react';
-import { useMySelector } from '../../redux/hooks';
+import { useMySelector } from '../../redux/hooks.ts';
 import { useSelector, useDispatch } from 'react-redux';
-import type { RootState } from '../../redux/store.ts';
 import { fetchManagers } from '../../redux/slices/managersSlice.ts';
 import { useNavigate } from 'react-router-dom';
+import type { RootState } from '../../redux/store.ts';
 
-import { Manager } from '../../components/Manager/Manager.jsx';
+import WolfsMember from '../../components/WolfsMember/WolfsMember.tsx';
 import { NavBar } from '../../components/NavBar/NavBar.tsx';
 
-export const Managers = () => {
+export const WolfsTeam = () => {
   const dispatch = useDispatch();
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
-  const buttons = [
-    { name: 'Back', callback: () => navigate('/lead') },
-  ];
+  const buttons = [{ name: 'Back', callback: () => navigate('/lead') }];
 
   useEffect(() => {
     void dispatch(fetchManagers());
@@ -31,9 +28,9 @@ export const Managers = () => {
         {managers.length ? (
           <>
             <h1>Wolfs Team</h1>
-              <NavBar buttons={buttons} />
+            <NavBar buttons={buttons} />
             {managers.map((el) => (
-              <Manager key={el.id} name={el.name} id={el.id} />
+              <WolfsMember key={el.id} name={el.name} id={el.id} />
             ))}
           </>
         ) : (

@@ -24,7 +24,7 @@ import { fetchAddDeal } from '../../redux/thunkActions/dealsActions';
 import { InputDealType } from '../../types';
 
 
-export const ClientMax = ({ setGetAccess }): JSX.Element => {
+export const ClientMax = (): JSX.Element => {
 
   const { id } = useParams();
   const dispatch = useMyDispatch();
@@ -84,14 +84,14 @@ export const ClientMax = ({ setGetAccess }): JSX.Element => {
     }
   };
 
-  if (
-    (OneCustomer.team_id === session.team_id && OneCustomer.manager_id === session.userId) ||
-    (session.isAdmin && OneCustomer.team_id === session.team_id)
-  ) {
-    setGetAccess(true);
-  } else {
-    setGetAccess(false);
-  }
+  // if (
+  //   (OneCustomer.team_id === session.team_id && OneCustomer.manager_id === session.userId) ||
+  //   (session.isAdmin && OneCustomer.team_id === session.team_id)
+  // ) {
+  //   setGetAccess(true);
+  // } else {
+  //   setGetAccess(false);
+  // }
 
   return (
     <div className={styles.oneClientList}>

@@ -27,9 +27,9 @@ export default function ModalButtonAddTodo({
   createTaskForManagerBtnTitle,
   createBtnTitle,
   editBtnTitle,
+  selectedManager,
   todo,
-}: // user_id,
-TodoItemProps) {
+}: TodoItemProps) {
   const OverlayOne = () => (
     <ModalOverlay
       bg="blackAlpha.300"
@@ -40,8 +40,6 @@ TodoItemProps) {
 
   const [overlay, setOverlay] = React.useState(<OverlayOne />);
   const { isOpen, onOpen, onClose } = useDisclosure();
-
-  // console.log('USERID', user_id);
 
   const [inputs, setInputs] = useState<InputsType>({
     title: '',
@@ -95,7 +93,7 @@ TodoItemProps) {
       });
     }
   };
-  
+
   return (
     <>
       <Button
@@ -119,7 +117,7 @@ TodoItemProps) {
             <DropDownChooseManager
               changeHandler={changeHandler}
               inputs={inputs}
-              // user_id={user_id}
+              selectedManager={selectedManager}
             />
           )}
           {!todo && (
@@ -163,7 +161,20 @@ TodoItemProps) {
                 >
                   Save
                 </Button>
-                <Button onClick={() => (onClose(), setInputs)}>Close</Button>
+                <Button
+                  onClick={() => (
+                    onClose(),
+                    setInputs({
+                      ...inputs,
+                      title: '',
+                      text: '',
+                      deadline: '',
+                      user_id: 0,
+                    })
+                  )}
+                >
+                  Close
+                </Button>
               </ModalFooter>
             </>
           )}
@@ -198,7 +209,6 @@ TodoItemProps) {
                   defaultValue={inputs.deadline || ''}
                   size="sm"
                 />
-                {/* <Text>Custom backdrop filters!</Text> */}
               </ModalBody>
               <ModalFooter>
                 <Button
