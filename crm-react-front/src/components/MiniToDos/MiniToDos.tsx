@@ -42,15 +42,15 @@ export default function MiniToDos() {
 
   return (
     <>
-      <div className="miniToDos" style={{ width: '500px' }}>
+      <div className="miniToDos" style={{ width: '800px' }}>
         <Box
           p="10px"
           borderWidth="1px"
           borderRadius="10px"
           borderColor="black.10"
-          width="200px"
+          width="800px"
           height="fit-content"
-          bgColor="white"
+          bgColor="#b5b5b5"
         >
           <Text
             fontWeight="bold"
