@@ -7,7 +7,6 @@ import BtnScrollUp from '../../components/ScrollButton/ScrollButton';
 import ModalButtonAddTodo from '../../components/ModalButtonAddTodo/ModalButtonAddTodo';
 import DropDownFilterBtn from '../../components/DropDownFilterBtn/DropDownFilterBtn';
 
-
 export default function TodoList({
   currentTodos,
   selectedManager,
@@ -16,6 +15,8 @@ export default function TodoList({
   const header = 'Your tasks';
   const createBtnTitle = 'Create new task';
   const session = useMySelector((store) => store.isAutenticatedSlice.session);
+
+  console.log('Session', session)
   return (
     <div className="toDoListContainer">
       <Link to="/">Back to main page</Link>
@@ -24,10 +25,12 @@ export default function TodoList({
       <h1>{header}</h1>
 
       <ModalButtonAddTodo createBtnTitle={createBtnTitle} />
-      <DropDownFilterBtn
-        selectedManager={selectedManager}
-        setSelectedManager={setSelectedManager}
-      />
+      {session.isAdmin === true && (
+        <DropDownFilterBtn
+          selectedManager={selectedManager}
+          setSelectedManager={setSelectedManager}
+        />
+      )}
       <ul>
         {currentTodos?.map((todo) => (
           <ToDo key={todo.id} todo={todo} />
