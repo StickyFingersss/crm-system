@@ -5,7 +5,11 @@ import { useMyDispatch, useMySelector } from '../../redux/hooks';
 import { RootState } from '../../redux/store';
 import { fetchManagers } from '../../redux/slices/managersSlice';
 
-export default function DropDownFilterBtn({ changeHandler, inputs }) {
+export default function DropDownFilterBtn({
+  changeHandler,
+  inputs,
+  selectedManager,
+}) {
   const allManagersObj = useMySelector((state: RootState) => state.managers);
   const dispatch = useMyDispatch();
 
@@ -15,42 +19,48 @@ export default function DropDownFilterBtn({ changeHandler, inputs }) {
 
   const { managers } = allManagersObj;
 
-  console.log('Managers: ', managers);
+  useEffect(() => {
+    if (selectedManager) {
+      inputs.user_id = selectedManager.id;
+    }
+  }, [selectedManager, inputs]);
 
   return (
     <>
-      {/* {user_id && (
+      {selectedManager && (
         <div>
           <Select
             name="user_id"
             onChange={changeHandler}
-            defaultValue={user_id}
-            placeholder="My tasks"
+            value={Number(inputs.user_id)}
+            placeholder={`Tasks for ${selectedManager?.name}`}
+            // style={{ display: 'none' }}
+            isDisabled
           >
             {managers.map((manager) => (
               <option key={manager.id} value={manager.id}>
-                Tasks of {manager.name}
+                Tasks for {manager.name}
               </option>
             ))}
           </Select>
         </div>
-      )} */}
-      {/* {!user_id && ( */}
-      <div>
-        <Select
-          name="user_id"
-          onChange={changeHandler}
-          value={Number(inputs.user_id)}
-          placeholder="My tasks"
-        >
-          {managers.map((manager) => (
-            <option key={manager.id} value={manager.id}>
-              Tasks for {manager.name}
-            </option>
-          ))}
-        </Select>
-      </div>
-      {/* )} */}
+      )}
+      {!selectedManager && (
+        <div>
+          <Select
+            name="user_id"
+            onChange={changeHandler}
+            value={Number(inputs.user_id)}
+            placeholder="My tasks"
+          >
+            {managers.map((manager) => (
+              <option key={manager.id} value={manager.id}>
+                Tasks for {manager.name}
+              </option>
+            ))}
+          </Select>
+        </div>
+      )}
     </>
   );
 }
