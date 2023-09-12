@@ -100,7 +100,7 @@ export const ClientList = ({ path }): JSX.Element => {
 
       {/* "Кнопка сброса фильтров" */}
       <button type="button" onClick={resetFilter}>
-        Сбросить фильтр
+        Reset filter
       </button>
 
       {/* "навигация" */}

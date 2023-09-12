@@ -1,0 +1,10 @@
+.h1Err {
+  margin-top: 250px;
+  align-items: center;
+  text-align: center;
+  font-family: 'Advent Pro', sans-serif;
+  text-decoration: underline red;
+  display: flex;
+  flex-direction: column;
+}
+

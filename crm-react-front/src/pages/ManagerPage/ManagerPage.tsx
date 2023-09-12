@@ -1,3 +1,4 @@
+import styles from './ManagerPage.module.css';
 import MiniToDos from '../../components/MiniToDos/MiniToDos';
 import { ClientList } from '../../components/ClientList/ClientList';
 
@@ -34,19 +35,19 @@ export const ManagerPage = () => {
   console.log('SESSION', session);
   console.log('MANAGERS', managers);
   return (
-    <>
+    <div className={styles.mainManager}>
       <h1>{selectedManager?.name}'s manager page</h1>
       {!session.isAdmin && <MiniToDos />}
-      <ModalButtonAddTodo
+      <ModalButtonAddTodo 
         createTaskForManagerBtnTitle={createTaskForManagerBtnTitle}
-        selectedManager={selectedManager}
+        selectedManager={selectedManager}        
       />
       <ClientList path={'/customer/by-manager'} />
-      {!session && (
+      {!session.login && (
         <div>
-          <h1>Login or register</h1>
+          <h1 className={styles.h1Err}><img src="/404.png" alt="" />#Error: Login or register </h1>
         </div>
       )}
-    </>
+    </div>
   );
 };

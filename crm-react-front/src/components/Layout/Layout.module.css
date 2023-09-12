@@ -1,0 +1,19 @@
+.wrapper .btnLog, .wrapper .btnReg, .wrapper  .btnLogout{
+  margin: 15px;
+  background-color: #3d3f9d;
+  color: white;
+  font-family: 'Advent Pro', sans-serif;
+  border: 2px #ffffff solid;
+  width: 95px;
+  height: 45px;
+  font-size: 23px;
+}
+.wrapper .btnLog:hover, .wrapper .btnReg:hover,.wrapper .btnLogout:hover{
+  color: rgb(0, 0, 0);
+  background-color: #ffffff;
+  border: 2px #3d3f9d solid;
+}
+div .modal {
+  color: rgb(0, 0, 0);
+  font-family: 'Advent Pro', sans-serif;
+}

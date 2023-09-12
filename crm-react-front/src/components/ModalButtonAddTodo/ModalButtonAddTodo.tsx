@@ -104,6 +104,9 @@ export default function ModalButtonAddTodo({
         flex="1"
         variant="ghost"
         leftIcon={<EditIcon />}
+        fontSize='3xl'
+        bg='#b5b5b5'
+        mb={5}
       >
         {createBtnTitle}
         {editBtnTitle}
@@ -125,7 +128,6 @@ export default function ModalButtonAddTodo({
               <ModalHeader>
                 <Input
                   name="title"
-                  margin={5}
                   onChange={changeHandler}
                   value={inputs.title}
                   placeholder="Enter task title"
@@ -141,11 +143,11 @@ export default function ModalButtonAddTodo({
                   onChange={changeHandler}
                   placeholder="Here is a sample placeholder"
                   size="sm"
+                  mb={10}
                 />
                 <Input
                   name="deadline"
                   type="datetime-local"
-                  margin={5}
                   onChange={changeHandler}
                   value={inputs.deadline}
                   size="sm"
@@ -183,7 +185,6 @@ export default function ModalButtonAddTodo({
               <ModalHeader>
                 <Input
                   name="title"
-                  margin={5}
                   onChange={changeHandler}
                   defaultValue={todo.title}
                   placeholder="Enter task title"
@@ -195,7 +196,6 @@ export default function ModalButtonAddTodo({
                 <Input
                   name="text"
                   type="text"
-                  margin={5}
                   onChange={changeHandler}
                   defaultValue={todo.text}
                   placeholder="Describe the task"
@@ -204,7 +204,6 @@ export default function ModalButtonAddTodo({
                 <Input
                   name="deadline"
                   type="datetime-local"
-                  margin={5}
                   onChange={changeHandler}
                   defaultValue={inputs.deadline || ''}
                   size="sm"
