@@ -13,8 +13,6 @@ export default function Pagination2() {
   const [selectedManager, setSelectedManager] = useState<number | null>(null);
   const dispatch = useMyDispatch();
 
-  console.log('TODOS', todos);
-
   useEffect(() => {
     void dispatch(fetchTodos());
   }, [dispatch]);
@@ -32,7 +30,7 @@ export default function Pagination2() {
         (!selectedManager && Number(todo.user_id) === session?.userId) ||
         Number(todo.user_id) === Number(selectedManager)
     );
-    console.log('filteredTodos', filteredTodos);
+
     const slicedTodos = filteredTodos?.slice(todoOffset, endOffset);
     setPageCount(Math.ceil(filteredTodos?.length / todosPerPage));
     setCurrentTodos(slicedTodos);
