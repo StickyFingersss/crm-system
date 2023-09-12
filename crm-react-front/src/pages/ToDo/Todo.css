@@ -18,3 +18,12 @@
 .footer {
     flex-direction: column !important;
 }
+
+ul div{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+ul {
+    width: 100%;
+}

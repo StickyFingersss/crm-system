@@ -1,10 +1,16 @@
+import styles from './TeamLead.module.css';
+
 import MiniToDos from '../../components/MiniToDos/MiniToDos';
 import ModalButtonLead from '../../components/ModalButtonLead/ModalButtonLead';
 import { ClientList } from '../../components/ClientList/ClientList';
 import { useMySelector } from '../../redux/hooks';
+import { useNavigate } from 'react-router-dom';
+
 
 export const TeamLead = () => {
   const session = useMySelector((store) => store.isAutenticatedSlice.session);
+
+  const navigate = useNavigate()
 
   // useEffect(() => {
   //   console.log('component update');
@@ -19,6 +25,8 @@ export const TeamLead = () => {
       </>
     );
   } else {
-    return <h1>Login as team lead or register</h1>;
-  }
+    return (
+      <h1 className={styles.h1Err}><img src="/404.png" alt="" />#Error: Login as team lead or register </h1>
+    )
+  }  
 };

@@ -1,0 +1,32 @@
+.h1Err {
+  margin-top: 250px;
+  align-items: center;
+  text-align: center;
+  font-family: 'Advent Pro', sans-serif;
+  text-decoration: underline red;
+  display: flex;
+  flex-direction: column;
+}
+.mainManager h1, .mainManager h2{
+  font-family: 'Josefin Sans', sans-serif;
+  text-align: center;
+}
+.mainManager h2{
+  font-size: 45px;
+}
+.mainManager {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+div p {
+  text-align: center;
+  font-family: 'Advent Pro', sans-serif;
+}
+div button {
+  text-align: center;
+  font-family: 'Advent Pro', sans-serif;
+  font-size: 30px;
+}
