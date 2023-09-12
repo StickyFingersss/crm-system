@@ -18,21 +18,37 @@ import { ChangeEvent, useEffect, useState } from 'react';
 
 import React from 'react';
 import { InputsType, TodoItemProps } from '../../types';
-import { useMyDispatch } from '../../redux/hooks';
+import { useMyDispatch, useMySelector } from '../../redux/hooks';
 import { fetchAddTodo, fetchEdit } from '../../redux/thunkActions';
 
-export default function ModalButtonAddTodo({ createBtnTitle, editBtnTitle, todo }: TodoItemProps) {
+import DropDownChooseManager from '../DropDownChooseManager/DropDownChooseManager';
+
+export default function ModalButtonAddTodo({
+  createTaskForManagerBtnTitle,
+  createBtnTitle,
+  editBtnTitle,
+  todo,
+}: // user_id,
+TodoItemProps) {
   const OverlayOne = () => (
-    <ModalOverlay bg="blackAlpha.300" backdropFilter="blur(10px) hue-rotate(90deg)" />
+    <ModalOverlay
+      bg="blackAlpha.300"
+      backdropFilter="blur(10px) hue-rotate(90deg)"
+    />
   );
-  const { isOpen, onOpen, onClose } = useDisclosure();
+  const session = useMySelector((store) => store.isAutenticatedSlice.session);
+
   const [overlay, setOverlay] = React.useState(<OverlayOne />);
+  const { isOpen, onOpen, onClose } = useDisclosure();
+
+  // console.log('USERID', user_id);
 
   const [inputs, setInputs] = useState<InputsType>({
     title: '',
     text: '',
     status: false,
     deadline: '',
+    user_id: 0,
   });
 
   useEffect(() => {
@@ -61,12 +77,13 @@ export default function ModalButtonAddTodo({ createBtnTitle, editBtnTitle, todo 
         title: '',
         text: '',
         deadline: '',
+        user_id: 0,
       });
     }
   };
 
   const editHandler = async (): Promise<void> => {
-    if (inputs.title || inputs.text || inputs.deadline) {
+    if (inputs.user_id || inputs.title || inputs.text || inputs.deadline) {
       const newInputs = { ...inputs, id: todo.id };
       void dispatch(fetchEdit(newInputs));
       setInputs({
@@ -74,29 +91,39 @@ export default function ModalButtonAddTodo({ createBtnTitle, editBtnTitle, todo 
         title: '',
         text: '',
         deadline: '',
+        user_id: 0,
       });
     }
   };
-
+  
   return (
     <>
-      {!todo && (
-        <>
-          <Button
-            onClick={() => {
-              setOverlay(<OverlayOne />);
-              onOpen();
-            }}
-            flex="1"
-            variant="ghost"
-            leftIcon={<EditIcon />}>
-            {createBtnTitle}
-            {editBtnTitle}
-          </Button>
+      <Button
+        onClick={() => {
+          setOverlay(<OverlayOne />);
+          onOpen();
+        }}
+        flex="1"
+        variant="ghost"
+        leftIcon={<EditIcon />}
+      >
+        {createBtnTitle}
+        {editBtnTitle}
+        {createTaskForManagerBtnTitle}
+      </Button>
 
-          <Modal isCentered isOpen={isOpen} onClose={onClose}>
-            {overlay}
-            <ModalContent>
+      <Modal isCentered isOpen={isOpen} onClose={onClose}>
+        {overlay}
+        <ModalContent>
+          {session.isAdmin === true && (
+            <DropDownChooseManager
+              changeHandler={changeHandler}
+              inputs={inputs}
+              // user_id={user_id}
+            />
+          )}
+          {!todo && (
+            <>
               <ModalHeader>
                 <Input
                   name="title"
@@ -109,15 +136,6 @@ export default function ModalButtonAddTodo({ createBtnTitle, editBtnTitle, todo 
               </ModalHeader>
 
               <ModalBody>
-                {/* <Input
-                  name="text"
-                  type="text"
-                  margin={5}
-                  onChange={changeHandler}
-                  value={inputs.text}
-                  placeholder="Describe the task"
-                  size="sm"
-                /> */}
                 <Textarea
                   name="text"
                   type="text"
@@ -134,39 +152,23 @@ export default function ModalButtonAddTodo({ createBtnTitle, editBtnTitle, todo 
                   value={inputs.deadline}
                   size="sm"
                 />
-                {/* <Text>Custom backdrop filters!</Text> */}
               </ModalBody>
+
               <ModalFooter>
                 <Button
                   onClick={() => {
                     addHandler();
                     onClose();
-                  }}>
+                  }}
+                >
                   Save
                 </Button>
                 <Button onClick={() => (onClose(), setInputs)}>Close</Button>
               </ModalFooter>
-            </ModalContent>
-          </Modal>
-        </>
-      )}
-      {todo && (
-        <>
-          <Button
-            onClick={() => {
-              setOverlay(<OverlayOne />);
-              onOpen();
-            }}
-            flex="1"
-            variant="ghost"
-            leftIcon={<EditIcon />}>
-            {createBtnTitle}
-            {editBtnTitle}
-          </Button>
-
-          <Modal isCentered isOpen={isOpen} onClose={onClose}>
-            {overlay}
-            <ModalContent>
+            </>
+          )}
+          {todo && (
+            <>
               <ModalHeader>
                 <Input
                   name="title"
@@ -203,15 +205,16 @@ export default function ModalButtonAddTodo({ createBtnTitle, editBtnTitle, todo 
                   onClick={() => {
                     editHandler();
                     onClose();
-                  }}>
+                  }}
+                >
                   Save changes
                 </Button>
                 <Button onClick={onClose}>Close</Button>
               </ModalFooter>
-            </ModalContent>
-          </Modal>
-        </>
-      )}
+            </>
+          )}
+        </ModalContent>
+      </Modal>
     </>
   );
 }

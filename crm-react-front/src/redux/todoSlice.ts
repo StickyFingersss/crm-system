@@ -18,7 +18,7 @@ const rtkSlice = createSlice({
       state.todos = [];
     });
     builder.addCase(fetchAddTodo.fulfilled, (state, action) => {
-      state.todos.push(action.payload);
+      state.todos?.unshift(action.payload);
     });
     builder.addCase(fetchDel.fulfilled, (state, action) => {
       state.todos = state.todos.filter((el) => el.id !== action.payload);
