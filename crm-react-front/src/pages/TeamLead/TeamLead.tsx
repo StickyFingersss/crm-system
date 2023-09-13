@@ -13,7 +13,7 @@ export const TeamLead = () => {
   const navigate = useNavigate()
 
 
-  if (session.isAdmin) {
+  if (session?.isAdmin) {
     return (
       <>
         <MiniToDos />
