@@ -60,7 +60,7 @@ usersRouter.post('/login', async (req, res) => {
 usersRouter.get('/logout', (req, res) => {
   req.session.destroy();
   res.clearCookie('CRM');
-  res.send(200);
+  res.sendStatus(200);
 });
 
 usersRouter.get('/userData', (req, res) => {

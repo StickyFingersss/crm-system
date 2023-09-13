@@ -25,7 +25,7 @@ export const WolfsTeam = () => {
   if (session.isAdmin) {
     return (
       <>
-        {managers.length ? (
+        {managers?.length ? (
           <>
             <h1>Wolfs Team</h1>
             <NavBar buttons={buttons} />
@@ -34,7 +34,7 @@ export const WolfsTeam = () => {
             ))}
           </>
         ) : (
-          <h1>You haven't access to this page</h1>
+          <h1>You have no managers</h1>
         )}
       </>
     );
