@@ -9,6 +9,7 @@ managerRouter.get('/', async (req, res) => {
 
     if (isAdmin) {
       const users = await User.findAll({ where: { team_id, isAdmin: false } });
+      console.log("🚀 ~ file: manager.router.js:12 ~ managerRouter.get ~ users:", users);
       res.json(users);
     } else {
       res.json([]);

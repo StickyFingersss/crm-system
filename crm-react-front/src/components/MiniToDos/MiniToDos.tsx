@@ -40,6 +40,7 @@ export default function MiniToDos() {
     }
   }, [todos, session]);
 
+  console.log("MINITODOS!!!!!!!!!!!!!!!!!!!!!!!!!!");
   return (
     <>
       <div className="miniToDos" style={{ width: '800px' }}>
