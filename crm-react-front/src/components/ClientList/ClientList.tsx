@@ -30,18 +30,23 @@ export const ClientList = ({ path }): JSX.Element => {
       .map(([key, value]) => `${key}=${encodeURIComponent(value)}`)
       .join('&');
 
-    const response = axios.get(`http://localhost:3000/api/customer/special?${queryString}`);
-    response.then((data) => setNewInfo(data.data)).catch((err) => console.log(err));
+    const response = axios.get(
+      `http://localhost:3000/api/customer/special?${queryString}`
+    );
+    response
+      .then((data) => setNewInfo(data.data))
+      .catch((err) => console.log(err));
   }
 
-  const handleInputChange = (fieldName: string) => (event: React.ChangeEvent<HTMLInputElement>) => {
-    setFieldName(fieldName);
-    setInputModal(!inputModal);
-    setInputData({
-      ...inputData,
-      [fieldName]: event.target.value,
-    });
-  };
+  const handleInputChange =
+    (fieldName: string) => (event: React.ChangeEvent<HTMLInputElement>) => {
+      setFieldName(fieldName);
+      setInputModal(!inputModal);
+      setInputData({
+        ...inputData,
+        [fieldName]: event.target.value,
+      });
+    };
 
   const buttons = [
     { name: 'Name', callback: handleInputChange('name') },
@@ -75,7 +80,9 @@ export const ClientList = ({ path }): JSX.Element => {
   return (
     <div className={styles.mainClientList}>
       {/* модалка поиска по "навигации" */}
-      <div className={inputModal ? styles.modalSerchTrue : styles.modalSerchFalse}>
+      <div
+        className={inputModal ? styles.modalSerchTrue : styles.modalSerchFalse}
+      >
         <div className={styles.serchClient}>
           <input
             type="text"
@@ -92,8 +99,16 @@ export const ClientList = ({ path }): JSX.Element => {
           <button
             className={styles.button}
             type="button"
-            onClick={() => buildQueryString(inputData)}>
+            onClick={() => buildQueryString(inputData)}
+          >
             {'Sent'}
+          </button>
+          <button
+            className={styles.button}
+            type="button"
+            onClick={() => setInputModal(!inputModal)}
+          >
+            {'Close'}
           </button>
         </div>
       </div>

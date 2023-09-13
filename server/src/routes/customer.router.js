@@ -135,7 +135,7 @@ customerRouter.get('/by-manager/:id', async (req, res) => {
   try {
     const { userId, isAdmin } = req.session;
     const { id } = req.params;
-    console.log('ID==============>', id);
+    
     if (isAdmin && id === undefined) {
       const customers = await Customer.findAll();
       res.json(customers);
