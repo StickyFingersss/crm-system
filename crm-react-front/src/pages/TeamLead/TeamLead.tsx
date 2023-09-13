@@ -16,7 +16,7 @@ export const TeamLead = () => {
   //   console.log('component update');
   // }, [session]);
 
-  if (session.isAdmin) {
+  if (session?.isAdmin) {
     return (
       <>
         <MiniToDos />
