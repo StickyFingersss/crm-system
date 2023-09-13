@@ -5,9 +5,13 @@ import { Link as ChakraLink } from '@chakra-ui/react';
 
 import { Link as ReactRouterLink } from 'react-router-dom';
 import { useEffect, useState } from 'react';
+import { useMySelector } from '../../redux/hooks';
 
 
 export const Client = ({ id, name, balance, manager_id, createdAt, status}): JSX.Element => {
+
+  const session = useMySelector((store) => store.isAutenticatedSlice.session);
+  
   //Преобразование даты из базы в нормальный вид
   const normalDate = `${createdAt.slice(8, 10)}.${createdAt.slice(5, 7)}.${createdAt.slice(0, 4)}`;
 
@@ -58,15 +62,19 @@ export const Client = ({ id, name, balance, manager_id, createdAt, status}): JSX
         </ChakraLink>
       <h3>{id}</h3>
       <h3>{balance}</h3>
-      <select name="manager" onChange={(e) => {
-        const newManagerId = e.target.value;
-        changeManager(newManagerId);
-      }}>
-        <option selected>{user.data?.name ? user.data?.name : 'Менеджер не назначен'}</option>
-        {managers.data?.map((manager) => (
-          <option key={manager.id} value={manager.id}>{manager.name}</option>
-        ))}
-      </select>
+      {session.isAdmin ? 
+        <select name="manager" onChange={(e) => {
+          const newManagerId = e.target.value;
+          changeManager(newManagerId);
+        }}>
+          <option selected>{user.data?.name ? user.data?.name : 'Менеджер не назначен'}</option>
+          {managers.data?.map((manager) => (
+            <option key={manager.id} value={manager.id}>{manager.name}</option>
+          ))}
+        </select>
+        : 
+        <h3>{user.data?.name}</h3>
+      }      
       <h3>{normalDate}</h3>
       <select name="status" onChange={(e) => {
         const newStatusId = e.target.value;

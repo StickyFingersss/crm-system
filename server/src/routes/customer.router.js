@@ -56,10 +56,10 @@ customerRouter.get('/special', async (req, res) => {
     if (status_id) {
       // Проверяем значение ключа status на равенство "empty"
       if (
-        status_id === 'Пустой'
-        || status_id === 'пустой'
-        || status_id === 'empty'
-        || status_id === 'Empty'
+        status_id === 'Пустой' ||
+        status_id === 'пустой' ||
+        status_id === 'empty' ||
+        status_id === 'Empty'
       ) {
         // Используем оператор IS NULL для поиска клиентов со значением status_id, равным null
         filter.status_id = {
@@ -81,10 +81,10 @@ customerRouter.get('/special', async (req, res) => {
     if (manager_id) {
       // Проверяем значение manager_id
       if (
-        manager_id === 'Пусто'
-          || manager_id === 'пусто'
-          || manager_id === 'empty'
-          || manager_id === 'Empty'
+        manager_id === 'Пусто' ||
+        manager_id === 'пусто' ||
+        manager_id === 'empty' ||
+        manager_id === 'Empty'
       ) {
         // Показываем всех клиентов с manager_id = null
         filter.manager_id = null;
@@ -135,13 +135,16 @@ customerRouter.get('/by-manager/:id', async (req, res) => {
   try {
     const { userId, isAdmin } = req.session;
     const { id } = req.params;
-    
+
     if (isAdmin && id === undefined) {
       const customers = await Customer.findAll();
       res.json(customers);
     } else {
       const customers = await Customer.findAll({
         where: { manager_id: id },
+        include: [{ model: Status }],
+        raw: true,
+        nest: true,
       });
       res.json(customers);
     }

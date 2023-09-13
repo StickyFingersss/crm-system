@@ -1,6 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { SliceStateType } from '../types';
-import { fetchAllCustomers, fetchOneCustomer } from './thunkActions';
+import { fetchAllCustomers, fetchAllCustomersForClientPage, fetchOneCustomer } from './thunkActions';
 
 const initialState: SliceStateType = {
   customers: [],
