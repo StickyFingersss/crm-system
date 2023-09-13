@@ -21,8 +21,8 @@ export const fetchTodos = createAsyncThunk('todos/all', async () => {
 });
 
 //Все кастомеры
-export const fetchAllCustomers = createAsyncThunk('customer/all', async (params) => {
-  const response = await axios.get<CustomersType>(`${import.meta.env.VITE_URL}${params}`);
+export const fetchAllCustomers = createAsyncThunk('customer/all', async () => {
+  const response = await axios.get<CustomersType>(`${import.meta.env.VITE_URL}/customer/all`);
   return response.data;
 });
 
