@@ -17,7 +17,10 @@ export const Client = ({
 }): JSX.Element => {
 
   const session = useMySelector((store) => store.isAutenticatedSlice.session);
-  
+
+  const managersStore = useMySelector((store) => store.managers.managers);
+  const statusesStore = useMySelector((store) => store.statusSlice.statuses);
+  console.log(statusesStore)
   //Преобразование даты из базы в нормальный вид
   const normalDate = `${createdAt.slice(8, 10)}.${createdAt.slice(
     5,
