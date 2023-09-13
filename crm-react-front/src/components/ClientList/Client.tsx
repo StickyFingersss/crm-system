@@ -22,10 +22,7 @@ export const Client = ({
   const statusesStore = useMySelector((store) => store.statusSlice.statuses);
   console.log(statusesStore)
   //Преобразование даты из базы в нормальный вид
-  const normalDate = `${createdAt.slice(8, 10)}.${createdAt.slice(
-    5,
-    7
-  )}.${createdAt.slice(0, 4)}`;
+  const normalDate = `${createdAt.slice(8, 10)}.${createdAt.slice(5,7)}.${createdAt.slice(0, 4)}`;
 
   const [user, setUser] = useState('');
   //состояние для всех доступных для назначения менеджеров
@@ -47,13 +44,13 @@ export const Client = ({
   useEffect(() => {
     const response = axios.get(`http://localhost:3000/api/managers`);
     response.then((data) => setManagers(data)).catch((err) => console.log(err));
-  }, []);
+  }, [managersStore]);
 
   //все доступные статусы
   useEffect(() => {
     const response = axios.get(`http://localhost:3000/api/status/all`);
     response.then((data) => setStatuses(data)).catch((err) => console.log(err));
-  }, []);
+  }, [statusesStore]);
 
   const [selectedStatus, setSelectedStatus] = useState(status);
 
