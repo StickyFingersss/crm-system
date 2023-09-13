@@ -9,7 +9,7 @@ import { useEffect, useState } from 'react';
 import { useMyDispatch, useMySelector } from '../../redux/hooks';
 import { fetchAllCustomers } from '../../redux/thunkActions';
 
-export const ClientList = ({ path }): JSX.Element => {
+export const ClientList = (): JSX.Element => {
   const dispatch = useMyDispatch();
 
   const [inputData, setInputData] = useState({
@@ -55,7 +55,7 @@ export const ClientList = ({ path }): JSX.Element => {
   const customers = useMySelector((store) => store.customerSlice.customers);
   // передаю в парамс санок путь
   useEffect(() => {
-    void dispatch(fetchAllCustomers(path));
+    void dispatch(fetchAllCustomers());
   }, [dispatch]);
 
   const [newInfo, setNewInfo] = useState([]);
