@@ -76,7 +76,8 @@ export default function ModalButtonLead() {
   const openCreateStatus = () => {
     setCreateStatus(true);
   };
-
+  console.log("MODAL!!!!!!!!!!!!!!!!!!!!!!!!!!");
+  
   return (
     <>
       <div className="btnGrp">
