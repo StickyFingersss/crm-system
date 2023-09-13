@@ -12,9 +12,6 @@ export const TeamLead = () => {
 
   const navigate = useNavigate()
 
-  // useEffect(() => {
-  //   console.log('component update');
-  // }, [session]);
 
   if (session.isAdmin) {
     return (

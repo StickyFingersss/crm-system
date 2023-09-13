@@ -19,10 +19,12 @@ export const Client = ({ id, name, balance, manager_id, createdAt, status}): JSX
   const [statuses, setStatuses] = useState([])
 
   useEffect(() => {
+    if (manager_id !== null) {
   const response = axios.get(`http://localhost:3000/api/user/${manager_id}`);
     response
     .then((data) => setUser(data))
     .catch((err) => console.log(err));
+    }
 }, [manager_id]);
 
   //все доступные для назначения менеджеры

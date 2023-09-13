@@ -40,6 +40,8 @@ const initStateReg: IDataReg = {
 };
 
 const Layout = (): JSX.Element => {
+  const session = useMySelector((store) => store.isAutenticatedSlice.session);
+
   const dispatch = useMyDispatch();
   const navigate = useNavigate();
 
@@ -91,6 +93,7 @@ const Layout = (): JSX.Element => {
           setDataLog(initStateLog);
           closeLogModal();
           setSuccessMessage(false);
+          
         }, 700);
       } else {
         setDataLog(initStateLog);

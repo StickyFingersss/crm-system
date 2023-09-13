@@ -77,6 +77,7 @@ export const ClientList = ({ path }): JSX.Element => {
     });
   };
 
+  console.log("CLIENTLIST!!!!!!!!!!!!!!!!!!!!!!!!!!");
   return (
     <div className={styles.mainClientList}>
       {/* модалка поиска по "навигации" */}
