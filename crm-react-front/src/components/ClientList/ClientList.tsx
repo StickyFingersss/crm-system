@@ -95,6 +95,13 @@ export const ClientList = ({ path }): JSX.Element => {
             onClick={() => buildQueryString(inputData)}>
             {'Sent'}
           </button>
+          <button
+            className={styles.button}
+            type="button"
+            onClick={() => setInputModal(!inputModal)}
+            >
+            {'Close'}
+          </button>
         </div>
       </div>
 
