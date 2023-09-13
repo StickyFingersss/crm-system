@@ -11,7 +11,10 @@ import { useMySelector } from '../../redux/hooks';
 export const Client = ({ id, name, balance, manager_id, createdAt, status}): JSX.Element => {
 
   const session = useMySelector((store) => store.isAutenticatedSlice.session);
-  
+
+  const managersStore = useMySelector((store) => store.managers.managers);
+  const statusesStore = useMySelector((store) => store.statusSlice.statuses);
+  console.log(statusesStore)
   //Преобразование даты из базы в нормальный вид
   const normalDate = `${createdAt.slice(8, 10)}.${createdAt.slice(5, 7)}.${createdAt.slice(0, 4)}`;
 
@@ -23,10 +26,12 @@ export const Client = ({ id, name, balance, manager_id, createdAt, status}): JSX
   const [statuses, setStatuses] = useState([])
 
   useEffect(() => {
-  const response = axios.get(`http://localhost:3000/api/user/${manager_id}`);
+    if(manager_id !== null) {
+    const response = axios.get(`http://localhost:3000/api/user/${manager_id}`);
     response
     .then((data) => setUser(data))
-    .catch((err) => console.log(err));
+    .catch((err) => console.log(err));}
+    
 }, [manager_id]);
 
   //все доступные для назначения менеджеры
@@ -35,7 +40,7 @@ export const Client = ({ id, name, balance, manager_id, createdAt, status}): JSX
       response
       .then((data) => setManagers(data))
       .catch((err) => console.log(err));
-  }, []);
+  }, [managersStore]);
 
   //все доступные статусы
   useEffect(() => {
@@ -43,7 +48,7 @@ export const Client = ({ id, name, balance, manager_id, createdAt, status}): JSX
       response
       .then((data) => setStatuses(data))
       .catch((err) => console.log(err));
-  }, []);
+  }, [statusesStore]);
 
 
   const [selectedStatus, setSelectedStatus] = useState(status);
