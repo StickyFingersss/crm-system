@@ -1,4 +1,4 @@
-.oneClientList{
+/* .oneClientList{
     background-color: rgba(245, 222, 179, 0);
     color: black;
     display: flex;
@@ -6,7 +6,7 @@
     font-size: 25px;
     padding: 2px;
     margin: 2px;
-    margin-bottom: 5px;    
+    margin-bottom: 5px;
 }
 .oneClientList h3{
     font-size: 25px;
@@ -48,4 +48,34 @@
     font-size: 15px;
     max-width: 90px;
     font-weight: bold;
+} */
+
+.oneClientList {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  border: 1px solid #ccc;
+  padding: 10px;
+  margin: 10px;
+  border-radius: 5px;
+  background-color: #f8f8f8;
+  width: 100%;
+}
+
+.oneClientList h3 {
+  margin: 0 50px;
+}
+
+select {
+  padding: 5px;
+  margin: 0 10px; /* Добавьте отступы по горизонтали */
+  width: 100%;
+}
+
+/* Ссылка на клиента */
+ChakraLink {
+  text-decoration: none;
+  color: #007bff;
+  font-weight: bold;
+  margin-right: 10px; /* Добавьте отступ справа */
 }

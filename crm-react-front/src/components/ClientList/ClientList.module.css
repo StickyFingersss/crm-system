@@ -1,130 +1,62 @@
-.mainClientList{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    width: 65%;
+/* ClientList.module.css */
+
+.mainClientList {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
-.modalSerchTrue{
-    position: fixed;
-    top: 285px;
-    right: 0;
-    bottom: 0;
-    left: 0;
-    z-index: 1050;
-    opacity: 1; 
-    -webkit-transition: opacity 200ms ease-in; 
-    -moz-transition: opacity 200ms ease-in;
-    transition: opacity 200ms ease-in; 
+
+.modalSerchTrue {
+  display: block;
+  /* Добавьте стили для отображения модального окна поиска */
 }
-.modalSerchFalse{
-    position: fixed;
-    top: 285px;
-    right: 0;
-    bottom: 0;
-    left: 0;
-    z-index: 1050;
-    opacity: 0; 
-    -webkit-transition: opacity 200ms ease-in; 
-    -moz-transition: opacity 200ms ease-in;
-    transition: opacity 200ms ease-in; 
-    pointer-events: none;
+
+.modalSerchFalse {
+  display: none;
+  /* Добавьте стили для скрытия модального окна поиска */
 }
-.modalSerch:target {
-    opacity: 1; 
-	pointer-events: auto; 
-    overflow-y: auto; 
+
+.serchClient {
+  /* Добавьте стили для контейнера модального окна поиска */
 }
-@media (min-width: 576px) {
-  .serchClient {
-    max-width: 650px;
-    margin: 30px auto; 
-  }
+
+input[type='text'] {
+  /* Добавьте стили для текстового поля в модальном окне поиска */
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 10px;
 }
-.serchClient{
-    background-color: #3d3f9d;
-    padding: 10px;
-    width: 650px;
-    height: 8%;
-    border-radius: 15px;
-    display: flex;
+
+.button {
+  /* Добавьте стили для кнопок в модальном окне поиска */
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  margin-right: 10px;
 }
-.serchClient input{
-    width: 80%;
-    height: 100%;
-    margin: 5px;
-    margin-right: 15px;
-    padding-left: 15px;
-    height: 45px;
-    font-size: 35px;
-    border-radius: 15px;
+
+.containerClients {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  /* Добавьте стили для контейнера, содержащего карточки клиентов */
 }
-.serchClient input:active{
-    border: 1px solid red;
+
+/* Стили для кнопки сброса фильтров */
+button[type='button'] {
+  /* Добавьте стили для кнопки сброса фильтров */
+  padding: 10px 20px;
+  background-color: #ff0000;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  margin-top: 10px;
 }
-.button{
-    align-items: center;
-    background-color: rgb(251, 251, 251);
-    width: 70px;
-    height: 50px;
-    border-radius: 5px;
-    margin: 5px;
-    width: 80px;
+
+.containerSize {
+  max-width: 1800px;
 }
-.button svg{
-    width: 25px;
-    height: 25px;
-}
-.button:hover {
-    color: white;
-    background-color: rgb(0, 0, 0);
-}
-.button:active {
-    color: rgb(0, 0, 0);
-    background-color: rgb(26, 165, 28);
-}
-.navClientList{
-    border: 2px solid rgb(253, 253, 253);
-    display: flex;
-    justify-content: space-around;
-    padding: 5px;
-    margin: 5px;
-    border-radius: 15px;
-    width: 100%;
-}
-.navClientList h1{
-    font-size: 30px;
-    margin: 0px 10px 0 10px;
-}
-.navClientListBtn{
-    background-color: rgba(245, 222, 179, 0);
-    font-size: 25px;
-    padding: 2px;
-    margin: 2px;
-}
-.navClientListBtn:hover{
-    border: 1px solid white;
-    outline: none;
-    transition: none;
-}
-.navClientListBtn:focus, .navClientListBtn:focus-visible{
-    border: none;
-    outline: none;
-    transition: none;
-}
-.containerClients{
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    border: 2px solid white;
-    border-radius: 12px;
-    padding: 15px;
-    align-items: center;
-}
-.modalManagers{
-    background-color: rgb(19, 19, 86);
-    border-radius: 15px;
-    padding: 10px;
-}
-.mainClientList div ul{
-    width: 100%;
-}
+
+/* Добавьте стили для NavBar и Client компонентов, если необходимо */

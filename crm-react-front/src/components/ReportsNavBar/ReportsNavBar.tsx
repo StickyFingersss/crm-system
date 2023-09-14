@@ -13,20 +13,10 @@ export const ReportsNavBar = () => {
     { name: 'Deals', callback: () => testFunc('Deals') },
   ];
 
-  const select = ['Day', 'Week', 'Month'];
+  // const select = ['Day', 'Week', 'Month'];
   return (
     <div className={styles.navbar}>
-      <NavBar buttons={buttons} select={select} />
-      {/* <button className={styles.navbarButton}>Manager</button>
-      <button className={styles.navbarButton}>Calls</button>
-      <button className={styles.navbarButton}>Deals</button>
-      <div className={styles.periodSelect}>
-        <select>
-          <option value="day">Day</option>
-          <option value="week">Week</option>
-          <option value="month">Month</option>
-        </select>
-      </div> */}
+      <NavBar buttons={buttons} />
     </div>
   );
 };

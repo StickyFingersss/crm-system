@@ -21,13 +21,13 @@ export const NavBar = (props) => {
           ))}
         </ul>
 
-        {select && (
+        {/* {select && (
           <select>
             {select.map((el) => (
               <option value={el.toLowerCase()}>{el}</option>
             ))}
           </select>
-        )}
+        )} */}
       </div>
     </>
   );
