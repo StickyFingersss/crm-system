@@ -38,6 +38,7 @@ export const Comments = () => {
       <div className={styles.writeComment}>
         <h2>Write new comment</h2>
         <input
+        className={styles.inputComment}
         name='comment' 
         placeholder='comment text'
         onChange={changeHandler}

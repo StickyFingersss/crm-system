@@ -10,3 +10,16 @@
 .reportButton:hover {
   background-color: #0056b3;
 }
+.h2Report{
+  font-size: 40px;
+  margin-left: 15px;
+  text-decoration: underline #3d3f9d;
+  text-align: center;
+}
+.reportList{
+  width: 500px;
+  border-radius: 5px;
+}
+.reportList p, .reportList h3{
+  font-size: 35px;
+}

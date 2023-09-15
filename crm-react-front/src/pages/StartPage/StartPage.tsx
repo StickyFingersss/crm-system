@@ -17,6 +17,7 @@ export const StartPage = () => {
         <Link className={styles.link} to="/advertiser">
           Advertiser
         </Link>
+        <img src="/managers.png" className={styles.img}/>
         {/* <Link to="/todos">To Task list</Link>
         <Link to="/lead">To TeamLead page</Link> */}
       </div>

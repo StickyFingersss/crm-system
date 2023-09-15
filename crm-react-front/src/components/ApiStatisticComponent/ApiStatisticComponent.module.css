@@ -8,11 +8,14 @@
 }
 
 .api-statistic h2 {
-  font-size: 24px;
+  font-size: 35px;
   margin-bottom: 16px;
+  font-family: 'Advent Pro', sans-serif;
+  text-decoration: underline #3d3f9d;
 }
 
 .api-statistic p {
-  font-size: 18px;
+  font-size: 25px;
   margin: 8px 0;
+  font-family: 'Advent Pro', sans-serif;
 }

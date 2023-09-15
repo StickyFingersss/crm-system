@@ -11,6 +11,8 @@ import {
   useDisclosure,
 } from '@chakra-ui/react';
 
+import './ModalButtonAddTodo.css';
+
 import moment from 'moment';
 
 import { EditIcon } from '@chakra-ui/icons';
@@ -103,19 +105,18 @@ export default function ModalButtonAddTodo({
         }}
         flex="1"
         variant="ghost"
-        leftIcon={<EditIcon />}
-        fontSize='3xl'
+        fontSize='25'
         bg='#b5b5b5'
-        mb={5}
+        mb={3}
       >
         {createBtnTitle}
         {editBtnTitle}
         {createTaskForManagerBtnTitle}
       </Button>
 
-      <Modal isCentered isOpen={isOpen} onClose={onClose}>
+      <Modal isCentered isOpen={isOpen} onClose={onClose} size={'6xl'}>
         {overlay}
-        <ModalContent>
+        <ModalContent p={5} >
           {session.isAdmin === true && (
             <DropDownChooseManager
               changeHandler={changeHandler}
@@ -131,7 +132,7 @@ export default function ModalButtonAddTodo({
                   onChange={changeHandler}
                   value={inputs.title}
                   placeholder="Enter task title"
-                  size="sm"
+                  fontSize={40} 
                 />
               </ModalHeader>
 
@@ -142,15 +143,15 @@ export default function ModalButtonAddTodo({
                   value={inputs.text}
                   onChange={changeHandler}
                   placeholder="Here is a sample placeholder"
-                  size="sm"
                   mb={10}
+                  fontSize={40}
                 />
                 <Input
                   name="deadline"
                   type="datetime-local"
                   onChange={changeHandler}
                   value={inputs.deadline}
-                  size="sm"
+                  fontSize={40}
                 />
               </ModalBody>
 
@@ -160,6 +161,7 @@ export default function ModalButtonAddTodo({
                     addHandler();
                     onClose();
                   }}
+                  colorScheme='green'
                 >
                   Save
                 </Button>
@@ -174,6 +176,7 @@ export default function ModalButtonAddTodo({
                       user_id: 0,
                     })
                   )}
+                  colorScheme='orange'
                 >
                   Close
                 </Button>
@@ -188,7 +191,7 @@ export default function ModalButtonAddTodo({
                   onChange={changeHandler}
                   defaultValue={todo.title}
                   placeholder="Enter task title"
-                  size="sm"
+                  fontSize={30}
                 />
               </ModalHeader>
 
@@ -199,14 +202,15 @@ export default function ModalButtonAddTodo({
                   onChange={changeHandler}
                   defaultValue={todo.text}
                   placeholder="Describe the task"
-                  size="sm"
+                  fontSize={30}
+                  mb={5}
                 />
                 <Input
                   name="deadline"
                   type="datetime-local"
                   onChange={changeHandler}
                   defaultValue={inputs.deadline || ''}
-                  size="sm"
+                  fontSize={30}
                 />
               </ModalBody>
               <ModalFooter>
@@ -215,10 +219,13 @@ export default function ModalButtonAddTodo({
                     editHandler();
                     onClose();
                   }}
+                  fontSize={20}
+                  mr={3}
+                  colorScheme='green'
                 >
                   Save changes
                 </Button>
-                <Button onClick={onClose}>Close</Button>
+                <Button onClick={onClose} colorScheme='orange'>Close</Button>
               </ModalFooter>
             </>
           )}

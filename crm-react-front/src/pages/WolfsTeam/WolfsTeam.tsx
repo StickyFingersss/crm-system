@@ -5,6 +5,8 @@ import { fetchManagers } from '../../redux/slices/managersSlice.ts';
 import { useNavigate } from 'react-router-dom';
 import type { RootState } from '../../redux/store.ts';
 
+import styles from './WolfsTeam.module.css';
+
 import WolfsMember from '../../components/WolfsMember/WolfsMember.tsx';
 import { NavBar } from '../../components/NavBar/NavBar.tsx';
 
@@ -27,8 +29,8 @@ export const WolfsTeam = () => {
       <>
         {managers?.length ? (
           <>
-            <h1>Wolfs Team</h1>
-            <NavBar buttons={buttons} />
+            <h1 className={styles.h1}>Wolfs Team</h1>
+            {/* <NavBar buttons={buttons} /> */}
             {managers.map((el) => (
               <WolfsMember key={el.id} name={el.name} id={el.id} />
             ))}

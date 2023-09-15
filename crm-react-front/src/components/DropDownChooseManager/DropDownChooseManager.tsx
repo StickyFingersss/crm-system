@@ -5,6 +5,8 @@ import { useMyDispatch, useMySelector } from '../../redux/hooks';
 import { RootState } from '../../redux/store';
 import { fetchManagers } from '../../redux/slices/managersSlice';
 
+import './DropDownChooseManager.css';
+
 export default function DropDownFilterBtn({
   changeHandler,
   inputs,
@@ -28,7 +30,7 @@ export default function DropDownFilterBtn({
   return (
     <>
       {selectedManager && (
-        <div>
+        <div className='divSelect'>
           <Select
             name="user_id"
             onChange={changeHandler}

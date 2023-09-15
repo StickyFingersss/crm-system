@@ -58,16 +58,16 @@ export default function ToDo({ todo }: TodoItemProps): JSX.Element {
         variant="outline"
         className="taskCard"
       >
-        <Stack className="stack">
-          <CardBody className="cardBody">
-            <Heading className="headerText" size="sm">
+        <Stack className="stack" gap='16rem'>
+          <CardBody className="cardBody" ml={25}>
+            <Heading className="headerText" w={310} fontSize="3xl">
               {todo.title}
             </Heading>
 
-            <Text className="text" py="2">
+            <Text className="text" py="2" fontSize="3xl">
               {todo.text}
             </Text>
-            <span>To do before: {date}</span>
+            <span className='spanDate'>To do before: {date}</span>
           </CardBody>
 
           <CardFooter
@@ -86,9 +86,9 @@ export default function ToDo({ todo }: TodoItemProps): JSX.Element {
             <Button
               flex="1"
               variant="ghost"
-              leftIcon={<DeleteIcon />}
-              colorScheme="red"
+              bg={'#ff5959'}
               onClick={onOpen}
+              fontSize={25}
             >
               Delete
             </Button>
@@ -111,10 +111,10 @@ export default function ToDo({ todo }: TodoItemProps): JSX.Element {
             </AlertDialogBody>
 
             <AlertDialogFooter>
-              <Button ref={cancelRef} onClick={onClose}>
+              <Button ref={cancelRef} colorScheme='green' bg={'green'} onClick={onClose}>
                 Cancel
               </Button>
-              <Button colorScheme="red" onClick={deleteHandler} ml={3}>
+              <Button colorScheme="orange" onClick={deleteHandler} ml={3}>
                 Delete
               </Button>
             </AlertDialogFooter>

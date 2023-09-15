@@ -24,6 +24,7 @@ export default function DropDownFilterBtn({
         onChange={(e) => setSelectedManager(e.target.value)}
         value={selectedManager || 0}
         placeholder="My tasks"
+        mb={15}
       >
         {managers.map((manager) => (
           <option key={manager.id} value={manager.id}>

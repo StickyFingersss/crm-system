@@ -79,6 +79,7 @@ export const ClientList = ({ path }): JSX.Element => {
       <div className={inputModal ? styles.modalSerchTrue : styles.modalSerchFalse}>
         <div className={styles.serchClient}>
           <input
+            className={styles.inputSerch}
             type="text"
             placeholder="value"
             value={inputData[fieldName] || ''}
@@ -91,13 +92,13 @@ export const ClientList = ({ path }): JSX.Element => {
             }}
           />
           <button
-            className={styles.button}
+            className={styles.buttonSent}
             type="button"
             onClick={() => buildQueryString(inputData)}>
             {'Sent'}
           </button>
           <button
-            className={styles.button}
+            className={styles.buttonClose}
             type="button"
             onClick={() => setInputModal(!inputModal)}>
             {'Close'}
@@ -106,7 +107,7 @@ export const ClientList = ({ path }): JSX.Element => {
       </div>
 
       {/* "Кнопка сброса фильтров" */}
-      <button type="button" onClick={resetFilter}>
+      <button type="button" onClick={resetFilter} className={styles.btnReset}>
         Reset filter
       </button>
 

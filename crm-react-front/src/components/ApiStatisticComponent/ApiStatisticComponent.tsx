@@ -28,9 +28,9 @@ export const ApiStatisticComponent = () => {
     <>
       {/* Применяем класс из модульных стилей */}
       <div className={styles['api-statistic']}>
-        <h2>Статистика клиентов</h2>
-        <p>Клиентов за сегодня: {clientsToday}</p>
-        <p>Клиентов за все время: {clientsTotal}</p>
+        <h2>Client statistics</h2>
+        <p>Clients today: {clientsToday}</p>
+        <p>Clients for all time: {clientsTotal}</p>
       </div>
     </>
   );

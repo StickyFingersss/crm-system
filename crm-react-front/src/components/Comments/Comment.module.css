@@ -3,4 +3,9 @@
     justify-content: space-around;
     border: 2px solid white;
     border-radius: 15px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+.mainComment h2{
+    font-size: 35px;
 }

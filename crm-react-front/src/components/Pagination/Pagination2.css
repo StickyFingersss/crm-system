@@ -1,3 +1,13 @@
 .pagination {
     display: flex !important;
 }
+.paginate{
+    display: flex;
+    width: 500px;
+}
+.page-item{
+    font-size: 30px;
+}
+ul li:not(:last-child) {
+    border-bottom: none;
+}

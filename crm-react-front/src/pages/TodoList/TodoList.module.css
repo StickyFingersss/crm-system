@@ -1,0 +1,12 @@
+.h1Header{
+    text-decoration: underline #3d3f9d;
+    margin-bottom: 10px;
+    text-align: center;
+}
+.toDoListContainer{
+    margin-left: 894px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 30%;
+}

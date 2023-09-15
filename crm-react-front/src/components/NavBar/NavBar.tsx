@@ -13,10 +13,10 @@ export const NavBar = (props) => {
   return (
     <>
       <div className={styles.modalBackground}>
-        <ul>
+        <ul className={styles.ule}>
           {buttons.map((el) => (
-            <li>
-              <button onClick={el.callback}>{el.name}</button>
+            <li className={el.name}>
+              <button onClick={el.callback} className={styles.btnFilter}>{el.name}</button>
             </li>
           ))}
         </ul>

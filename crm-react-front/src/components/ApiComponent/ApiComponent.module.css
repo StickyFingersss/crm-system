@@ -8,33 +8,51 @@
 }
 
 .header {
-  font-size: 18px;
+  font-family: 'Advent Pro', sans-serif;
+  font-size: 35px;
   font-weight: bold;
   margin-bottom: 10px;
+  text-decoration: underline #3d3f9d;
 }
 
 label {
   font-weight: bold;
   margin-right: 10px;
+  font-family: 'Advent Pro', sans-serif;
+  font-size: 35px;
 }
 
-input[type='text'] {
-  width: 100%;
+.input {
+  margin-left: 10px;
+  font-size: 20px;
+  height: 35px;
+  width: 30%;
   padding: 5px;
   margin-bottom: 10px;
   border: 1px solid #ccc;
   border-radius: 3px;
+  font-family: 'Advent Pro', sans-serif;
 }
 
 .button {
-  background-color: #007bff;
-  color: #fff;
-  border: none;
-  border-radius: 3px;
-  padding: 10px 20px;
-  cursor: pointer;
+  margin: 15px;
+  background-color: #3d3f9d;
+  color: white;
+  font-family: 'Advent Pro', sans-serif;
+  border: 2px #ffffff solid;
+  width: 95px;
+  height: 45px;
+  font-size: 23px;
 }
 
 .button:hover {
-  background-color: #0056b3;
+  color: rgb(0, 0, 0);
+  background-color: #ffffff;
+  border: 2px #3d3f9d solid;
+}
+.label1{
+  margin-right: 38px;
+}
+.label2{
+  margin-right: 42px;
 }
