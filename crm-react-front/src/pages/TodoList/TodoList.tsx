@@ -2,6 +2,7 @@ import { Link } from 'react-router-dom';
 import { useMySelector } from '../../redux/hooks';
 
 import ToDo from '../ToDo/ToDo';
+import styles from './TodoList.module.css';
 
 import BtnScrollUp from '../../components/ScrollButton/ScrollButton';
 import ModalButtonAddTodo from '../../components/ModalButtonAddTodo/ModalButtonAddTodo';
@@ -17,11 +18,11 @@ export default function TodoList({
   const session = useMySelector((store) => store.isAutenticatedSlice.session);
 
   return (
-    <div className="toDoListContainer">
-      <Link to="/">Back to main page</Link>
-      {session.isAdmin ? <Link to="/lead">To TeamLead page</Link> : ''}
+    <div className={styles.toDoListContainer}>
+      {/* <Link to="/">Back to main page</Link>
+      {session.isAdmin ? <Link to="/lead">To TeamLead page</Link> : ''} */}
 
-      <h1>{header}</h1>
+      <h1 className={styles.h1Header}>{header}</h1>
 
       <ModalButtonAddTodo createBtnTitle={createBtnTitle} />
       {session.isAdmin === true && (
@@ -35,7 +36,7 @@ export default function TodoList({
           <ToDo key={todo.id} todo={todo} />
         ))}
       </ul>
-      <BtnScrollUp />
+      {/* <BtnScrollUp /> */}
     </div>
   );
 }

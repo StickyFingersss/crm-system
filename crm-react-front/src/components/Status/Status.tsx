@@ -13,8 +13,8 @@ export default function Status({ status }: StatusPropsType ) {
   
   return (
     <div key={status.id} style={{ display: 'flex', alignItems: 'center', marginBottom: '8px' }}>
-      <p style={{ marginRight: '8px' }}>{status.name}</p>
-      <Button size="sm" colorScheme="red" onClick={deleteHandler}>Удалить</Button>
+      <p style={{ marginRight: '8px', fontSize: 30 }}>{status.name}</p>
+      <Button size="sm" colorScheme="orange" onClick={deleteHandler} fontSize={25}>Delete</Button>
   </div>
   )
 }

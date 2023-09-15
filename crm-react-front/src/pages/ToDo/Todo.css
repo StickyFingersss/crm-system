@@ -22,8 +22,21 @@
 ul div{
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: space-around;
 }
 ul {
     width: 100%;
+}
+.spanDate {
+    width: 310px;
+    font-size: 17px;
+}
+*{
+    font-family: 'Advent Pro', sans-serif;
+}
+div {
+    font-family: 'Advent Pro', sans-serif;
+}
+ul div {
+    text-align: left;
 }

@@ -23,7 +23,7 @@ export const TeamLead = () => {
     );
   } else {
     return (
-      <h1 className={styles.h1Err}><img src="/404.png" alt="" />#Error: Login as team lead or register </h1>
+      <h1 className={styles.h1Err}><img src="/404.gif" alt="" />#Error: Login as team lead or register </h1>
     )
   }  
 };

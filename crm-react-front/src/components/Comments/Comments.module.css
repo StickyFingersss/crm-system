@@ -1,6 +1,7 @@
 .mainComments{
     border: 2px solid rgb(0, 0, 0);
     padding: 15px;
+    margin: 15px;
 }
 .writeComment{
     display: flex;
@@ -20,4 +21,12 @@
     text-align: center;
     width: 140px;
     height: 50px;
+    border: 1px solid black;
+} 
+.inputComment{
+    padding: 5px;
+    font-size: 30px;
+}
+.writeComment h2 {
+    font-size: 30px;
 }

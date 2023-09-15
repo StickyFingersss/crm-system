@@ -31,12 +31,14 @@ export const Reports = () => {
 
   return (
     <>
-      <div>Reports</div>
+      <div>
+        <h2 className={styles.h2Report}>Reports</h2>
+      </div>
       <div className="container">
-        <div className="navbar">
+        {/* <div className="navbar">
           <NavBar buttons={buttons} select={select} />
-        </div>
-        <div className="report-list">
+        </div> */}
+        <div className={styles.reportList}>
           {isLoading ? (
             <div>Loading...</div>
           ) : (
@@ -45,14 +47,14 @@ export const Reports = () => {
             ))
           )}
         </div>
-        <button
+        {/* <button
           className={styles.reportButton}
           onClick={() => {
             console.log('first');
           }}
         >
           Sent report as PDF
-        </button>
+        </button> */}
       </div>
     </>
   );

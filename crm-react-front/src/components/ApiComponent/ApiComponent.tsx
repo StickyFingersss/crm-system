@@ -31,6 +31,7 @@ export const ApiComponent = () => {
       <br />
       <label htmlFor="currentApi">Your current Api:</label>
       <input
+        className={styles.input}
         type="text"
         id="currentApi"
         name="currentApi"
@@ -38,8 +39,9 @@ export const ApiComponent = () => {
         onChange={handleChange}
       />
       <br />
-      <label htmlFor="newApi">Input new Api:</label>
+      <label htmlFor="newApi" className={styles.label1}>Input new Api:</label>
       <input
+        className={styles.input}
         type="text"
         id="newApi"
         name="newApi"
@@ -47,8 +49,9 @@ export const ApiComponent = () => {
         onChange={handleChange}
       />
       <br />
-      <label htmlFor="teamId">Input Team Id:</label>
+      <label htmlFor="teamId" className={styles.label2}>Input Team Id:</label>
       <input
+        className={styles.input}
         type="text"
         id="teamId"
         name="teamId"

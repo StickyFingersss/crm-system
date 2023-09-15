@@ -36,7 +36,7 @@ export const ManagerPage = () => {
     <div className={styles.mainManager}>
       {!session.login && (
         <div>
-          <h1 className={styles.h1Err}><img src="/404.png" alt="" />#Error: Login or register </h1>
+          <h1 className={styles.h1Err}><img src="/404.gif" alt="" />#Error: Login or register </h1>
         </div>
       )}
       <h1>{selectedManager?.name}'s manager page</h1>

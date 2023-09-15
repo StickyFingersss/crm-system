@@ -8,7 +8,6 @@ export const Customer = () => {
   // if (getAccess) {
     return (
       <>
-        <div>Client Page</div>
         <div className="container">
           <ClientMax  />
           <Comments />

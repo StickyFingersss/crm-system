@@ -137,8 +137,7 @@ export const ClientMax = (): JSX.Element => {
       <Modal isOpen={isDealModalOpen} onClose={closeDealModal}>
         <ModalOverlay />
         <ModalContent>
-          <ModalHeader>Создать новую сделку</ModalHeader>
-          <ModalCloseButton />
+          <ModalHeader>Create a new deal</ModalHeader>
           <ModalBody>
             <Input
               name="total"
@@ -149,11 +148,11 @@ export const ClientMax = (): JSX.Element => {
             />
           </ModalBody>
           <ModalFooter>
-            <Button colorScheme="blue" mr={3} onClick={addDealHandler}>
-              Создать
+            <Button colorScheme="green" mr={3} onClick={addDealHandler}>
+              Create
             </Button>
-            <Button variant="ghost" onClick={closeDealModal}>
-              Закрыть
+            <Button colorScheme="orange" onClick={closeDealModal}>
+              Close
             </Button>
           </ModalFooter>
         </ModalContent>

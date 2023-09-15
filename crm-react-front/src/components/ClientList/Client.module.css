@@ -64,6 +64,7 @@
 
 .oneClientList h3 {
   margin: 0 50px;
+  font-size: 28px;
 }
 
 select {
@@ -78,4 +79,10 @@ ChakraLink {
   color: #007bff;
   font-weight: bold;
   margin-right: 10px; /* Добавьте отступ справа */
+}
+.selectManagers{
+  width: 400px;
+}
+.selectStatuses{
+  width: 270px;
 }

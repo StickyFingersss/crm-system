@@ -81,28 +81,48 @@ export default function ModalButtonLead() {
   return (
     <>
       <div className="btnGrp">
-        <Button onClick={openManagerModal} width="300px">
-          Добавить нового менеджера
+        <Button onClick={openManagerModal} width="300px" fontSize={25} mb={15}>
+          Add a new manager
         </Button>
-        <Button onClick={openStatusModal} width="300px">
-          Добавить статус
+        <Button onClick={openStatusModal} width="300px" fontSize={25} mb={15}>
+          Add status
         </Button>
         <Modal isOpen={isManagerModalOpen} onClose={closeManagerModal}>
           <ModalOverlay />
           <ModalContent>
-            <ModalHeader>Добавить нового менеджера</ModalHeader>
-            <ModalCloseButton />
+            <ModalHeader fontSize={30}>Add a new manager</ModalHeader>
             <ModalBody>
-              <Input name='name' value={inputs.name} onChange={changeHandler} placeholder="Введите имя" mb="4" />
-              <Input name='login' value={inputs.login} onChange={changeHandler} placeholder="Введите логин" mb="4" />
-              <Input name='password' value={inputs.password} onChange={changeHandler} placeholder="Введите пароль" mb="4" />
+              <Input 
+              name='name' 
+              value={inputs.name} 
+              onChange={changeHandler} 
+              placeholder="Enter name" 
+              mb="4"
+              fontSize={30}
+              />
+              <Input 
+              name='login' 
+              value={inputs.login} 
+              onChange={changeHandler} 
+              placeholder="Enter login" 
+              mb="4" 
+              fontSize={30}
+              />
+              <Input 
+              name='password' 
+              value={inputs.password} 
+              onChange={changeHandler} 
+              placeholder="Enter password" 
+              mb="4" 
+              fontSize={30}
+              />
             </ModalBody>
             <ModalFooter>
-              <Button colorScheme="blue" mr={3} onClick={addManagerHandler}>
-                Сохранить
+              <Button colorScheme="green" mr={3} onClick={addManagerHandler} fontSize={25}>
+                Save
               </Button>
-              <Button variant="ghost" onClick={closeManagerModal}>
-                Закрыть
+              <Button colorScheme="orange" onClick={closeManagerModal} fontSize={25}>
+                Close
               </Button>
             </ModalFooter>
           </ModalContent>
@@ -113,35 +133,44 @@ export default function ModalButtonLead() {
           <ModalContent>
             {isCreateStatus ? (
               <>
-                <Input name='name' value={inputStatus.name} onChange={changeStatusHandler} placeholder="Введите статус" mb="4" />
-                <Button colorScheme="blue" mr={3} onClick={addStatusHandler}>
-                  Сохранить
+                <Input 
+                name='name' 
+                value={inputStatus.name} 
+                onChange={changeStatusHandler} 
+                placeholder="Enter status"
+                fontSize={25}
+                mb="4"
+                ml={12} 
+                mt={5}
+                w={350}
+                />
+                <Button colorScheme="green" ml={155} w={120} onClick={addStatusHandler} fontSize={25}>
+                Create
                 </Button>
               </>
             ) : (
-              <ModalHeader>Добавить новый статус</ModalHeader>
+              <ModalHeader>Add new status</ModalHeader>
             )}
-            <ModalCloseButton />
-            <ModalBody>
+              <ModalBody>
               {statuses?.length && statuses.map((status) => <Status key={status.id} status={status}/>)}
             </ModalBody>
             <ModalFooter>
-              <Button colorScheme="blue" mr={3} onClick={openCreateStatus}>
-                Новый статус
+              <Button colorScheme="blue" mr={3} onClick={openCreateStatus} fontSize={25}>
+                New status
               </Button>
-              <Button variant="ghost" onClick={closeStatusModal}>
-                Закрыть
+              <Button colorScheme="orange" onClick={closeStatusModal} fontSize={25}>
+                Close
               </Button>
             </ModalFooter>
           </ModalContent>
         </Modal>
       </div>
       <div className="btnGrp">
-        <ChakraLink as={ReactRouterLink} to="/managers">
-          Просмотреть команду
+        <ChakraLink as={ReactRouterLink} to="/managers" fontSize={30}>
+          View team
         </ChakraLink>
-        <ChakraLink as={ReactRouterLink} to="/reports">
-          Посмотреть статистику
+        <ChakraLink as={ReactRouterLink} to="/reports" fontSize={30}>
+          View statistics
         </ChakraLink>
       </div>
     </>

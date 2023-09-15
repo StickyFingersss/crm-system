@@ -48,6 +48,7 @@ export default function Pagination2() {
         setSelectedManager={setSelectedManager}
       />
       <ReactPaginate
+        className='paginate'
         nextLabel="next >"
         onPageChange={handlePageClick}
         pageRangeDisplayed={3}

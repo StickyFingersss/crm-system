@@ -65,27 +65,28 @@ export const Client = ({
   };
   return (
     <div className={styles.oneClientList}>
-      <ChakraLink as={ReactRouterLink} to={`/customer/${id}`}>
+      <ChakraLink as={ReactRouterLink} to={`/customer/${id}`} fontSize={30} w={240}>
         {name}
       </ChakraLink>
       <h3>{id}</h3>
       <h3>{balance}</h3>
-      {session.isAdmin ? 
-        <select name="manager" onChange={(e) => {
+
+        <select name="manager" className={styles.selectManagers} onChange={(e) => {
           const newManagerId = e.target.value;
           changeManager(newManagerId);
-        }}>
-          <option selected>{user.data?.name ? user.data?.name : 'Менеджер не назначен'}</option>
+        }}
+
+        >
+          <option selected>{user.data?.name ? user.data?.name : 'No manager has been assigned'}</option>
           {managers.data?.map((manager) => (
             <option key={manager.id} value={manager.id}>{manager.name}</option>
           ))}
         </select>
-        : 
-        <h3>{user.data?.name}</h3>
-      }      
+     
       <h3>{normalDate}</h3>
       <select
         name="status"
+        className={styles.selectStatuses}
         onChange={(e) => {
           const newStatusId = e.target.value;
           setSelectedStatus(newStatusId);
@@ -93,7 +94,7 @@ export const Client = ({
         }}
       >
         <option selected>
-          {selectedStatus ? selectedStatus : 'Статус не назначен'}
+          {selectedStatus ? selectedStatus : 'Status not assigned'}
         </option>
         {statuses.data?.map((status) => (
           <option key={status.id} value={status.id}>

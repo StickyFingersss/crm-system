@@ -20,8 +20,10 @@ export default function StatusBtn({ todo }: TodoItemProps) {
             updateStatusHandler();
           }}
           flex="1"
+          bg={'#5edb5e'}
           variant="ghost"
-          leftIcon={<CheckIcon />}
+          fontSize={25}
+          mb={3}
         >
           Done
         </Button>
@@ -32,8 +34,10 @@ export default function StatusBtn({ todo }: TodoItemProps) {
             updateStatusHandler();
           }}
           flex="1"
+          bg={'#d9d947'}
           variant="ghost"
-          leftIcon={<CloseIcon />}
+          fontSize={25}
+          mb={3}
         >
           Waiting
         </Button>
